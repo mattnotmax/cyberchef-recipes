@@ -49,10 +49,16 @@ Source 2: https://adsecurity.org/?p=2288
 [{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"To Hex","args":["None"]},{"op":"AES Decrypt","args":[{"option":"Hex","string":"4e9906e8fcb66cc9faf49310620ffee8f496e806cc057990209b09a433b66c1b"},{"option":"Hex","string":""},"CBC","Hex","Raw",{"option":"Hex","string":""}]},{"op":"Decode text","args":["UTF16LE (1200)"]}]
 
 
-### Other Misc recipes - Twitter
+## Other Misc recipes - Twitter
 
 Example of loops over Base64: (Credit: @QW5kcmV3)
 https://twitter.com/QW5kcmV3/status/1079095274776289280
 
 Example of multi-stage obfuscation (Credit: @JohnLaTwC)
 https://twitter.com/JohnLaTwC/status/1062419803304976385
+
+
+
+Happy to add more. Please include original source of text and recipe developer (if not yourself). For consistency in pasting into CyberChef I have found the best response are to export the function as compact JSON.
+
+
