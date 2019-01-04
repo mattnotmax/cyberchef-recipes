@@ -15,7 +15,7 @@ https://www.hybrid-analysis.com/sample/cc9c6c38840af8573b8175f34e5c54078c1f3fb7c
 [{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"Generic Code Beautify","args":[]}]
 
 
-## Scenario 2 - Invoke-Obfuscation (compact JSON)
+## Scenario 2 - Invoke-Obfuscation
 
 Acknowledgement NUT-95-52619.eml
 
@@ -41,6 +41,7 @@ Source: https://gist.github.com/jonmarkgo/3431818
 Credit: @cyb3rops
 
 Source 1: https://twitter.com/cyb3rops/status/1036642978167758848
+
 Source 2: https://adsecurity.org/?p=2288
 
 ### Recipe (compact JSON)
