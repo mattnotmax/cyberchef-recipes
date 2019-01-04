@@ -77,6 +77,18 @@ Source 2: https://twitter.com/pmelson/status/1078776229996752896
 ![Scenario_5](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/scenario_5.PNG)
 
 
+## Scenario 6 - Google ei timestamp
+
+Source: https://bitofhex.com/2018/05/29/cyberchef/
+
+## Recipe (compact JSON)
+
+[{"op":"From Base64","args":["A-Za-z0-9-_=",true]},{"op":"To Hex","args":["None"]},{"op":"Take bytes","args":[0,8,false]},{"op":"Swap endianness","args":["Hex",4,true]},{"op":"From Base","args":[16]},{"op":"From UNIX Timestamp","args":["Seconds (s)"]}]
+
+
+![Scenario_6](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/scenario_6.PNG)
+
+
 ## Other misc recipes found on Twitter
 
 Example of loops over Base64: (Credit: @QW5kcmV3)
