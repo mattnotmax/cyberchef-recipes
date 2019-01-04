@@ -37,7 +37,7 @@ https://www.hybrid-analysis.com/sample/1240695523bbfe3ed450b64b80ed018bd890bfa81
 
 ### Recipe (compact JSON)
 
-[{"op":"Find / Replace","args":[{"option":"Regex","string":"\\^|\\\\|-|_|\\/|\\s"},"",true,false,true,false]},{"op":"Reverse","args":["Character"]},{"op":"Generic Code Beautify","args":[]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"http:"},"http://",true,false,true,false]}]
+[{"op":"Find / Replace","args":[{"option":"Regex","string":"\\^|\\\\|-|_|\\/|\\s"},"",true,false,true,false]},{"op":"Reverse","args":["Character"]},{"op":"Generic Code Beautify","args":[]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"http:"},"http://",true,false,true,false]},{"op":"Extract URLs","args":[false]},{"op":"Defang URL","args":[true,true,true,"Valid domains and full URLs"]}]
 
 ![Scenario_2](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/scenario_2.PNG)
 
