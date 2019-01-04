@@ -6,7 +6,7 @@ For background see Twitter #cyberchef or https://bitofhex.com/2018/05/29/cyberch
 Full credit to @GCHQ for producing the tool. See: https://gchq.github.io/CyberChef/
 
 
-## Scenario 1 - Extract base64, decompress and code beautify
+## Scenario 1 - Extract base64, raw inflate and code beautify
 
 Filename: ahack.bat
 
@@ -64,7 +64,9 @@ Source 2: https://adsecurity.org/?p=2288
 
 
 Credit: @pmelson
+
 Source 1: https://pastebin.com/hmCPDnHs
+
 Source 2: https://twitter.com/pmelson/status/1078776229996752896
 
 ![Scenario_5](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/scenario_5.PNG)
