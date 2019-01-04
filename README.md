@@ -60,6 +60,15 @@ Source 2: https://adsecurity.org/?p=2288
 
 ![Scenario_4](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/scenario_4.PNG)
 
+## Scenario 5 - Using loops & labels
+
+
+Credit: @pmelson
+Source 1: https://pastebin.com/hmCPDnHs
+Source 2: https://twitter.com/pmelson/status/1078776229996752896
+
+![Scenario_5](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/scenario_5.PNG)
+
 
 ## Other misc recipes found on Twitter
 
