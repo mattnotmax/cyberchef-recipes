@@ -9,6 +9,8 @@ Full credit to @GCHQ for producing the tool. See: https://gchq.github.io/CyberCh
 
 ## Scenario 1 - Extract base64, raw inflate and code beautify
 
+A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
+
 Filename: ahack.bat
 
 Sample: SHA256 cc9c6c38840af8573b8175f34e5c54078c1f3fb7c686a6dc49264a0812d56b54
@@ -23,6 +25,8 @@ https://www.hybrid-analysis.com/sample/cc9c6c38840af8573b8175f34e5c54078c1f3fb7c
 
 
 ## Scenario 2 - Invoke-Obfuscation
+
+CyberChef won't be able to handle all types of Invoke-Obfuscation, but here is one that can be decoded.
 
 Filename: Acknowledgement NUT-95-52619.eml
 
@@ -39,6 +43,8 @@ https://www.hybrid-analysis.com/sample/1240695523bbfe3ed450b64b80ed018bd890bfa81
 
 ## Scenario 3 - From CharCode
 
+Malware and scripts often use Charcode to represent characters in order to evade from AV and EDR solutions. CyberChef eats this up.
+
 Source: https://gist.github.com/jonmarkgo/3431818
 
 ### Recipe (compact JSON)
@@ -48,6 +54,8 @@ Source: https://gist.github.com/jonmarkgo/3431818
 ![Scenario_3](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/scenario_3.PNG)
 
 ## Scenario 4 - Group Policy Preference passwords
+
+When a new GPP is created, there’s an associated XML file created in SYSVOL with the relevant configuration data and if there is a password provided, it is AES-256 bit encrypted. Microsoft published the AES Key, which can be used to decrypt passwords store in:  \\<DOMAIN>\SYSVOL\<DOMAIN>\Policies\
 
 Credit: @cyb3rops
 
@@ -63,6 +71,7 @@ Source 2: https://adsecurity.org/?p=2288
 
 ## Scenario 5 - Using loops & labels
 
+CyberChef can use labels to identify parts of the recipe and then loop back to perform operations multiple times. In this examples, there are 29 rounds of Base64 encoding which are extracted and decoded.
 
 Credit: @pmelson
 
@@ -78,6 +87,8 @@ Source 2: https://twitter.com/pmelson/status/1078776229996752896
 
 
 ## Scenario 6 - Google ei timestamp
+
+Google uses its own timestamp, I call ei time, which it embeds in the URL.
 
 Source: https://bitofhex.com/2018/05/29/cyberchef/
 
