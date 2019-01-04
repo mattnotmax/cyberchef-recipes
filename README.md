@@ -69,6 +69,10 @@ Source 1: https://pastebin.com/hmCPDnHs
 
 Source 2: https://twitter.com/pmelson/status/1078776229996752896
 
+### Recipe (compact JSON)
+
+[{"op":"Label","args":["top"]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"Jump","args":["top",28]},{"op":"Generic Code Beautify","args":[]}]
+
 ![Scenario_5](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/scenario_5.PNG)
 
 
