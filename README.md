@@ -1,5 +1,6 @@
 # CyberChef Recipes
-A list of cyber-chef recipes 
+
+A list of CyberChef recipes 
 
 For background see Twitter #cyberchef or https://bitofhex.com/2018/05/29/cyberchef/
 
