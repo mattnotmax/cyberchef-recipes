@@ -107,11 +107,13 @@ Source: https://bitofhex.com/2018/05/29/cyberchef/
 
 ![Scenario_6](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/scenario_6.PNG)
 
-## Scenario 7: COM scriplet to disassemble x86 assembly
+## Scenario 7: COM scriplet to disassembled x86 assembly
 
-This is an eleven stage decoded COM scriplet that uses Base64, Gunzip, RegEx and Disassemble x86 instructions.
+This is an eleven stage decoded COM scriplet that uses Base64, Gunzip, RegEx, and Disassemble x86 instructions.
 
 Credit: @JohnLaTwC
+
+Filename: 41a6e22ec6e60af43269f4eb1eb758c91cf746e0772cecd4a69bb5f6faac3578.txt
 
 Source 1: https://gist.githubusercontent.com/JohnLaTwC/aae3b64006956e8cb7e0127452b5778f/raw/f1b23c84c654b1ea60f0e57a860c74385915c9e2/43cbbbf93121f3644ba26a273ebdb54d8827b25eb9c754d3631be395f06d8cff
 
