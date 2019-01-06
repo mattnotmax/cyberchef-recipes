@@ -81,6 +81,8 @@ CyberChef can use labels to identify parts of the recipe and then loop back to p
 
 Credit: @pmelson
 
+Source File: hmCPDnHs.txt
+
 Source 1: https://pastebin.com/hmCPDnHs
 
 Source 2: https://twitter.com/pmelson/status/1078776229996752896
