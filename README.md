@@ -6,7 +6,7 @@ For background see Twitter #cyberchef or https://bitofhex.com/2018/05/29/cyberch
 
 Full credit to @GCHQ for producing the tool. See: https://gchq.github.io/CyberChef/
 
-![Scenario 1: Extract base64, raw inflate & beautify](#scenario-1---extract-base64-raw-inflate-and-code-beautify)
+[Scenario 1: Extract base64, raw inflate & beautify](#scenario-1---extract-base64-raw-inflate-and-code-beautify)
 
 ![Scenario 2: Invoke Obfuscation](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/README.md#scenario-2---invoke-obfuscation)
 
