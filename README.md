@@ -107,14 +107,27 @@ Source: https://bitofhex.com/2018/05/29/cyberchef/
 
 ![Scenario_6](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/scenario_6.PNG)
 
+## Scenario 7: COM scriplet to disassemble x86 assembly
+
+This is an eleven stage decoded COM scriplet that uses Base64, Gunzip, RegEx and Disassemble x86 instructions.
+
+Credit: @JohnLaTwC
+
+Source 1: https://gist.githubusercontent.com/JohnLaTwC/aae3b64006956e8cb7e0127452b5778f/raw/f1b23c84c654b1ea60f0e57a860c74385915c9e2/43cbbbf93121f3644ba26a273ebdb54d8827b25eb9c754d3631be395f06d8cff
+
+Source 2: https://twitter.com/JohnLaTwC/status/1062419803304976385
+
+### Recipe (compact JSON)
+
+[{"op":"Regular expression","args":["","[A-Za-z0-9=/]{40,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Remove null bytes","args":[]},{"op":"Regular expression","args":["User defined","[A-Za-z0-9+/=]{40,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Gunzip","args":[]},{"op":"Regular expression","args":["User defined","[A-Za-z0-9+/=]{40,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"To Hex","args":["Space"]},{"op":"Remove whitespace","args":[true,true,true,true,true,false]},{"op":"Disassemble x86","args":["32","Full x86 architecture",16,0,true,true]}]
+
+![Scenario_7](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/scenario_7.png)
 
 ## Other misc recipes found on Twitter
 
 Example of loops over Base64: (Credit: @QW5kcmV3)
 https://twitter.com/QW5kcmV3/status/1079095274776289280
 
-Example of multi-stage obfuscation (Credit: @JohnLaTwC)
-https://twitter.com/JohnLaTwC/status/1062419803304976385
 
 
 
