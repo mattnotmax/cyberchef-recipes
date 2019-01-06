@@ -18,7 +18,9 @@ Full credit to @GCHQ for producing the tool. See: https://gchq.github.io/CyberCh
 
 [Scenario 6: Google ei Timestamps](#scenario-6---google-ei-timestamp)
 
-[Scenario 7: Multi-stage COM scriplet to x86 assembly](#scenario-7-com-scriplet-to-disassembled-x86-assembly)
+[Scenario 7: Multi-stage COM scriplet to x86 assembly](#scenario-7---com-scriplet-to-disassembled-x86-assembly)
+
+[Scenario 8: Scenario 8 - Extract hexadecimal, convert to hexdump for embedded PE file](#scenario 8---extract-hexadecimal-convert-to-hexdump-for-embedded-PE-file)
 
 [Other Misc Recipes](#other-misc-recipes-found-on-twitter)
 
@@ -120,10 +122,9 @@ Source: https://bitofhex.com/2018/05/29/cyberchef/
 
 [{"op":"From Base64","args":["A-Za-z0-9-_=",true]},{"op":"To Hex","args":["None"]},{"op":"Take bytes","args":[0,8,false]},{"op":"Swap endianness","args":["Hex",4,true]},{"op":"From Base","args":[16]},{"op":"From UNIX Timestamp","args":["Seconds (s)"]}]
 
-
 ![Scenario_6](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/scenario_6.PNG)
 
-## Scenario 7: COM scriplet to disassembled x86 assembly
+## Scenario 7 - COM scriplet to disassembled x86 assembly
 
 This is an eleven stage decoded COM scriplet that uses Base64, Gunzip, RegEx, and Disassemble x86 instructions.
 
@@ -140,6 +141,21 @@ Source 2: https://twitter.com/JohnLaTwC/status/1062419803304976385
 [{"op":"Regular expression","args":["","[A-Za-z0-9=/]{40,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Remove null bytes","args":[]},{"op":"Regular expression","args":["User defined","[A-Za-z0-9+/=]{40,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Gunzip","args":[]},{"op":"Regular expression","args":["User defined","[A-Za-z0-9+/=]{40,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"To Hex","args":["Space"]},{"op":"Remove whitespace","args":[true,true,true,true,true,false]},{"op":"Disassemble x86","args":["32","Full x86 architecture",16,0,true,true]}]
 
 ![Scenario_7](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/scenario_7.png)
+
+## Scenario 8 - Extract hexadecimal, convert to hexdump for embedded PE file
+
+This file has an embedded PE file (SHA 256: 26fac1d4ea12cdceac0d64ab9694d0582104b3c84d7940a4796c1df797d0fdc2, R5Sez8PH.exe, VT: 54/70). Using CyberChef, we can regex hexadecimal and the convert to a more easily viewable hexdump.
+
+Source 1: https://pastebin.com/R5Sez8PH
+
+Source 2: https://twitter.com/ScumBots/status/1081949877272276992
+
+### Recipe (compact JSON)
+
+[{"op":"Regular expression","args":["User defined","[a-fA-F0-9]{200,}",true,true,false,false,false,false,"List matches"]},{"op":"From Hex","args":["Auto"]},{"op":"To Hexdump","args":[16,false,false]}]
+
+![Scenario_8](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/scenario_8.png)
+
 
 ## Other misc recipes found on Twitter
 
