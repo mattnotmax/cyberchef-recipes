@@ -13,6 +13,8 @@ A very common scenario: extract Base64, inflate, beautify the code. You may need
 
 Filename: ahack.bat
 
+Zipped File: cc9c6c38840af8573b8175f34e5c54078c1f3fb7c686a6dc49264a0812d56b54_183SnuOIVa.bin.gz
+
 Sample: SHA256 cc9c6c38840af8573b8175f34e5c54078c1f3fb7c686a6dc49264a0812d56b54
 
 https://www.hybrid-analysis.com/sample/cc9c6c38840af8573b8175f34e5c54078c1f3fb7c686a6dc49264a0812d56b54?environmentId=120
@@ -30,6 +32,8 @@ CyberChef won't be able to handle all types of Invoke-Obfuscation, but here is o
 
 Filename: Acknowledgement NUT-95-52619.eml
 
+Zipped File: 1240695523bbfe3ed450b64b80ed018bd890bfa81259118ca2ac534c2895c835.bin.gz
+
 Sample: SHA256 1240695523bbfe3ed450b64b80ed018bd890bfa81259118ca2ac534c2895c835
 
 https://www.hybrid-analysis.com/sample/1240695523bbfe3ed450b64b80ed018bd890bfa81259118ca2ac534c2895c835?environmentId=120
@@ -44,6 +48,8 @@ https://www.hybrid-analysis.com/sample/1240695523bbfe3ed450b64b80ed018bd890bfa81
 ## Scenario 3 - From CharCode
 
 Malware and scripts often use Charcode to represent characters in order to evade from AV and EDR solutions. CyberChef eats this up.
+
+Filename: 3431818-f71f60d10b1cbe034dc1be242c6efa5b9812f3c6.zip
 
 Source: https://gist.github.com/jonmarkgo/3431818
 
