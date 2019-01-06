@@ -16,9 +16,9 @@ Full credit to @GCHQ for producing the tool. See: https://gchq.github.io/CyberCh
 
 [Scenario 5: Using Loops and Labels](#scenario-5---using-loops--labels)
 
-[Google ei Timestamps](#scenario-6---google-ei-timestamp)
+[Scenario 6: Google ei Timestamps](#scenario-6---google-ei-timestamp)
 
-[Multi-stage COM scriplet to x86 assembly](#scenario-7-com-scriplet-to-disassembled-x86-assembly)
+[Scenario 7: Multi-stage COM scriplet to x86 assembly](#scenario-7-com-scriplet-to-disassembled-x86-assembly)
 
 [Other Misc Recipes](#other-misc-recipes-found-on-twitter)
 
