@@ -20,7 +20,7 @@ Full credit to @GCHQ for producing the tool. See: https://gchq.github.io/CyberCh
 
 [Scenario 7: Multi-stage COM scriplet to x86 assembly](#scenario-7---com-scriplet-to-disassembled-x86-assembly)
 
-[Scenario 8: Scenario 8 - Extract hexadecimal, convert to hexdump for embedded PE file](#scenario 8---extract-hexadecimal-convert-to-hexdump-for-embedded-PE-file)
+[Scenario 8: Scenario 8 - Extract hexadecimal, convert to hexdump for embedded PE file](#scenario-8---extract-hexadecimal-convert-to-hexdump-for-embedded-pe-file)
 
 [Other Misc Recipes](#other-misc-recipes-found-on-twitter)
 
@@ -154,7 +154,7 @@ Source 2: https://twitter.com/ScumBots/status/1081949877272276992
 
 [{"op":"Regular expression","args":["User defined","[a-fA-F0-9]{200,}",true,true,false,false,false,false,"List matches"]},{"op":"From Hex","args":["Auto"]},{"op":"To Hexdump","args":[16,false,false]}]
 
-![Scenario_8](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/scenario_8.png)
+![Scenario_8](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/Scenario_8.png)
 
 
 ## Other misc recipes found on Twitter
