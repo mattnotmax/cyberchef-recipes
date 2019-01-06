@@ -6,6 +6,22 @@ For background see Twitter #cyberchef or https://bitofhex.com/2018/05/29/cyberch
 
 Full credit to @GCHQ for producing the tool. See: https://gchq.github.io/CyberChef/
 
+![Scenario 1: Extract base64, raw inflate & beautify](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/README.md#scenario-1---extract-base64-raw-inflate-and-code-beautify)
+
+![Scenario 2: Invoke Obfuscation](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/README.md#scenario-2---invoke-obfuscation)
+
+![Scenario 3: From CharCode](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/README.md#scenario-3---from-charcode)
+
+![Scenario 4: Group Policy Preference Password Decryption](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/README.md#scenario-4---group-policy-preference-passwords)
+
+![Scenario 5: Using Loops and Labels](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/README.md#scenario-5---using-loops--labels)
+
+![Google ei Timestamps](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/README.md#scenario-6---google-ei-timestamp)
+
+![Multi-stage COM scriplet to x86 assembly](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/README.md#scenario-7-com-scriplet-to-disassembled-x86-assembly)
+
+![Other Misc Recipes](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/README.md#other-misc-recipes-found-on-twitter)
+
 
 ## Scenario 1 - Extract base64, raw inflate and code beautify
 
