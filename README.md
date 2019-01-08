@@ -20,7 +20,9 @@ Full credit to @GCHQ for producing the tool. See: https://gchq.github.io/CyberCh
 
 [Scenario 7: Multi-stage COM scriplet to x86 assembly](#scenario-7---com-scriplet-to-disassembled-x86-assembly)
 
-[Scenario 8: Scenario 8 - Extract hexadecimal, convert to hexdump for embedded PE file](#scenario-8---extract-hexadecimal-convert-to-hexdump-for-embedded-pe-file)
+[Scenario 8: - Extract hexadecimal, convert to hexdump for embedded PE file](#scenario-8---extract-hexadecimal-convert-to-hexdump-for-embedded-pe-file)
+
+[Scenario 9 - Reverse strings, character substitution, from base64](#scenario-9---reverse-strings-character-substitution-from-base64)
 
 [Other Misc Recipes](#other-misc-recipes-found-on-twitter)
 
@@ -155,6 +157,22 @@ Source 2: https://twitter.com/ScumBots/status/1081949877272276992
 [{"op":"Regular expression","args":["User defined","[a-fA-F0-9]{200,}",true,true,false,false,false,false,"List matches"]},{"op":"From Hex","args":["Auto"]},{"op":"To Hexdump","args":[16,false,false]}]
 
 ![Scenario_8](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/Scenario_8.png)
+
+## Scenario 9 - Reverse strings, character substitution, from base64
+
+A blob of base64 with some minor bytes to be substituted. Original decoding done by @pmelson in Python and converted to CyberChef.
+
+Credit: @pmelson
+
+Source 1: https://pastebin.com/RtjrweYF
+
+Source 2: https://twitter.com/pmelson/status/1076893022758100998
+
+### Recipe (compact JSON)
+
+[{"op":"Reverse","args":["Character"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"%"},"A",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"×"},"T",true,false,false,false]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"÷"},"V",true,false,false,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"To Hexdump","args":[16,false,false]}]
+
+![Scenario_9](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/scenario_9.png)
 
 
 ## Other misc recipes found on Twitter
