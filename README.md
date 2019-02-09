@@ -24,7 +24,7 @@ Full credit to @GCHQ for producing the tool. See: https://gchq.github.io/CyberCh
 
 [Scenario 9 - Reverse strings, character substitution, from base64](#scenario-9---reverse-strings-character-substitution-from-base64)
 
-[Scenario 10 - Extract object from Squid cache proxy](#scenario-10---extract-object-from-squid-cache-proxy)
+[Scenario 10 - Extract object from Squid proxy cache](#scenario-10---extract-object-from-squid-proxy-cache)
 
 [Other Misc Recipes](#other-misc-recipes-found-on-twitter)
 
@@ -177,7 +177,7 @@ Source 2: https://twitter.com/pmelson/status/1076893022758100998
 ![Scenario_9](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/scenario_9.png)
 
 
-## Scenario 10 - Extract object from Squid cache proxy
+## Scenario 10 - Extract object from Squid proxy cache
 
 Don't manually carve out your Squid cache objects. Simply upload the file to CyberChef. This recipe will search for the magic bytes 0x0D0A0D0A, extract everything after. It then gzip decompresses the object for download.
 
