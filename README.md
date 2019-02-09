@@ -179,7 +179,7 @@ Source 2: https://twitter.com/pmelson/status/1076893022758100998
 
 ## Scenario 10 - Extract object from Squid cache proxy
 
-Don't manually carve out your Squid cache objects. Simply upload the file to CyberChef. This reciepe will search for the magic bytes 0x0D0A0D0A, extract everything after. It then gzip decompresses the object for download.
+Don't manually carve out your Squid cache objects. Simply upload the file to CyberChef. This recipe will search for the magic bytes 0x0D0A0D0A, extract everything after. It then gzip decompresses the object for download.
 
 Source: 00000915 (output should be TrueCrypt_Setup_7.1a.exe with SHA256 e95eca399dfe95500c4de569efc4cc77b75e2b66a864d467df37733ec06a0ff2)
 
