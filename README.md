@@ -26,6 +26,8 @@ Full credit to @GCHQ for producing the tool. See: https://gchq.github.io/CyberCh
 
 [Scenario 10 - Extract object from Squid proxy cache](#scenario-10---extract-object-from-squid-proxy-cache)
 
+[Scenario 11 - Extract GPS Coordinates to Google Maps URLs](#scenario-11---extract-gps-coordinates-to-google-maps-urls)
+
 [Other Misc Recipes](#other-misc-recipes-found-on-twitter)
 
 
@@ -188,6 +190,16 @@ Source: 00000915 (output should be TrueCrypt_Setup_7.1a.exe with SHA256 e95eca39
 ```[{"op":"To Hex","args":["None"]},{"op":"Regular expression","args":["User defined","(?<=0D0A0D0A).*$",true,false,false,false,false,false,"List matches"]},{"op":"From Hex","args":["Auto"]},{"op":"Gunzip","args":[]}]```
 
 ![Scenario_10](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/scenario_10.png)
+
+## Scenario 11 - Extract GPS Coordinates to Google Maps URLs
+
+If you need to quickly triage where a photo was taken and you're lucky enought to have embedded GPS latitude and longitudes then use this recipe to quickly make a usable Google Maps URL to identify the location.
+
+### Recipe (compact JSON)
+
+```[{"op":"Extract EXIF","args":[]},{"op":"Regular expression","args":["User defined","((?<=GPSLatitude:).*$)|((?<=GPSLongitude: ).*$)",true,true,false,false,false,false,"List matches"]},{"op":"Find / Replace","args":[{"option":"Extended (\\n, \\t, \\x...)","string":"\\n"},",",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Simple string","string":" "},"https://maps.google.com/?q=",true,false,true,false]}]```
+
+![Scenario_11](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/scenario_11.png)
 
 ## Other misc recipes found on Twitter
 
