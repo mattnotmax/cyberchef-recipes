@@ -208,6 +208,7 @@ If you need to quickly triage where a photo was taken and you're lucky enought t
 CyberChef can handle massive numbers. Here we can use a simple recipe to change a 38-digit X509SerialNumber to its hexadecimal equivalent X.509 certificate serial number. Then we can regex the hexadecimal and insert a colon to transform it to the correct format.
 
 Credit: @QW5kcmV3
+
 Source: https://twitter.com/QW5kcmV3/status/949437437473968128
 
 ### Recipe (compact JSON)
