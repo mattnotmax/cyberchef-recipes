@@ -28,6 +28,8 @@ Full credit to @GCHQ for producing the tool. See: https://gchq.github.io/CyberCh
 
 [Scenario 11 - Extract GPS Coordinates to Google Maps URLs](#scenario-11---extract-gps-coordinates-to-google-maps-urls)
 
+[Scenario 12 - Big Number Processing](#scenario-12---big-number-processing)
+
 [Other Misc Recipes](#other-misc-recipes-found-on-twitter)
 
 
@@ -200,6 +202,20 @@ If you need to quickly triage where a photo was taken and you're lucky enought t
 ```[{"op":"Extract EXIF","args":[]},{"op":"Regular expression","args":["User defined","((?<=GPSLatitude:).*$)|((?<=GPSLongitude: ).*$)",true,true,false,false,false,false,"List matches"]},{"op":"Find / Replace","args":[{"option":"Extended (\\n, \\t, \\x...)","string":"\\n"},",",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Simple string","string":" "},"https://maps.google.com/?q=",true,false,true,false]}]```
 
 ![Scenario_11](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/scenario_11.png)
+
+## Scenario 12 - Big Number Processing
+
+CyberChef can handle massive numbers. Here we can use a simple recipe to change a 38-digit X509SerialNumber to its hexadecimal equivalent X.509 certificate serial number. Then we can regex the hexadecimal and insert a colon to transform it to the correct format.
+
+Credit: @QW5kcmV3
+Source: https://twitter.com/QW5kcmV3/status/949437437473968128
+
+### Recipe (compact JSON)
+
+```[{"op":"To Base","args":[16]},{"op":"Regular expression","args":["User defined","[a-f0-9]{2,2}",true,true,false,false,false,false,"List matches"]},{"op":"Find / Replace","args":[{"option":"Extended (\\n, \\t, \\x...)","string":"\\n"},":",true,false,true,false]}]```
+
+![Scenario_12](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/scenario_12.png)
+
 
 ## Other misc recipes found on Twitter
 
