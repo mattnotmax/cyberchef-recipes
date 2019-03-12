@@ -34,8 +34,6 @@ Full credit to @GCHQ for producing the tool. See: https://gchq.github.io/CyberCh
 
 [Recipe 14 - Decoding POSHC2 executables](#recipe-14---decoding-poshc2-executables)
 
-[Other Misc Recipes](#other-misc-recipes-found-on-twitter)
-
 
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
@@ -116,6 +114,8 @@ Source File: hmCPDnHs.txt
 Source 1: https://pastebin.com/hmCPDnHs
 
 Source 2: https://twitter.com/pmelson/status/1078776229996752896
+
+Also see more example of loops over Base64: https://twitter.com/QW5kcmV3/status/1079095274776289280 (Credit: @QW5kcmV3)
 
 ### Recipe Details
 
@@ -246,12 +246,6 @@ Source: posh.zip (password: 'infected'. NB: this is different to the tweeted exe
 ### Recipe Details
 
 ```[{"op":"Strings","args":["All",4,"Alphanumeric + punctuation (A)",false]},{"op":"Remove null bytes","args":[]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+=]{200,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Remove null bytes","args":[]},{"op":"Regular expression","args":["User defined","[a-z0-9/\\\\+=]{100,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]}]```
-
-
-## Other misc recipes found on Twitter
-
-Example of loops over Base64: (Credit: @QW5kcmV3)
-https://twitter.com/QW5kcmV3/status/1079095274776289280
 
 
 
