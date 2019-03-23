@@ -34,7 +34,7 @@ Full credit to @GCHQ for producing the tool. See: https://gchq.github.io/CyberCh
 
 [Recipe 14 - Decoding POSHC2 executables](#recipe-14---decoding-poshc2-executables)
 
-[Recipe 15 - Parsing $MFT $STANDARD_INFORMATION Timestamps](#recipe-15---parsing-$mft-$si-timestamps)
+[Recipe 15 - Parsing $MFT $STANDARD_INFORMATION Timestamps](#recipe-15---parsing-$mft-$standard_information-timestamps)
 
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
@@ -252,7 +252,7 @@ Source: posh.zip (password: 'infected'. NB: this is different to the tweeted exe
 
 CyberChef can do just about anything with data. Here are raw hex bytes from a $MFT entry. By selecting certain bytes, and using various functions of CyberChef I can parse any part of the data as needed. This recipe will extract and parse the $SI timestamps. Encase no more!
 
-![Recipe 15](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_14.PNG)
+![Recipe 15](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_15.PNG)
 
 ### Recipe Details
 
