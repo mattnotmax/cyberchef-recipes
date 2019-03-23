@@ -34,7 +34,7 @@ Full credit to @GCHQ for producing the tool. See: https://gchq.github.io/CyberCh
 
 [Recipe 14 - Decoding POSHC2 executables](#recipe-14---decoding-poshc2-executables)
 
-[Recipe 15 - Parsing $MFT $SI Timestamps](#recipe-15---parsing-$mft-$si-timestamps)
+[Recipe 15 - Parsing $MFT $SI Timestamps](#recipe-15---parsing-mft-si-timestamps)
 
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
