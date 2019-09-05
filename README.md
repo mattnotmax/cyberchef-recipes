@@ -327,7 +327,7 @@ Source: https://pastebin.com/TmJsB0Nv & https://twitter.com/pmelson/status/11670
 
 ## Recipe 20 - Using Yara rules with deobfuscated malicious scripts
 
-Although not the most convienient way, CyberChef does provide the ability to run a yara rule over the output of a recipe. You could combine this by using the [multiple inputs](https://github.com/gchq/CyberChef/wiki/Multiple-Inputs) function to scan a larger number of files.
+Although not the most convenient way, CyberChef does provide the ability to run a yara rule over the output of a recipe. You could combine this by using the [multiple inputs](https://github.com/gchq/CyberChef/wiki/Multiple-Inputs) function to scan a larger number of files.
 
 Source: https://twitter.com/ScumBots/status/1168528510681538560 & https://pastebin.com/r40SXe7V
 
