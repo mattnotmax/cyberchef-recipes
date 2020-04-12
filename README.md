@@ -22,11 +22,13 @@ Mastering regular expressions are key to making the most of data manipulation in
 <p align="center">
   <img src="https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/base64.png" alt="b64"/>
 </p>
+
 - Extract Hexadecimal: `[a-fA-F0-9]{10,}`
     - This could also be adjusted to {32} (MD5), {40} (SHA1), {64}, SHA256 to extract various hashes
 <p align="center">
   <img src="https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/hex.png" alt="hex"/>
 </p>
+
 - Extract Character Codes: `[\d]{2,3}(,|’)`
     - In this example it would extract character codes in the format ('30, 40, 50, 60')
 <p align="center">
