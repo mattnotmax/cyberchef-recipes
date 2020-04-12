@@ -68,7 +68,7 @@ Some example CyberChef recipes:
 
 [Recipe 6: Google ei Timestamps](#recipe-6---google-ei-timestamp)
 
-[Recipe 7: Multi-stage COM scriplet to x86 assembly](#recipe-7---com-scriplet-to-disassembled-x86-assembly)
+[Recipe 7: Multi-stage COM scriptlet to x86 assembly](#recipe-7---com-scriptlet-to-disassembled-x86-assembly)
 
 [Recipe 8: - Extract hexadecimal, convert to hexdump for embedded PE file](#recipe-8---extract-hexadecimal-convert-to-hexdump-for-embedded-pe-file)
 
@@ -177,7 +177,7 @@ Source 2: https://adsecurity.org/?p=2288
 
 ## Recipe 5 - Using loops & labels
 
-CyberChef can use labels to identify parts of the recipe and then loop back to perform operations multiple times. In this examples, there are 29 rounds of Base64 encoding which are extracted and decoded.
+CyberChef can use labels to identify parts of the recipe and then loop back to perform operations multiple times. In this example, there are 29 rounds of Base64 encoding which are extracted and decoded.
 
 Credit: @pmelson
 
@@ -208,9 +208,9 @@ Source: https://bitofhex.com/2018/05/29/cyberchef/
 
 ![Recipe_6](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_6.PNG)
 
-## Recipe 7 - COM scriplet to disassembled x86 assembly
+## Recipe 7 - COM scriptlet to disassembled x86 assembly
 
-This is an eleven stage decoded COM scriplet that uses Base64, Gunzip, RegEx, and Disassemble x86 instructions.
+This is an eleven-stage decoded COM scriptlet that uses Base64, Gunzip, RegEx, and Disassemble x86 instructions.
 
 Credit: @JohnLaTwC
 
@@ -299,7 +299,7 @@ IP addresses in DNS PTR records are stored as least significant octet first. For
 
 ![Recipe_13](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_13.png)
 
-###  Recipe Details
+### Recipe Details
 
 ```[{"op":"Fork","args":["\\n","\\n",false]},{"op":"Register","args":["(\\d{1,3}).(\\d{1,3}).(\\d{1,3}).(\\d{1,3})",true,false,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"$R0.$R1.$R2.$R3"},"$R3.$R2.$R1.$R0",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":".in-addr.arpa"},"",true,false,true,false]}]```
 
@@ -351,7 +351,7 @@ Source: https://pastebin.com/9DnD6t6W
 
 ![Recipe 17](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_17.PNG)
 
-###  12.1. <a name='RecipeDetails-1'></a>Recipe Details
+### Recipe Details
 
 ```[{"op":"Regular expression","args":["User defined","[a-zA-Z0-9=/+]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Remove null bytes","args":[]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9=/+]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Gunzip","args":[]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9=/+]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"To Hex","args":["None"]},{"op":"Disassemble x86","args":["32","Full x86 architecture",16,0,true,true]}]```
 
@@ -406,7 +406,7 @@ Source: malicious.lnk.bin
 
 ![Recipe 21](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_21.PNG)
 
-###  Recipe Details
+### Recipe Details
 
 ```[{"op":"Microsoft Script Decoder","args":[]},{"op":"Subsection","args":["(?<=\\(\\\")(.*?)(?=\\\"\\))",true,true,false]},{"op":"Fork","args":["\\n","\\n",false]},{"op":"From Hex","args":["Auto"]}]```
 
@@ -482,12 +482,12 @@ Background: https://github.com/zxing/zxing/wiki/Barcode-Contents#wi-fi-network-c
 
 # Browser Extensions
 
-I haven't tested these so caveat emptor.  
+I haven't tested these, so caveat emptor.  
 
 [FireFox](https://addons.mozilla.org/en-US/firefox/addon/open-in-cyberchef/)  
 [Chrome](https://chrome.google.com/webstore/detail/open-in-cyberchef/aandeoaihmciockajcgadkgknejppjdl)  
 
-# Presenatations / Conference Talks
+# Presentations / Conference Talks
 
 [@GlassSec: Zero to Hero with CyberChef](https://www.osdfcon.org/presentations/2019/Jonathan-Glass_Cybersecurity-Zero-to-Hero-With-CyberChef.pdf)
 
