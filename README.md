@@ -70,41 +70,41 @@ Some example CyberChef recipes:
 
 [Recipe 7: Multi-stage COM scriptlet to x86 assembly](#recipe-7---com-scriptlet-to-disassembled-x86-assembly)
 
-[Recipe 8: - Extract hexadecimal, convert to hexdump for embedded PE file](#recipe-8---extract-hexadecimal-convert-to-hexdump-for-embedded-pe-file)
+[Recipe 8: Extract hexadecimal, convert to hexdump for embedded PE file](#recipe-8---extract-hexadecimal-convert-to-hexdump-for-embedded-pe-file)
 
-[Recipe 9 - Reverse strings, character substitution, from base64](#recipe-9---reverse-strings-character-substitution-from-base64)
+[Recipe 9: Reverse strings, character substitution, from base64](#recipe-9---reverse-strings-character-substitution-from-base64)
 
-[Recipe 10 - Extract object from Squid proxy cache](#recipe-10---extract-object-from-squid-proxy-cache)
+[Recipe 10: Extract object from Squid proxy cache](#recipe-10---extract-object-from-squid-proxy-cache)
 
-[Recipe 11 - Extract GPS Coordinates to Google Maps URLs](#recipe-11---extract-gps-coordinates-to-google-maps-urls)
+[Recipe 11: Extract GPS Coordinates to Google Maps URLs](#recipe-11---extract-gps-coordinates-to-google-maps-urls)
 
-[Recipe 12 - Big Number Processing](#recipe-12---big-number-processing)
+[Recipe 12: Big Number Processing](#recipe-12---big-number-processing)
 
-[Recipe 13 - Parsing DNS PTR records with Registers](#recipe-13---parsing-dns-ptr-records-with-registers)
+[Recipe 13: Parsing DNS PTR records with Registers](#recipe-13---parsing-dns-ptr-records-with-registers)
 
-[Recipe 14 - Decoding POSHC2 executables](#recipe-14---decoding-poshc2-executables)
+[Recipe 14: Decoding POSHC2 executables](#recipe-14---decoding-poshc2-executables)
 
-[Recipe 15 - Parsing $MFT $SI Timestamps](#recipe-15---parsing-mft-si-timestamps)
+[Recipe 15: Parsing $MFT $SI Timestamps](#recipe-15---parsing-mft-si-timestamps)
 
-[Recipe 16 - Decoding PHP gzinflate and base64 webshells](#recipe-16---decoding-php-gzinflate-and-base64-webshells)
+[Recipe 16: Decoding PHP gzinflate and base64 webshells](#recipe-16---decoding-php-gzinflate-and-base64-webshells)
 
-[Recipe 17 - Extracting shellcode from a Powershell Meterpreter Reverse TCP Script](#recipe-17---extracting-shellcode-from-a-powershell-meterpreter-reverse-tcp-script)
+[Recipe 17: Extracting shellcode from a Powershell Meterpreter Reverse TCP Script](#recipe-17---extracting-shellcode-from-a-powershell-meterpreter-reverse-tcp-script)
 
-[Recipe 18 - Recycle Bin Parser with Subsections and Merges](#recipe-18---recycle-bin-parser-with-subsections-and-merges)
+[Recipe 18: Recycle Bin Parser with Subsections and Merges](#recipe-18---recycle-bin-parser-with-subsections-and-merges)
 
-[Recipe 19 - Identify Obfuscated Base64 with Regular Expression Highlighting](#recipe-19---identify-obfuscated-base64-with-regular-expression-highlighting)
+[Recipe 19: Identify Obfuscated Base64 with Regular Expression Highlighting](#recipe-19---identify-obfuscated-base64-with-regular-expression-highlighting)
 
-[Recipe 20 - Using Yara rules with deobfuscated malicious scripts](#recipe-20---using-yara-rules-with-deobfuscated-malicious-scripts)
+[Recipe 20: Using Yara rules with deobfuscated malicious scripts](#recipe-20---using-yara-rules-with-deobfuscated-malicious-scripts)
 
-[Recipe 21 - Inline deobfuscation of hex encoded VBE script attached to a malicious LNK file](#recipe-21---inline-deobfuscation-of-hex-encoded-vbe-script-attached-to-a-malicious-lnk-file)
+[Recipe 21: Inline deobfuscation of hex encoded VBE script attached to a malicious LNK file](#recipe-21---inline-deobfuscation-of-hex-encoded-vbe-script-attached-to-a-malicious-lnk-file)
 
-[Recipe 22 - JA3 API search with HTTP Request and Registers](#recipe-22---ja3-api-search-with-http-request-and-registers)
+[Recipe 22: JA3 API search with HTTP Request and Registers](#recipe-22---ja3-api-search-with-http-request-and-registers)
 
-[Recipe 23 - Defeating DOSfuscation embedded in a malicious DOC file with Regular Expression capture groups](#recipe-23---defeating-dosfuscation-embedded-in-a-malicious-doc-file-with-regular-expression-capture-groups)
+[Recipe 23: Defeating DOSfuscation embedded in a malicious DOC file with Regular Expression capture groups](#recipe-23---defeating-dosfuscation-embedded-in-a-malicious-doc-file-with-regular-expression-capture-groups)
 
-[Recipe 24 - Picking a random letter from a six-byte string](#recipe-24---picking-a-random-letter-from-a-six-byte-string)
+[Recipe 24: Picking a random letter from a six-byte string](#recipe-24---picking-a-random-letter-from-a-six-byte-string)
 
-[Recipe 25 - Creating a Wifi QR code](#recipe-25---creating-a-wifi-qr-code)
+[Recipe 25: Creating a Wifi QR code](#recipe-25---creating-a-wifi-qr-code)
 
 
 ## Recipe 1 - Extract base64, raw inflate and code beautify
@@ -479,13 +479,19 @@ Background: https://github.com/zxing/zxing/wiki/Barcode-Contents#wi-fi-network-c
 [13cubed: Cooking with CyberChef](https://www.youtube.com/watch?v=eqbTQpGSR7g)  
 [Decoding Metasploit framework and CobaltStrike shells](https://www.youtube.com/watch?v=Y50WdhSDjic)  
 [Hiding Malicious code using windows CMD - Dosfuscation](https://www.youtube.com/watch?v=ptsF2PvD4vY)  
+[Splunk TA (Technology Add-on) Example](https://vimeo.com/243919059)  
 
-# Browser Extensions
+# Browser & Application Extensions/APIs
 
 I haven't tested these, so caveat emptor.  
 
 [FireFox](https://addons.mozilla.org/en-US/firefox/addon/open-in-cyberchef/)  
 [Chrome](https://chrome.google.com/webstore/detail/open-in-cyberchef/aandeoaihmciockajcgadkgknejppjdl)  
+[Burp - SentToCyberChef](https://github.com/xorrbit/Burp-SendToCyberChef)  
+[CyberSaucier](https://github.com/DBHeise/CyberSaucier)  
+[Official CyberChef Server](https://github.com/gchq/CyberChef-server)  
+[Splunk TA (Technology Add-on)](https://github.com/daveherrald/TA-cyberchef)  
+
 
 # Presentations / Conference Talks
 
