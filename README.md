@@ -106,6 +106,7 @@ Some example CyberChef recipes:
 
 [Recipe 25: Creating a Wifi QR code](#recipe-25---creating-a-wifi-qr-code)
 
+[Recipe 26: Extracting and Decoding a Multistage PHP Webshell](#recipe-26---extracting-and-decoding-a-multistage-php-webshell)
 
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
@@ -455,12 +456,21 @@ Either for ease of letting your mates access your guest wifi, or for any Red Tea
 Credit: https://twitter.com/mattnotmax/status/1242031548884369408  
 Background: https://github.com/zxing/zxing/wiki/Barcode-Contents#wi-fi-network-config-android-ios-11
 
-![Recipe 25](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_25.PNG)
-
 ### Recipe Details
 
 `Generate_QR_Code('PNG',5,2,'Medium')`
 
+![Recipe 25](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_25.PNG)
+
+## Recipe 26 - Extracting and Decoding a Multistage PHP Webshell
+
+Decoding a Webshell documented by [SANS](https://isc.sans.edu/forums/diary/Another+webshell+another+backdoor/22826/) entirely within Cyberchef.
+
+### Recipe Details
+
+`[{"op":"Regular expression","args":["User defined","(?<=')(.*?)(?=')",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"ROT13","args":[true,true,13]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"ROT13","args":[true,true,13]},{"op":"Extract URLs","args":[false]},{"op":"Register","args":["(.*)",true,false,false]},{"op":"HTTP request","args":["GET","$R0","","Cross-Origin Resource Sharing",false]},{"op":"Strings","args":["Single byte",4,"Alphanumeric + punctuation (A)",false]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+=/]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Regular expression","args":["User defined","(?<=')(.*?)(?=')",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"ROT13","args":[true,true,13]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+=/]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]}]`
+
+![Recipe 26](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_26.PNG)
 
 # Resources, Books & Blog Articles
 
