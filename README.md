@@ -472,6 +472,8 @@ Decoding a Webshell documented by [SANS](https://isc.sans.edu/forums/diary/Anoth
 
 ![Recipe 26](screenshots/recipe_26.PNG)
 
+Credit: Provided by [Ben Ellett](https://twitter.com/thebluetoob) with lots of help to get it working from [Matt](https://twitter.com/mattnotmax)
+
 # Resources, Books & Blog Articles
 
 [Twitter #cyberchef](https://twitter.com/search?q=%23cyberchef)  
