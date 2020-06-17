@@ -480,7 +480,7 @@ Credit: https://twitter.com/thebluetoob
 
 Decoding an auto visitor script written in PHP within Cyberchef using regex, ROT13, multiple decompression algorithms, and *subsections*!
 
-Credit: Original script provided by [@NtSetDefault](https://twitter.com/NtSetDefault), original disparate Cyberchef recipe(s) created by [@thebluetoob](https://twitter.com/thebluetoob), and refined by @[mattnotmax](https://twitter.com/mattnotmax) in to one recipe.
+Credit: Original script provided by [@NtSetDefault](https://twitter.com/NtSetDefault), original disparate Cyberchef recipe(s) created by [@thebluetoob](https://twitter.com/thebluetoob), and refined by [@mattnotmax](https://twitter.com/mattnotmax) in to one recipe.
 
 `[{"op":"Regular expression","args":["User defined","(?<=')(.*?)(?=')",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"ROT13","args":[true,true,13]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"ROT13","args":[true,true,13]},{"op":"Subsection","args":["(?<=\\$Fadly.*?\")(.*?)(?=\\\")",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"URL Decode","args":[]},{"op":"Merge","args":[]},{"op":"Subsection","args":["(?<=\\$Gans.*?\")(.*?)(?=\\\")",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"Zlib Inflate","args":[0,0,"Adaptive",false,false]},{"op":"Zlib Inflate","args":[0,0,"Adaptive",false,false]}]`
 
