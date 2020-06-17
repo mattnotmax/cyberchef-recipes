@@ -498,7 +498,7 @@ Credit: https://twitter.com/0xtornado/status/1255866333545316352
 
 ![Recipe 28_1](screenshots/recipe_28_1.png)  
 
-![Recipe 28_1](screenshots/recipe_28_1.png)  
+![Recipe 28_1](screenshots/recipe_28_2.png)  
 
 
 # Resources, Books & Blog Articles
