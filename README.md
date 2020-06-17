@@ -110,6 +110,8 @@ Some example CyberChef recipes:
 
 [Recipe 27: Decoding an Auto Visitor PHP script](#recipe-27---decoding-an-auto-visitor-php-script)
 
+[Recipe 28: De-obfuscation of Cobalt Strike Beacon using Conditional Jumps to obtain shellcode](#recipe-28---de-obfuscation-of-cobalt-strike-beacon-using-conditional-jumps-to-obtain-shellcode)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -233,7 +235,7 @@ Source 2: https://twitter.com/JohnLaTwC/status/1062419803304976385
 
 This file has an embedded PE file (SHA 256: 26fac1d4ea12cdceac0d64ab9694d0582104b3c84d7940a4796c1df797d0fdc2, R5Sez8PH.exe, VT: 54/70). Using CyberChef, we can regex hexadecimal and the convert to a more easily viewable hexdump.
 
-Source 1: https://pastebin.com/R5Sez8PH
+Source 1: https://pastebin.com/R5Sez8PH (sorry: no longer available!)
 
 Source 2: https://twitter.com/ScumBots/status/1081949877272276992
 
@@ -249,7 +251,7 @@ A blob of base64 with some minor bytes to be substituted. Original decoding done
 
 Credit: @pmelson
 
-Source 1: https://pastebin.com/RtjrweYF
+Source 1: https://pastebin.com/RtjrweYF / RtjrweYF.txt
 
 Source 2: https://twitter.com/pmelson/status/1076893022758100998
 
@@ -314,7 +316,7 @@ Credit: @a_tweeter_user
 
 Source: https://twitter.com/a_tweeter_user/status/1100751236687642624
 
-Source: posh.zip (password: 'infected'. NB: this is different to the tweeted executable by @a_tweeter_user as I don't have a VT account)
+Source: posh.zip
 
 ![Recipe_14](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_14.png)
 
@@ -350,7 +352,7 @@ Often seen in @pmelson's Pastbin bot @scumbots, this peels away multiple layers 
 
 Source: https://twitter.com/ScumBots/status/1121854255898472453
 
-Source: https://pastebin.com/9DnD6t6W
+Source: https://pastebin.com/9DnD6t6W / 9DnD6t6W.txt
 
 ![Recipe 17](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_17.PNG)
 
@@ -485,6 +487,19 @@ Credit: Original script provided by [@NtSetDefault](https://twitter.com/NtSetDef
 `[{"op":"Regular expression","args":["User defined","(?<=')(.*?)(?=')",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"ROT13","args":[true,true,13]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"ROT13","args":[true,true,13]},{"op":"Subsection","args":["(?<=\\$Fadly.*?\")(.*?)(?=\\\")",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"URL Decode","args":[]},{"op":"From HTML Entity","args":[]},{"op":"Merge","args":[]},{"op":"Subsection","args":["(?<=\\$Gans.*?\")(.*?)(?=\\\")",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Label","args":["jump"]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"Jump","args":["jump",2]},{"op":"Zlib Inflate","args":[0,0,"Adaptive",false,false]},{"op":"Zlib Inflate","args":[0,0,"Adaptive",false,false]}]`
 
 ![Recipe 27](screenshots/recipe_27.PNG)
+
+## Recipe 28 - De-obfuscation of Cobalt Strike Beacon using Conditional Jumps to obtain shellcode  
+
+Choose your poison with this ingenious script from [@0xtornado](https://twitter.com/0xtornado) which determines which type of obfuscation your beacon script has via CyberChef conditional jumps to parse out the shellcode. First the code looks for a simple regex 'bxor' to then jump to the appropriate section of the recipe. Else it parses out the second type. Using CyberChef 'tabs' you can load up two different scripts and get out your data. Impress your colleagues and friendly red team or local APT crew!  
+
+Credit: https://twitter.com/0xtornado/status/1255866333545316352  
+
+`[{"op":"Conditional Jump","args":["bxor",false,"Decode_Shellcode",10]},{"op":"Label","args":["Decode_beacon"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Decode text","args":["UTF-16LE (1200)"]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Gunzip","args":[]},{"op":"Label","args":["Decode_Shellcode"]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"XOR","args":[{"option":"Decimal","string":"35"},"Standard",false]}]`  
+
+![Recipe 28_1](screenshots/recipe_28_1.png)  
+
+![Recipe 28_1](screenshots/recipe_28_1.png)  
+
 
 # Resources, Books & Blog Articles
 
