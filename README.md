@@ -464,7 +464,9 @@ Background: https://github.com/zxing/zxing/wiki/Barcode-Contents#wi-fi-network-c
 
 ## Recipe 26 - Extracting and Decoding a Multistage PHP Webshell
 
-Decoding a Webshell documented by [SANS](https://isc.sans.edu/forums/diary/Another+webshell+another+backdoor/22826/) entirely within Cyberchef.
+Decoding a Webshell documented by [SANS](https://isc.sans.edu/forums/diary/Another+webshell+another+backdoor/22826/) entirely within Cyberchef using regex, ROT13, HTTP Request, Registers and more!  
+
+Credit: https://twitter.com/thebluetoob  
 
 ### Recipe Details
 
