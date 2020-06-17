@@ -108,7 +108,7 @@ Some example CyberChef recipes:
 
 [Recipe 26: Extracting and Decoding a Multistage PHP Webshell](#recipe-26---extracting-and-decoding-a-multistage-php-webshell)
 
-[Recipe 27: Decoding an Auto Visitor PHP script](#recipe-27---decoding-an-auto-visitor-php-script)
+[Recipe 27: Decoding an Auto Visitor PHP script](#recipe---27-decoding-an-auto-visitor-php-script)
 
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
@@ -476,7 +476,7 @@ Credit: https://twitter.com/thebluetoob
 
 ![Recipe 26](screenshots/recipe_26.PNG)
 
-## Recipe 27: Decoding an Auto Visitor PHP script
+## Recipe 27 - Decoding an Auto Visitor PHP script
 
 Decoding an auto visitor script written in PHP within Cyberchef using regex, ROT13, multiple decompression algorithms, and *subsections*!
 
