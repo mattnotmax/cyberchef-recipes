@@ -108,6 +108,8 @@ Some example CyberChef recipes:
 
 [Recipe 26: Extracting and Decoding a Multistage PHP Webshell](#recipe-26---extracting-and-decoding-a-multistage-php-webshell)
 
+[Recipe 27: Decoding an Auto Visitor PHP script](#recipe-27---decoding-an-auto-visitor-php-script)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -474,7 +476,15 @@ Credit: https://twitter.com/thebluetoob
 
 ![Recipe 26](screenshots/recipe_26.PNG)
 
-Credit: Provided by [Ben Ellett](https://twitter.com/thebluetoob) with lots of help to get it working from [Matt](https://twitter.com/mattnotmax)
+## Recipe 27: Decoding an Auto Visitor PHP script
+
+Decoding an auto visitor script written in PHP within Cyberchef using regex, ROT13, multiple decompression algorithms, and *subsections*!
+
+Credit: Original script provided by [@NtSetDefault](https://twitter.com/NtSetDefault), original disparate Cyberchef recipe(s) created by [@thebluetoob](https://twitter.com/thebluetoob), and refined by @[mattnotmax](https://twitter.com/mattnotmax) in to one recipe.
+
+`[{"op":"Regular expression","args":["User defined","(?<=')(.*?)(?=')",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"ROT13","args":[true,true,13]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"ROT13","args":[true,true,13]},{"op":"Subsection","args":["(?<=\\$Fadly.*?\")(.*?)(?=\\\")",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"URL Decode","args":[]},{"op":"Merge","args":[]},{"op":"Subsection","args":["(?<=\\$Gans.*?\")(.*?)(?=\\\")",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"Zlib Inflate","args":[0,0,"Adaptive",false,false]},{"op":"Zlib Inflate","args":[0,0,"Adaptive",false,false]}]`
+
+![Recipe 27](screenshots/recipe_27.PNG)
 
 # Resources, Books & Blog Articles
 
