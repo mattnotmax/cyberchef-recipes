@@ -112,6 +112,8 @@ Some example CyberChef recipes:
 
 [Recipe 28: De-obfuscation of Cobalt Strike Beacon using Conditional Jumps to obtain shellcode](#recipe-28---de-obfuscation-of-cobalt-strike-beacon-using-conditional-jumps-to-obtain-shellcode)
 
+[Recipe 29: Log File Timestamp Manipulation with Subsections and Registers](#recipe-29---log-file-timestamp-manipulation-with-subsections-and-registers)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -500,6 +502,15 @@ Credit: https://twitter.com/0xtornado/status/1255866333545316352
 
 ![Recipe 28_1](screenshots/recipe_28_2.png)  
 
+## Recipe 29 - Log File Timestamp Manipulation with Subsections and Registers  
+
+Not everyone thinks of CyberChef as a tool for log file analysis. But its handy if you have to transpose, reformat or maniulate a log file to suit your purpose. Here, we have an Apache log file with a timestamp that doesn't lead to useful temporal analysis with other log files: the date format is not sortable, its enclosed in square brackets and it's in UTC +1 not a standard UTC. Using Subsections, Registers and Transpose Date and Time we can change the formatting of the timestamp and move the column around to be able to combine it with other data. Awesome!  
+
+Credit: [@gazambelli](https://twitter.com/gazambelli/status/1312767188365905920) and [@mattnotmax](https://twitter.com/mattnotmax/status/1312570631934799872)
+
+`[{"op":"Fork","args":["\\n","\\n",false]},{"op":"Subsection","args":["\\[.*\\+0100\\]",true,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\[|\\]"},"",true,false,true,false]},{"op":"Translate DateTime Format","args":["Standard date and time","DD/MMM/YYYY:HH:mm:ss ZZ","Etc/GMT-1","YYYY-MM-DDTHH:mm:ss ZZ","UTC"]},{"op":"Merge","args":[]},{"op":"Fork","args":["\\n","\\n",false]},{"op":"Register","args":["(.*)(\\d{4}-.*\\+0000)(.*)",true,false,false]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"$R0$R1$R2"},"$R1 $R0 $R2",true,false,true,false]}]`
+
+![Recipe 29][(screenshots/recipe_29.png)]
 
 # Resources, Books & Blog Articles
 
