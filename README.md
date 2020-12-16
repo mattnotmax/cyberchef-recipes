@@ -534,7 +534,7 @@ Source: [@scumbots](https://twitter.com/ScumBots/status/1314562082491322369) & h
 
 ![Recipe 30](screenshots/recipe_30.png)
 
-## Recipe 31 - De-obfuscate encoded strings in .NET binary  
+## Recipe 31 - De-obfuscate encoded strings in .NET binary
 
 The SolarWinds malicious .dll contained obfuscated strings using compression and base64. Rather than lose the context in your analysis, we can do a quick de-obfuscation in-line by selecting the strings with a Subsection and then converting. The result is a function that becomes readable with context and avoids a potentially error-prone cut and paste.  
 
