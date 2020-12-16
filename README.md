@@ -116,6 +116,8 @@ Some example CyberChef recipes:
 
 [Recipe 30: CharCode obfuscated PowerShell Loader for a Cobalt Strike beacon](#recipe-30---charcode-obfuscated-powershell-loader-for-a-cobalt-strike-beacon)
 
+[Recipe 31: De-obfuscate encoded strings in .NET binary](#recipe-31---de-obfuscate-encoded-strings-in-.net-binary)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -531,6 +533,19 @@ Source: [@scumbots](https://twitter.com/ScumBots/status/1314562082491322369) & h
 `[{"op":"Regular expression","args":["User defined","\\d{1,3}",true,true,false,false,false,false,"List matches"]},{"op":"From Charcode","args":["Line feed",10]},{"op":"Gunzip","args":[]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"XOR","args":[{"option":"Decimal","string":"35"},"Standard",false]},{"op":"Strings","args":["Single byte",5,"All printable chars (A)",false]}]`
 
 ![Recipe 30](screenshots/recipe_30.png)
+
+## Recipe 31: De-obfuscate encoded strings in .NET binary  
+
+The SolarWinds malicious .dll contained obfuscated strings using compression and base64. Rather than lose the context in your analysis, we can do a quick de-obfuscation in-line by selecting the strings with a Subsection and then converting. The result is a function that becomes readable with context and avoids a potentially error-prone cut and paste.  
+
+Credit: [@cybercdh](https://twitter.com/cybercdh) & [@Shadow0pz](https://twitter.com/Shadow0pz)  
+Source: https://twitter.com/cybercdh/status/1338885244246765569 & https://twitter.com/Shadow0pz/status/1338911469480661000  
+
+### Recipe Details
+
+`[{"op":"Subsection","args":["(?<=\\(\\\")(.*)(?=\\\"\\))",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]}]`  
+
+![Recipe 31](screenshots/recipe_31.png)
 
 
 # Resources, Books & Blog Articles
