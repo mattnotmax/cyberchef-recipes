@@ -116,7 +116,11 @@ Some example CyberChef recipes:
 
 [Recipe 30: CharCode obfuscated PowerShell Loader for a Cobalt Strike beacon](#recipe-30---charcode-obfuscated-powershell-loader-for-a-cobalt-strike-beacon)
 
-[Recipe 31: De-obfuscate encoded strings in .NET binary](#recipe-31---de-obfuscate-encoded-strings-in-.net-binary)
+[Recipe 31: Deobfuscate encoded strings in .NET binary](#recipe-31---deobfuscate-encoded-strings-in-.net-binary)  
+
+[Recipe 32: Extract malicious Gootkit DLL from obfuscated registry data](#recipe-32---extract-malicious-gootkit-dll-from-obfuscated-registry-data)
+
+[Recipe 33: Identify embedded URLs in Emotet PowerShell script](#recipe-33---identify-embedded-urls-in-emotet-powershell-script)
 
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
@@ -534,7 +538,7 @@ Source: [@scumbots](https://twitter.com/ScumBots/status/1314562082491322369) & h
 
 ![Recipe 30](screenshots/recipe_30.png)
 
-## Recipe 31 - De-obfuscate encoded strings in .NET binary
+## Recipe 31 - Deobfuscate encoded strings in .NET binary
 
 The SolarWinds malicious .dll contained obfuscated strings using compression and base64. Rather than lose the context in your analysis, we can do a quick de-obfuscation in-line by selecting the strings with a Subsection and then converting. The result is a function that becomes readable with context and avoids a potentially error-prone cut and paste.  
 
@@ -546,6 +550,32 @@ Source: https://twitter.com/cybercdh/status/1338885244246765569 & https://twitte
 `[{"op":"Subsection","args":["(?<=\\(\\\")(.*)(?=\\\"\\))",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]}]`  
 
 ![Recipe 31](screenshots/recipe_31.png)
+
+
+## Recipe 32 - Extract malicious Gootkit DLL from obfuscated registry data
+
+Gootkit stores a DLL inside the registry as encoded PowerShell. CyberChef makes mince meat of this so-called 'fileless' malware. A handy recipe provided by @StefanKelm puts the 'file' back in 'fileless' (yes, I thought of that one myself, we are up to recipe 32 my friends...). 
+
+Source: https://github.com/StefanKelm/cyberchef-recipes
+
+### Recipe Details
+
+`[{"op":"Decode text","args":["UTF-16LE (1200)"]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Decode text","args":["UTF-16LE (1200)"]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]}]`
+
+![Recipe 32](screenshots/recipe_32.png)
+
+## Recipe 33 - Identify embedded URLs in Emotet PowerShell script
+
+Using the powerful operation of Registers, a handy recipe from @Cryptolaemus1 extracts obfuscated URLs from the PowerShell from an Emotet malicious document. Here capture groups are used to grab the find/replace string which de-obfuscates the URLs. Awesome stuff.
+
+Credit: [@Cryptolaemus](https://twitter.com/Cryptolaemus1) and [@NtRaiseException()](https://twitter.com/NtSetDefault)
+Source: https://twitter.com/Cryptolaemus1/status/1319357369902649344 
+
+### Recipe Details
+
+`[{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Decode text","args":["UTF-16LE (1200)"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"'\\)?\\+\\(?'"},"",true,false,true,false]},{"op":"Register","args":["\\(+'(=[\\w\\d]*)'\\)+,'/'\\)",true,false,false]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"$R0"},"/",true,false,true,false]},{"op":"Register","args":["\\/(.)http",true,false,false]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"$R1"},"\\n",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"'"},"\\n",true,false,true,false]},{"op":"Extract URLs","args":[false]}]`
+
+![Recipe 33](screenshots/recipe_33.png)
 
 
 # Resources, Books & Blog Articles
