@@ -50,7 +50,7 @@ Mastering regular expressions are key to making the most of data manipulation in
 
 ## Working with APIs and CyberChef
 
-CyberChef provides an operation HTTP Request (see Recipe 22) which allows HTTP requests to external resources. Due to Cross-Origin Resource Sharing many do not work. CORS is a security measure in modern browsers which prevents you from reading cross-site responses from servers which don't explicitly allow it. Check out [@GlassSec's talk on CyberChef](https://www.osdfcon.org/presentations/2019/Jonathan-Glass_Cybersecurity-Zero-to-Hero-With-CyberChef.pdf) which includes tips to boot Chrome without web-security to enable HTTP requests to otherwise restricted APIs (like Virus Total)
+CyberChef provides an operation HTTP Request (see Recipe 22) which allows HTTP requests to external resources. Due to Same Origin Policy (SOP) or lack of Cross-Origin Resource Sharing configuration many do not work. SOP is a security measure in modern browsers which prevents you from reading cross-site responses from servers which don't explicitly allow it via CORS. Check out [@GlassSec's talk on CyberChef](https://www.osdfcon.org/presentations/2019/Jonathan-Glass_Cybersecurity-Zero-to-Hero-With-CyberChef.pdf) which includes tips to boot Chrome without web-security to enable HTTP requests to otherwise restricted APIs (like Virus Total)
 
 # CyberChef Recipes
 
