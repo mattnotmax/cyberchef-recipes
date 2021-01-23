@@ -122,6 +122,8 @@ Some example CyberChef recipes:
 
 [Recipe 33: Identify embedded URLs in Emotet PowerShell script](#recipe-33---identify-embedded-urls-in-emotet-powershell-script)
 
+[Recipe 34: Analysing OOXML Files for URLs](#recipe-34---analysing-ooxml-files-for-urls)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -568,7 +570,7 @@ Source: https://github.com/StefanKelm/cyberchef-recipes
 
 Using the powerful operation of Registers, a handy recipe from @Cryptolaemus1 extracts obfuscated URLs from the PowerShell from an Emotet malicious document. Here capture groups are used to grab the find/replace string which de-obfuscates the URLs. Awesome stuff.
 
-Credit: [@Cryptolaemus](https://twitter.com/Cryptolaemus1) and [@NtRaiseException()](https://twitter.com/NtSetDefault)
+Credit: [@Cryptolaemus](https://twitter.com/Cryptolaemus1) and [@NtRaiseException()](https://twitter.com/NtSetDefault)  
 Source: https://twitter.com/Cryptolaemus1/status/1319357369902649344 
 
 ### Recipe Details
@@ -576,6 +578,20 @@ Source: https://twitter.com/Cryptolaemus1/status/1319357369902649344
 `[{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Decode text","args":["UTF-16LE (1200)"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"'\\)?\\+\\(?'"},"",true,false,true,false]},{"op":"Register","args":["\\(+'(=[\\w\\d]*)'\\)+,'/'\\)",true,false,false]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"$R0"},"/",true,false,true,false]},{"op":"Register","args":["\\/(.)http",true,false,false]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"$R1"},"\\n",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"'"},"\\n",true,false,true,false]},{"op":"Extract URLs","args":[false]}]`
 
 ![Recipe 33](screenshots/recipe_33.png)
+
+## Recipe 34 - Analysing OOXML Files for URLs
+
+Didier Stevens demonstrates the amazing simplicity and usefulness of CyberChef by extracting URLs from OOXML documents (e.g. .docx files). By unzipping the file and filtering out the 'known good' the remaining URLs can be inspected. Don't forget to defang to avoid any unnecessary clicks or operational security mistakes. Combine with CyberChef 'tabs' functionality and you could analyse a batch of files.
+
+Credit: [@DidierStevens](https://twitter.com/DidierStevens)  
+Source: https://isc.sans.edu/diary/27020
+
+### Recipe Details
+
+`[{"op":"Unzip","args":["",false]},{"op":"Extract URLs","args":[false]},{"op":"Filter","args":["Line feed","http://schemas\\.openxmlformats\\.org/",true]},{"op":"Filter","args":["Line feed","http://schemas\\.microsoft\\.com/",true]},{"op":"Filter","args":["Line feed","http://purl\\.org/",true]},{"op":"Filter","args":["Line feed","http://www\\.w3\\.org/",true]},{"op":"Defang URL","args":[true,true,true,"Valid domains and full URLs"]}]`
+
+![Recipe 34](screenshots/recipe_34.png)
+
 
 
 # Resources, Books & Blog Articles
