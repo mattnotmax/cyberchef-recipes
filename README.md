@@ -126,7 +126,7 @@ Some example CyberChef recipes:
 
 [Recipe 35: Decrypting REvil PowerShell ransomware sample](#recipe-35---decrypting-revil-powershell-ransomware-sample)
 
-[Recipe 36: Create a CyberChef Password Generator](#recipe-36---create-a-cyberchef-password-generator)]
+[Recipe 36: Create a CyberChef Password Generator](#recipe-36---create-a-cyberchef-password-generator)
 
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
@@ -609,7 +609,7 @@ Further Info: [Powershell Dropping a REvil Ransomware](https://isc.sans.edu/foru
 
 ## Recipe 36 - Create a CyberChef Password Generator  
 
-Ok, so I'm kinda cheating here, as the bulk of the work is being done by an API. But it's a good example to remind you that HTTP requests can be a super powerful way of augmenting CyberChef. Here I can made a little 'input form' in the CyberChef input pane and use regular expressions to capture the key paramters for the API call into registers. A little text massage and you can have a quick and easy generator as you need it.  
+Ok, so I'm kinda cheating here, as the bulk of the work is being done by an API. But it's a good example to remind you the HTTP Requests operation can be a super powerful way of augmenting CyberChef. Here I made a little 'input form' in the CyberChef input pane, and use regular expressions to capture the key paramters for the API call into Registers. A little text massage, and you can have a quick and easy generator as you need it. Saved as a recipe for when you need to deliver a quick new password to a new user.  
 
 Source: [@mattnotmax](https://twitter.com/mattnotmax)  
 
