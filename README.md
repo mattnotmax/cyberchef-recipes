@@ -126,6 +126,8 @@ Some example CyberChef recipes:
 
 [Recipe 35: Decrypting REvil PowerShell ransomware sample](#recipe-35---decrypting-revil-powershell-ransomware-sample)
 
+[Recipe 36: Create a CyberChef Password Generator](#recipe-36---create-a-cyberchef-password-generator)]
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -604,6 +606,16 @@ Further Info: [Powershell Dropping a REvil Ransomware](https://isc.sans.edu/foru
 `[{"op":"Subsection","args":["(?<=\\\")([a-zA-Z0-9+/=]{20,})(?=\\\")",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"To Hex","args":["None",0]},{"op":"Merge","args":[]},{"op":"Register","args":["(?<=\\\")([a-fA-F0-9]{32})(?=\\\")",true,false,false]},{"op":"Register","args":["(?<=\\\")([a-fA-F0-9]{64})(?=\\\")",true,false,false]},{"op":"Regular expression","args":["User defined","[a-f0-9]{100,}",true,true,false,false,false,false,"List matches"]},{"op":"AES Decrypt","args":[{"option":"Hex","string":"$R1"},{"option":"Hex","string":"$R0"},"CBC","Hex","Raw",{"option":"Hex","string":""},""]},{"op":"Regular expression","args":["User defined","[a-f0-9]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Hex","args":["Auto"]},{"op":"Drop bytes","args":[0,1925,false]},{"op":"SHA2","args":["256",64,160]}]`  
 
 ![Recipe 35](screenshots/recipe_35.png)
+
+## Recipe 36 - Create a CyberChef Password Generator  
+
+Ok, so I'm kinda cheating here, as the bulk of the work is being done by an API. But it's a good example to remind you that HTTP requests can be a super powerful way of augmenting CyberChef. Here I can made a little 'input form' in the CyberChef input pane and use regular expressions to capture the key paramters for the API call into registers. A little text massage and you can have a quick and easy generator as you need it.  
+
+Source: [@mattnotmax](https://twitter.com/mattnotmax)  
+
+`[{"op":"Register","args":["(?<=number:\\s)(.*)",true,false,false]},{"op":"Register","args":["(?<=words:\\s)(.*)",true,false,false]},{"op":"Register","args":["(?<=length:\\s)(.*)",true,false,false]},{"op":"HTTP request","args":["GET","https://makemeapassword.ligos.net/api/v1/passphrase/plain?pc=$R0&wc=$R1&sp=y&maxCh=$R2","","Cross-Origin Resource Sharing",false]},{"op":"Find / Replace","args":[{"option":"Regex","string":" "},"-",true,false,true,false]}]`  
+
+![Recipe 36](screenshots/recipe_36.png)  
 
 # Training
 
