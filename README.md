@@ -124,6 +124,8 @@ Some example CyberChef recipes:
 
 [Recipe 34: Analysing OOXML Files for URLs](#recipe-34---analysing-ooxml-files-for-urls)
 
+[Recipe 35: Decrypting REvil PowerShell ransomware sample](#recipe-35---decrypting-revil-powershell-ransomware-sample)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -592,7 +594,20 @@ Source: https://isc.sans.edu/diary/27020
 
 ![Recipe 34](screenshots/recipe_34.png)
 
+## Recipe 35 - Decrypting REvil PowerShell ransomware sample
 
+An AES encrypted PowerShell ransomware script is no match for CyberChef. Here were can convert the Base64 to hex, extract the IV and Key into registers and use them to decrypt the blob. Once decrypted we can examine the data and identify a PE file 1925 bytes into the decrypted blob. Extracting this we can then use other tools to identify its behaviour including detonation or static analysis.  
+
+Source: [@mattnotmax](https://twitter.com/mattnotmax/status/1357277957056679936)  
+Further Info: [Powershell Dropping a REvil Ransomware](https://isc.sans.edu/forums/diary/Powershell+Dropping+a+REvil+Ransomware/27012/)  
+
+`[{"op":"Subsection","args":["(?<=\\\")([a-zA-Z0-9+/=]{20,})(?=\\\")",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"To Hex","args":["None",0]},{"op":"Merge","args":[]},{"op":"Register","args":["(?<=\\\")([a-fA-F0-9]{32})(?=\\\")",true,false,false]},{"op":"Register","args":["(?<=\\\")([a-fA-F0-9]{64})(?=\\\")",true,false,false]},{"op":"Regular expression","args":["User defined","[a-f0-9]{100,}",true,true,false,false,false,false,"List matches"]},{"op":"AES Decrypt","args":[{"option":"Hex","string":"$R1"},{"option":"Hex","string":"$R0"},"CBC","Hex","Raw",{"option":"Hex","string":""},""]},{"op":"Regular expression","args":["User defined","[a-f0-9]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Hex","args":["Auto"]},{"op":"Drop bytes","args":[0,1925,false]},{"op":"SHA2","args":["256",64,160]}]`  
+
+![Recipe 35](screenshots/recipe_35.png)
+
+# Training
+
+I've developed a course 'CyberChef for Security Analysts' which contains 10 hours of instuctional videos plus labs through Applied Network Defense. To find out more visit [learncyberchef.com](http://learncyberchef.com)
 
 # Resources, Books & Blog Articles
 
