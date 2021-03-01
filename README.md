@@ -130,6 +130,8 @@ Some example CyberChef recipes:
 
 [Recipe 37: From Sandbox zipped email to malicious URL](#recipe-37---from-sandbox-zipped-email-to-malicious-url)
 
+[Recipe 38: Planes, Skulls and Envelopes - Live and Let PowerShell](#recipe-38---planes,-skulls-and-envelopes---live-and-let-powershell)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -629,6 +631,17 @@ Source: [Any.run](https://app.any.run/tasks/181c1d93-c838-49a4-8e62-76ee696d1b72
 
 ![Recipe 37](screenshots/recipe_37.png)  
 
+
+## Recipe 38 - Planes, Skulls and Envelopes - Live and Let PowerShell    
+
+A substitution is a substitution. It can be letter for letter, letter for number, or letter for...skull? Here the obfuscation may initially look more confusing but its actually no different to other types. Find/Replce, Subsection, From Base64...all a standard day out for CyberChef. I've reversed the first section to enable extraction of the url, then continue with the deobfuscation.  
+
+Source: [any.run](https://app.any.run/tasks/0874b873-2dde-4540-85f5-7ede1a1bfaf6/#)  
+Credit: https://twitter.com/neonprimetime/status/1365351048525791232  
+
+`[{"op":"Find / Replace","args":[{"option":"Regex","string":"☠"},"B",true,false,true,false]},{"op":"Subsection","args":["[a-zA-Z0-9+/=]{300,}",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Decode text","args":["UTF-16LE (1200)"]},{"op":"Reverse","args":["Character"]},{"op":"Merge","args":[]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"_✉✈_"},"A",true,false,true,false]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{300,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]}]`  
+
+![Recipe 38](screenshots/recipe_38.png)  
 
 # Training
 
