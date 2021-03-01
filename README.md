@@ -130,7 +130,7 @@ Some example CyberChef recipes:
 
 [Recipe 37: From Sandbox zipped email to malicious URL](#recipe-37---from-sandbox-zipped-email-to-malicious-url)
 
-[Recipe 38: Planes, Skulls and Envelopes - Live and Let PowerShell](#recipe-38---planes,-skulls-and-envelopes---live-and-let-powershell)
+[Recipe 38: Planes, Skulls and Envelopes - Live and Let PowerShell](#recipe-38---planes-skulls-and-envelopes---live-and-let-powershell)
 
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
