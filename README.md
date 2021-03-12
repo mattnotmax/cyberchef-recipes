@@ -134,6 +134,8 @@ Some example CyberChef recipes:
 
 [Recipe 39: Decrypt GoldMax aka Sunshutte encrypted configuration files](#recipe-39---decrypt-goldmax-aka-sunshutte-encrypted-configuration-files)
 
+[Recipe 40: Morse Code Madness](#recipe-40---morse-code-madness)
+
 
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
@@ -656,6 +658,19 @@ Source 2: https://www.fireeye.com/blog/threat-research/2021/03/sunshuttle-second
 `[{"op":"From Base64","args":["A-Za-z0-9-_",true]},{"op":"AES Decrypt","args":[{"option":"UTF8","string":"hz8l2fnpvp71ujfy8rht6b0smouvp9k8"},{"option":"Hex","string":"00000000000000000000000000000000"},"CFB","Raw","Raw",{"option":"Hex","string":""}]},{"op":"Subsection","args":["[a-zA-Z0-9+/=]{50,}",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Merge","args":[]},{"op":"Drop bytes","args":[0,16,false]},{"op":"Take bytes","args":[0,120,false]},{"op":"Register","args":["(^.*?)\\|(.*?)\\|(.*?)\\|(.*)\\|(.*)",true,false,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":".*"},"MD5 of Execution Time:\\t\\t\\t$R0\\nLower/Upper Limit for Sleep Time:\\t$R1\\nUtilize “blend-in” traffic requests:\\t$R2\\nEnd execution timestamp:\\t\\t$R2\\nUser-agent for HTTPS requests:\\t\\t$R4",false,false,false,false]}]` 
 
 ![Recipe 39](screenshots/recipe_39.png)  
+
+## Recipe 40 - Morse Code Madness   
+
+Yes, there is a morse code operation in CyberChef. Yes, you may need to use it one day. Sadly this wasn't malware but still CyberChef does the job. Thanks to [@pmelson](https://twitter.com/pmelson) and [@cyber__sloth](https://twitter.com/cyber__sloth) for this entry.  
+
+Source: https://pastebin.com/raw/PvLuparz
+Recipe: https://twitter.com/cyber__sloth/status/1367904890157211654
+
+`[{"op":"From Binary","args":["Space",8]},{"op":"From Morse Code","args":["Space","Forward slash"]},{"op":"Reverse","args":["Character"]},{"op":"ROT13","args":[true,true,false,13]}]`  
+
+![Recipe 40](screenshots/recipe_40.png)  
+
+![Recipe 40a](screenshots/recipe_40a.png)  
  
 # Training
 
