@@ -136,6 +136,7 @@ Some example CyberChef recipes:
 
 [Recipe 40: Morse Code Madness](#recipe-40---morse-code-madness)
 
+[Recipe 41: PHP mixed hexadecimal and octal encoding](#recipe-41---php-mixed-hexadecimal-and-octal-encoding)
 
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
@@ -663,15 +664,25 @@ Source 2: https://www.fireeye.com/blog/threat-research/2021/03/sunshuttle-second
 
 Yes, there is a morse code operation in CyberChef. Yes, you may need to use it one day. Sadly this wasn't malware but still CyberChef does the job. Thanks to [@pmelson](https://twitter.com/pmelson) and [@cyber__sloth](https://twitter.com/cyber__sloth) for this entry.  
 
-Source: https://pastebin.com/raw/PvLuparz
-Recipe: https://twitter.com/cyber__sloth/status/1367904890157211654
+Source: https://pastebin.com/raw/PvLuparz  
+Recipe: https://twitter.com/cyber__sloth/status/1367904890157211654  
 
 `[{"op":"From Binary","args":["Space",8]},{"op":"From Morse Code","args":["Space","Forward slash"]},{"op":"Reverse","args":["Character"]},{"op":"ROT13","args":[true,true,false,13]}]`  
 
 ![Recipe 40](screenshots/recipe_40.png)  
 
 ![Recipe 40a](screenshots/recipe_40a.png)  
- 
+
+## Recipe 41 - PHP mixed hexadecimal and octal encoding
+
+What do we want? Mixed encoding with both hexadecimal and octal in the one set! When do we want it? Now!  
+
+Source: https://twitter.com/JCyberSec_/status/1368963598475739137  
+
+`[{"op":"Fork","args":["\\n","\\n",false]},{"op":"Subsection","args":["\\\\x[a-fA-F0-9]{2}",true,true,false]},{"op":"From Hex","args":["\\x"]},{"op":"Merge","args":[]},{"op":"Subsection","args":["\\\\\\d{3}",true,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\\\"},"",true,false,true,false]},{"op":"From Octal","args":["Space"]}]`  
+
+![Recipe 41](screenshots/recipe_41.png)  
+
 # Training
 
 I've developed a course 'CyberChef for Security Analysts' which contains 10 hours of instuctional videos plus labs through Applied Network Defense. To find out more visit [learncyberchef.com](http://learncyberchef.com)
