@@ -138,6 +138,8 @@ Some example CyberChef recipes:
 
 [Recipe 41: PHP mixed hexadecimal and octal encoding](#recipe-41---php-mixed-hexadecimal-and-octal-encoding)
 
+[Recipe 42: PHP Webshell with layered obfuscation](#recipe-42---php-webshell-with-layered-obfuscation)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -682,6 +684,16 @@ Source: https://twitter.com/JCyberSec_/status/1368963598475739137
 `[{"op":"Fork","args":["\\n","\\n",false]},{"op":"Subsection","args":["\\\\x[a-fA-F0-9]{2}",true,true,false]},{"op":"From Hex","args":["\\x"]},{"op":"Merge","args":[]},{"op":"Subsection","args":["\\\\\\d{3}",true,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\\\"},"",true,false,true,false]},{"op":"From Octal","args":["Space"]}]`  
 
 ![Recipe 41](screenshots/recipe_41.png)  
+
+## Recipe 42 - PHP Webshell with layered obfuscation  
+
+This multi-layered webshell is a good case for subsections and jumps. You can break it into parts or complete it (as below) in a single CyberChef recipe.   
+
+Source: https://twitter.com/mattnotmax/status/1377829935780274176  
+
+`[{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Subsection","args":["(?<=\\\\x)([a-fA-F0-9]{2})",true,true,false]},{"op":"From Hex","args":["\\x"]},{"op":"Merge","args":[]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\\\x"},"",true,false,true,false]},{"op":"Subsection","args":["[a-zA-Z0-9+/=]{30,}=",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"From HTML Entity","args":[]},{"op":"Merge","args":[]},{"op":"Subsection","args":["[a-zA-Z0-9+/=]{30,}",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Label","args":["decompress"]},{"op":"Zlib Inflate","args":[0,0,"Adaptive",false,false]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"Jump","args":["decompress",3]},{"op":"ROT13","args":[true,true,false,13]}]`    
+
+![Recipe 42](screenshots/recipe_42.png)  
 
 # Training
 
