@@ -1,5 +1,4 @@
-<img src="https://github.com/mattnotmax/cyber-chef-recipes/blob/master/logo/cyberchef_banner_1500.png" alt="CyberChef_logo"/>
-</p>
+![cyberchef_banner_1500](logo/cyberchef_banner_1500.png)
 
 CyberChef is the self-purported 'Cyber Swiss-Army Knife' created by GCHQ. It's a fantastic tool for data transformation, extraction & manipulation in your web-browser.
 
@@ -19,21 +18,18 @@ Mastering regular expressions are key to making the most of data manipulation in
 
 - Extract Base64: `[a-zA-Z0-9+/=]{30,}`  
     - Here '30' is an arbitrary number that can be adjusted according to the script.  
-<p align="center">
-  <img src="https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/base64.png" alt="b64"/>
-</p>
+![base64](screenshots/base64.png){: .center-image}
+
 
 - Extract Hexadecimal: `[a-fA-F0-9]{10,}`
     - This could also be adjusted to {32} (MD5), {40} (SHA1), {64}, SHA256 to extract various hashes
-<p align="center">
-  <img src="https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/hex.png" alt="hex"/>
-</p>
+![hex](screenshots/hex.png){: .center-image}
+
 
 - Extract Character Codes: `[\d]{2,3}(,|’)`
     - In this example it would extract character codes in the format ('30, 40, 50, 60')
-<p align="center">
-  <img src="https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/charcode.png" alt="charcode"/>
-</p>
+![charcode](screenshots/charcode.png){: .center-image}
+
 
 ## Lookaheads & Lookbehinds
 
@@ -43,9 +39,7 @@ Mastering regular expressions are key to making the most of data manipulation in
     - Extract everything before 'bar' without including 'bar'
 - Lookahead/behind Combo: `(?<=')(.*?)(?=')`
     - Extract everything between ' and '
-<p align="center">
-  <img src="https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/combo.png" alt="combo"/>
-</p>
+![combo](screenshots/combo.png){: .center-image}
 
 
 ## Working with APIs and CyberChef
@@ -156,7 +150,7 @@ https://www.hybrid-analysis.com/sample/cc9c6c38840af8573b8175f34e5c54078c1f3fb7c
 
 ```[{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"Generic Code Beautify","args":[]}]```
 
-![Recipe_1](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_1.PNG)
+![Recipe_1](screenshots/recipe_1.PNG)
 
 
 ## Recipe 2 - Invoke-Obfuscation
@@ -176,7 +170,7 @@ https://www.hybrid-analysis.com/sample/1240695523bbfe3ed450b64b80ed018bd890bfa81
 
 ```[{"op":"Find / Replace","args":[{"option":"Regex","string":"\\^|\\\\|-|_|\\/|\\s"},"",true,false,true,false]},{"op":"Reverse","args":["Character"]},{"op":"Generic Code Beautify","args":[]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"http:"},"http://",true,false,true,false]},{"op":"Extract URLs","args":[false]},{"op":"Defang URL","args":[true,true,true,"Valid domains and full URLs"]}]```
 
-![Recipe_2](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_2.PNG)
+![Recipe_2](screenshots/recipe_2.PNG)
 
 ##  Recipe 3 - From CharCode
 
@@ -190,7 +184,7 @@ Source: https://gist.github.com/jonmarkgo/3431818
 
 ```[{"op":"Regular expression","args":["User defined","([0-9]{2,3}(,\\s|))+",true,true,false,false,false,false,"List matches"]},{"op":"From Charcode","args":["Comma",10]},{"op":"Regular expression","args":["User defined","([0-9]{2,3}(,\\s|))+",true,true,false,false,false,false,"List matches"]},{"op":"From Charcode","args":["Space",10]}]```
 
-![Recipe_3](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_3.PNG)
+![Recipe_3](screenshots/recipe_3.PNG)
 
 ## Recipe 4 - Group Policy Preference passwords
 
@@ -206,7 +200,7 @@ Source 2: https://adsecurity.org/?p=2288
 
 ```[{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"To Hex","args":["None"]},{"op":"AES Decrypt","args":[{"option":"Hex","string":"4e9906e8fcb66cc9faf49310620ffee8f496e806cc057990209b09a433b66c1b"},{"option":"Hex","string":""},"CBC","Hex","Raw",{"option":"Hex","string":""}]},{"op":"Decode text","args":["UTF16LE (1200)"]}]```
 
-![Recipe_4](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_4.PNG)
+![Recipe_4](screenshots/recipe_4.PNG)
 
 ## Recipe 5 - Using loops & labels
 
@@ -226,7 +220,7 @@ Also see more example of loops over Base64: https://twitter.com/QW5kcmV3/status/
 
 ```[{"op":"Label","args":["top"]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"Jump","args":["top",28]},{"op":"Generic Code Beautify","args":[]}]```
 
-![Recipe_5](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_5.PNG)
+![Recipe_5](screenshots/recipe_5.PNG)
 
 
 ## Recipe 6 - Google ei timestamp
@@ -239,7 +233,7 @@ Source: https://bitofhex.com/2018/05/29/cyberchef/
 
 ```[{"op":"From Base64","args":["A-Za-z0-9-_=",true]},{"op":"To Hex","args":["None"]},{"op":"Take bytes","args":[0,8,false]},{"op":"Swap endianness","args":["Hex",4,true]},{"op":"From Base","args":[16]},{"op":"From UNIX Timestamp","args":["Seconds (s)"]}]```
 
-![Recipe_6](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_6.PNG)
+![Recipe_6](screenshots/recipe_6.PNG)
 
 ## Recipe 7 - COM scriptlet to disassembled x86 assembly
 
@@ -257,7 +251,7 @@ Source 2: https://twitter.com/JohnLaTwC/status/1062419803304976385
 
 ```[{"op":"Regular expression","args":["","[A-Za-z0-9=/]{40,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Remove null bytes","args":[]},{"op":"Regular expression","args":["User defined","[A-Za-z0-9+/=]{40,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Gunzip","args":[]},{"op":"Regular expression","args":["User defined","[A-Za-z0-9+/=]{40,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"To Hex","args":["Space"]},{"op":"Remove whitespace","args":[true,true,true,true,true,false]},{"op":"Disassemble x86","args":["32","Full x86 architecture",16,0,true,true]}]```
 
-![Recipe_7](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_7.png)
+![Recipe_7](screenshots/recipe_7.png)
 
 ## Recipe 8 - Extract hexadecimal, convert to hexdump for embedded PE file
 
@@ -271,7 +265,7 @@ Source 2: https://twitter.com/ScumBots/status/1081949877272276992
 
 ```[{"op":"Regular expression","args":["User defined","[a-fA-F0-9]{200,}",true,true,false,false,false,false,"List matches"]},{"op":"From Hex","args":["Auto"]},{"op":"To Hexdump","args":[16,false,false]}]```
 
-![Recipe_8](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_8.png)
+![Recipe_8](screenshots/recipe_8.png)
 
 ## Recipe 9 - Reverse strings, character substitution, from base64
 
@@ -287,7 +281,7 @@ Source 2: https://twitter.com/pmelson/status/1076893022758100998
 
 ```[{"op":"Reverse","args":["Character"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"%"},"A",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"×"},"T",true,false,false,false]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"÷"},"V",true,false,false,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"To Hexdump","args":[16,false,false]}]```
 
-![Recipe_9](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_9.png)
+![Recipe_9](screenshots/recipe_9.png)
 
 
 ## Recipe 10 - Extract object from Squid proxy cache
@@ -300,7 +294,7 @@ Source: 00000915 (output should be TrueCrypt_Setup_7.1a.exe with SHA256 e95eca39
 
 ```[{"op":"To Hex","args":["None"]},{"op":"Regular expression","args":["User defined","(?<=0D0A0D0A).*$",true,false,false,false,false,false,"List matches"]},{"op":"From Hex","args":["Auto"]},{"op":"Gunzip","args":[]}]```
 
-![Recipe_10](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_10.png)
+![Recipe_10](screenshots/recipe_10.png)
 
 ## Recipe 11 - Extract GPS Coordinates to Google Maps URLs
 
@@ -310,7 +304,7 @@ If you need to quickly triage where a photo was taken and you're lucky enought t
 
 ```[{"op":"Extract EXIF","args":[]},{"op":"Regular expression","args":["User defined","((?<=GPSLatitude:).*$)|((?<=GPSLongitude: ).*$)",true,true,false,false,false,false,"List matches"]},{"op":"Find / Replace","args":[{"option":"Extended (\\n, \\t, \\x...)","string":"\\n"},",",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Simple string","string":" "},"https://maps.google.com/?q=",true,false,true,false]}]```
 
-![Recipe_11](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_11.png)
+![Recipe_11](screenshots/recipe_11.png)
 
 ## Recipe 12 - Big Number Processing
 
@@ -324,13 +318,13 @@ Source: https://twitter.com/QW5kcmV3/status/949437437473968128
 
 ```[{"op":"To Base","args":[16]},{"op":"Regular expression","args":["User defined","[a-f0-9]{2,2}",true,true,false,false,false,false,"List matches"]},{"op":"Find / Replace","args":[{"option":"Extended (\\n, \\t, \\x...)","string":"\\n"},":",true,false,true,false]}]```
 
-![Recipe_12](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_12.png)
+![Recipe_12](screenshots/recipe_12.png)
 
 ## Recipe 13 - Parsing DNS PTR records with Registers
 
 IP addresses in DNS PTR records are stored as least significant octet first. For example: 167.139.44.10.in-addr.arpa would relate to IP address of 10.44.139.167. Using CyberChef's registers we can allocate each octet to a memory register (or variable if it's easier to think of it that way). These can then be reversed to re-order the IP address. A find/replace tidies up the rest of the record. This could be reversed it you wanted to translate 'regular' IP addresses to search in DNS PTR records. 
 
-![Recipe_13](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_13.png)
+![Recipe_13](screenshots/recipe_13.png)
 
 ### Recipe Details
 
@@ -346,7 +340,7 @@ Source: https://twitter.com/a_tweeter_user/status/1100751236687642624
 
 Source: posh.zip
 
-![Recipe_14](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_14.png)
+![Recipe_14](screenshots/recipe_14.png)
 
 ### Recipe Details
 
@@ -356,7 +350,7 @@ Source: posh.zip
 
 CyberChef can do just about anything with data. Here are raw hex bytes from a $MFT entry. By selecting certain bytes, and using various functions of CyberChef I can parse any part of the data as needed. This recipe will extract and parse the $SI timestamps. Encase no more!
 
-![Recipe 15](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_15.PNG)
+![Recipe 15](screenshots/recipe_15.PNG)
 
 ### Recipe Details
 
@@ -368,7 +362,7 @@ Webshells come in all shapes and sizes. For PHP webshells the combination of gzi
 
 Source: https://github.com/LordWolfer/webshells/blob/b7eefaff64049e3ff61e90c850686135c0ba74c4/from_the_wild1.php
 
-![Recipe 16](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_16.PNG)
+![Recipe 16](screenshots/recipe_16.PNG)
 
 ### Recipe Details
 
@@ -382,7 +376,7 @@ Source: https://twitter.com/ScumBots/status/1121854255898472453
 
 Source: https://pastebin.com/9DnD6t6W / 9DnD6t6W.txt
 
-![Recipe 17](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_17.PNG)
+![Recipe 17](screenshots/recipe_17.PNG)
 
 ### Recipe Details
 
@@ -397,7 +391,7 @@ Source: https://gist.github.com/glassdfir/f30957b314ec39a8aa319420a29ffc76
 
 Credit: https://twitter.com/GlassSec
 
-![Recipe 18](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_18.PNG)
+![Recipe 18](screenshots/recipe_18.PNG)
 
 ### Recipe Details
 
@@ -409,11 +403,11 @@ Less of a recipe and more of a technique. Using the 'highlight' function of the 
 
 Source: https://pastebin.com/TmJsB0Nv & https://twitter.com/pmelson/status/1167065236907659264
 
-![Recipe 19_1](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_19_1.PNG)
+![Recipe 19_1](screenshots/recipe_19_1.PNG)
 
-![Recipe 19_2](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_19_2.PNG)
+![Recipe 19_2](screenshots/recipe_19_2.PNG)
 
-![Recipe 19_final](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_19_final.PNG)
+![Recipe 19_final](screenshots/recipe_19_final.PNG)
 
 ### Recipe Details
 
@@ -425,7 +419,7 @@ Although not the most convenient way, CyberChef does provide the ability to run 
 
 Source: https://twitter.com/ScumBots/status/1168528510681538560 & https://pastebin.com/r40SXe7V
 
-![Recipe 20](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_20.PNG)
+![Recipe 20](screenshots/recipe_20.PNG)
 
 ### Recipe Details
 
@@ -437,7 +431,7 @@ This recipe extracts a VBE payload from a Microsoft Shortcut File (LNK) and then
 
 Source: malicious.lnk.bin
 
-![Recipe 21](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_21.PNG)
+![Recipe 21](screenshots/recipe_21.PNG)
 
 ### Recipe Details
 
@@ -449,7 +443,7 @@ Using the HTTP Request function and Registers we can enrich out data with that f
 
 Source: Input hashes: 1aa7bf8b97e540ca5edd75f7b8384bfa, 1be3ecebe5aa9d3654e6e703d81f6928, and b386946a5a44d1ddcc843bc75336dfce  
 
-![Recipe 22](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_22.PNG)
+![Recipe 22](screenshots/recipe_22.PNG)
 
 ### Recipe Details
 
@@ -463,7 +457,7 @@ Source: Untitled-11232018-659370.doc.bin.gz
 
 Credit: Adapted from Hack eXPlorer's video [Hiding Malicious code using windows CMD - Dosfuscation](https://www.youtube.com/watch?v=ptsF2PvD4vY)  
 
-![Recipe 23](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_23.PNG)
+![Recipe 23](screenshots/recipe_23.PNG)
 
 ### Recipe Details
 
@@ -475,7 +469,7 @@ A [request](https://twitter.com/mattnotmax/status/1244586103006347268) for assis
 
 Credit: Adapted from [Steve Thompson](https://twitter.com/poohstix16/status/1244505538307776513)
 
-![Recipe 24](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_24.PNG)
+![Recipe 24](screenshots/recipe_24.PNG)
 
 ### Recipe Details
 
@@ -492,7 +486,7 @@ Background: https://github.com/zxing/zxing/wiki/Barcode-Contents#wi-fi-network-c
 
 `Generate_QR_Code('PNG',5,2,'Medium')`
 
-![Recipe 25](https://github.com/mattnotmax/cyber-chef-recipes/blob/master/screenshots/recipe_25.PNG)
+![Recipe 25](screenshots/recipe_25.PNG)
 
 ## Recipe 26 - Extracting and Decoding a Multistage PHP Webshell
 
