@@ -134,6 +134,8 @@ Some example CyberChef recipes:
 
 [Recipe 42: PHP Webshell with layered obfuscation](#recipe-42---php-webshell-with-layered-obfuscation)
 
+[Recipe 43: Magento skimmer deobfuscation](#recipe-43---magento-skimmer-deobfuscation)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -688,6 +690,16 @@ Source: https://twitter.com/mattnotmax/status/1377829935780274176
 `[{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Subsection","args":["(?<=\\\\x)([a-fA-F0-9]{2})",true,true,false]},{"op":"From Hex","args":["\\x"]},{"op":"Merge","args":[]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\\\x"},"",true,false,true,false]},{"op":"Subsection","args":["[a-zA-Z0-9+/=]{30,}=",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"From HTML Entity","args":[]},{"op":"Merge","args":[]},{"op":"Subsection","args":["[a-zA-Z0-9+/=]{30,}",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Label","args":["decompress"]},{"op":"Zlib Inflate","args":[0,0,"Adaptive",false,false]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"Jump","args":["decompress",3]},{"op":"ROT13","args":[true,true,false,13]}]`    
 
 ![Recipe 42](screenshots/recipe_42.png)  
+
+## Recipe 43 - Magento skimmer deobfuscation
+
+Let's face it, no-one likes to deobfuscate JavaScript. Looking at this mess of an obfuscation we probably don't need to do much to get the key info as the encoding is simple. With regex in a couple of Subsections we can deobfuscate 'in-line' quickly and get to the key data (i.e exfil domains) immediately. Then, we pass the full script for complete analysis to the new team member to finish while you get lunch...  
+
+Source: https://twitter.com/unmaskparasites/status/1370151988285992960  
+
+`[{"op":"Subsection","args":["(?<=\\\")([\\w\\\\]+)(?=\\\")",true,true,false]},{"op":"From Hex","args":["\\x"]},{"op":"Merge","args":[]},{"op":"Subsection","args":["(?<=\\\")([a-f0-9\\$]+)(?=\\\")",true,true,false]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"$"},",",true,false,true,false]},{"op":"From Hex","args":["Comma"]}]`  
+
+![Recipe 43](screenshots/recipe_43.png)  
 
 # Training
 
