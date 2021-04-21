@@ -136,6 +136,8 @@ Some example CyberChef recipes:
 
 [Recipe 43: Magento skimmer deobfuscation](#recipe-43---magento-skimmer-deobfuscation)
 
+[Recipe 44: Decrypting JobCrypter Ransomware](#recipe-44---decrypting-jobcrypter-ransomware)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -611,6 +613,8 @@ An AES encrypted PowerShell ransomware script is no match for CyberChef. Here we
 Source: [@mattnotmax](https://twitter.com/mattnotmax/status/1357277957056679936)  
 Further Info: [Powershell Dropping a REvil Ransomware](https://isc.sans.edu/forums/diary/Powershell+Dropping+a+REvil+Ransomware/27012/)  
 
+### Recipe Details  
+
 `[{"op":"Subsection","args":["(?<=\\\")([a-zA-Z0-9+/=]{20,})(?=\\\")",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"To Hex","args":["None",0]},{"op":"Merge","args":[]},{"op":"Register","args":["(?<=\\\")([a-fA-F0-9]{32})(?=\\\")",true,false,false]},{"op":"Register","args":["(?<=\\\")([a-fA-F0-9]{64})(?=\\\")",true,false,false]},{"op":"Regular expression","args":["User defined","[a-f0-9]{100,}",true,true,false,false,false,false,"List matches"]},{"op":"AES Decrypt","args":[{"option":"Hex","string":"$R1"},{"option":"Hex","string":"$R0"},"CBC","Hex","Raw",{"option":"Hex","string":""},""]},{"op":"Regular expression","args":["User defined","[a-f0-9]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Hex","args":["Auto"]},{"op":"Drop bytes","args":[0,1925,false]},{"op":"SHA2","args":["256",64,160]}]`  
 
 ![Recipe 35](screenshots/recipe_35.png)
@@ -621,6 +625,8 @@ Ok, so I'm kinda cheating here, as the bulk of the work is being done by an API.
 
 Source: [@mattnotmax](https://twitter.com/mattnotmax)  
 
+### Recipe Details  
+
 `[{"op":"Register","args":["(?<=number:\\s)(.*)",true,false,false]},{"op":"Register","args":["(?<=words:\\s)(.*)",true,false,false]},{"op":"Register","args":["(?<=length:\\s)(.*)",true,false,false]},{"op":"HTTP request","args":["GET","https://makemeapassword.ligos.net/api/v1/passphrase/plain?pc=$R0&wc=$R1&sp=y&maxCh=$R2","","Cross-Origin Resource Sharing",false]},{"op":"Find / Replace","args":[{"option":"Regex","string":" "},"-",true,false,true,false]}]`  
 
 ![Recipe 36](screenshots/recipe_36.png)  
@@ -630,6 +636,8 @@ Source: [@mattnotmax](https://twitter.com/mattnotmax)
 Most sandboxes deliver a zipped file with the generic password 'infected'. Why risk extracting out to your desktop when you can extract the contents in CyberChef? Here we have an email `.eml` file which includes an OLE2 file attachment. `Strings` identifies Base64 which is then extracted and decoded to pull out the second stage.  
 
 Source: [Any.run](https://app.any.run/tasks/181c1d93-c838-49a4-8e62-76ee696d1b72/)  
+
+### Recipe Details  
 
 `[{"op":"Unzip","args":["infected",false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\n"},"",true,false,true,false]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{400,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Strings","args":["16-bit littleendian",400,"Null-terminated strings (U)",false]},{"op":"Decode text","args":["UTF-16LE (1200)"]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{2000,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Decode text","args":["UTF-16LE (1200)"]},{"op":"Extract URLs","args":[false]},{"op":"Defang URL","args":[true,true,true,"Valid domains and full URLs"]}]`  
 
@@ -643,6 +651,8 @@ A substitution is a substitution. It can be letter for letter, letter for number
 Source: [any.run](https://app.any.run/tasks/0874b873-2dde-4540-85f5-7ede1a1bfaf6/#)  
 Credit: https://twitter.com/neonprimetime/status/1365351048525791232  
 
+### Recipe Details  
+
 `[{"op":"Find / Replace","args":[{"option":"Regex","string":"☠"},"B",true,false,true,false]},{"op":"Subsection","args":["[a-zA-Z0-9+/=]{300,}",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Decode text","args":["UTF-16LE (1200)"]},{"op":"Reverse","args":["Character"]},{"op":"Merge","args":[]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"_✉✈_"},"A",true,false,true,false]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{300,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]}]`  
 
 ![Recipe 38](screenshots/recipe_38.png)  
@@ -654,6 +664,8 @@ GoldMax aka Sunshuttle drops an encrypted configuration file when it executes. I
 Source 1: https://www.microsoft.com/security/blog/2021/03/04/goldmax-goldfinder-sibot-analyzing-nobelium-malware/  
 Source 2: https://www.fireeye.com/blog/threat-research/2021/03/sunshuttle-second-stage-backdoor-targeting-us-based-entity.html 
 
+### Recipe Details  
+
 `[{"op":"From Base64","args":["A-Za-z0-9-_",true]},{"op":"AES Decrypt","args":[{"option":"UTF8","string":"hz8l2fnpvp71ujfy8rht6b0smouvp9k8"},{"option":"Hex","string":"00000000000000000000000000000000"},"CFB","Raw","Raw",{"option":"Hex","string":""}]},{"op":"Subsection","args":["[a-zA-Z0-9+/=]{50,}",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Merge","args":[]},{"op":"Drop bytes","args":[0,16,false]},{"op":"Take bytes","args":[0,120,false]},{"op":"Register","args":["(^.*?)\\|(.*?)\\|(.*?)\\|(.*)\\|(.*)",true,false,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":".*"},"MD5 of Execution Time:\\t\\t\\t$R0\\nLower/Upper Limit for Sleep Time:\\t$R1\\nUtilize “blend-in” traffic requests:\\t$R2\\nEnd execution timestamp:\\t\\t$R2\\nUser-agent for HTTPS requests:\\t\\t$R4",false,false,false,false]}]` 
 
 ![Recipe 39](screenshots/recipe_39.png)  
@@ -664,6 +676,8 @@ Yes, there is a morse code operation in CyberChef. Yes, you may need to use it o
 
 Source: https://pastebin.com/raw/PvLuparz  
 Recipe: https://twitter.com/cyber__sloth/status/1367904890157211654  
+
+### Recipe Details  
 
 `[{"op":"From Binary","args":["Space",8]},{"op":"From Morse Code","args":["Space","Forward slash"]},{"op":"Reverse","args":["Character"]},{"op":"ROT13","args":[true,true,false,13]}]`  
 
@@ -677,6 +691,8 @@ What do we want? Mixed encoding with both hexadecimal and octal in the one set! 
 
 Source: https://twitter.com/JCyberSec_/status/1368963598475739137  
 
+### Recipe Details  
+
 `[{"op":"Fork","args":["\\n","\\n",false]},{"op":"Subsection","args":["\\\\x[a-fA-F0-9]{2}",true,true,false]},{"op":"From Hex","args":["\\x"]},{"op":"Merge","args":[]},{"op":"Subsection","args":["\\\\\\d{3}",true,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\\\"},"",true,false,true,false]},{"op":"From Octal","args":["Space"]}]`  
 
 ![Recipe 41](screenshots/recipe_41.png)  
@@ -686,6 +702,8 @@ Source: https://twitter.com/JCyberSec_/status/1368963598475739137
 This multi-layered webshell is a good case for subsections and jumps. You can break it into parts or complete it (as below) in a single CyberChef recipe.   
 
 Source: https://twitter.com/mattnotmax/status/1377829935780274176  
+
+### Recipe Details  
 
 `[{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Subsection","args":["(?<=\\\\x)([a-fA-F0-9]{2})",true,true,false]},{"op":"From Hex","args":["\\x"]},{"op":"Merge","args":[]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\\\x"},"",true,false,true,false]},{"op":"Subsection","args":["[a-zA-Z0-9+/=]{30,}=",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"From HTML Entity","args":[]},{"op":"Merge","args":[]},{"op":"Subsection","args":["[a-zA-Z0-9+/=]{30,}",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Label","args":["decompress"]},{"op":"Zlib Inflate","args":[0,0,"Adaptive",false,false]},{"op":"Raw Inflate","args":[0,0,"Adaptive",false,false]},{"op":"Jump","args":["decompress",3]},{"op":"ROT13","args":[true,true,false,13]}]`    
 
@@ -697,9 +715,30 @@ Let's face it, no-one likes to deobfuscate JavaScript. Looking at this mess of a
 
 Source: https://twitter.com/unmaskparasites/status/1370151988285992960  
 
+### Recipe Details  
+
 `[{"op":"Subsection","args":["(?<=\\\")([\\w\\\\]+)(?=\\\")",true,true,false]},{"op":"From Hex","args":["\\x"]},{"op":"Merge","args":[]},{"op":"Subsection","args":["(?<=\\\")([a-f0-9\\$]+)(?=\\\")",true,true,false]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"$"},",",true,false,true,false]},{"op":"From Hex","args":["Comma"]}]`  
 
 ![Recipe 43](screenshots/recipe_43.png)  
+
+## Recipe 44 - Decrypting JobCrypter Ransomware
+
+JobCrypter is a .NET ransomware that uses SMTP as a C2 channel. This allows an asute professional the ability to decrypt files if they have captured email traffic as the communication is not encrypted. Full analysis of this ransomware is available at [Yoroi](https://yoroi.company/research/ransomware-micro-criminals-are-still-out-here-and-growing/), and [@malwarelab_eu](https://twitter.com/malwarelab_eu) provides two related recipes to decrypt files. The first uses the captured email C2 traffic to derive the encryption key, and the second applies that key to encrypted data. I particularly like the use of 'comments' in the recipes which allow a clear understanding of the recipe! Kudos!
+
+Source: https://twitter.com/malwarelab_eu/status/1383732397510828033
+
+### Recipe 1 Details   
+
+`[{"op":"Comment","args":["JobCrypter Ransomware Decryptor\n\nExtracts encryption key (96 digits) from captured email traffic\n\nDerive 3DES key as K1+K2+K1 (Keyring Option 2, see https://en.wikipedia.org/wiki/Triple_DES#Keying_options)"]},{"op":"Regular expression","args":["User defined","[0-9]{96}",true,true,false,false,false,false,"List matches"]},{"op":"MD5","args":[]},{"op":"Register","args":["([a-f0-9]{16})([a-f0-9]{16})",true,false,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"$R0$R1"},"$R0$R1$R0",true,false,true,false]}]`  
+
+![Recipe 44a](screenshots/recipe_44a.png)  
+
+### Recipe 2 Details   
+
+`[{"op":"Comment","args":["JobCrypter Ransomware Decryptor\n\nExtracts Base64-encoded 3DES-encrypted data from encrypted .txt files and decrypts the original data"]},{"op":"Regular expression","args":["User defined","[A-Za-z0-9+/=]{32,}",false,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Triple DES Decrypt","args":[{"option":"Hex","string":"ebd3ff58ec8ebf688e6c918a95622b9febd3ff58ec8ebf68"},{"option":"Hex","string":""},"ECB","Raw","Raw"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Render Image","args":["Raw"],"disabled":true}]`  
+
+![Recipe 44b](screenshots/recipe_44b.png)  
+
 
 # Training
 
