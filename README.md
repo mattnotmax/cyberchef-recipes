@@ -18,17 +18,17 @@ Mastering regular expressions are key to making the most of data manipulation in
 
 - Extract Base64: `[a-zA-Z0-9+/=]{30,}`  
     - Here '30' is an arbitrary number that can be adjusted according to the script.  
-![base64](screenshots/base64.png){: .center-image}
+![base64](screenshots/base64.png)
 
 
 - Extract Hexadecimal: `[a-fA-F0-9]{10,}`
     - This could also be adjusted to {32} (MD5), {40} (SHA1), {64}, SHA256 to extract various hashes
-![hex](screenshots/hex.png){: .center-image}
+![hex](screenshots/hex.png)
 
 
 - Extract Character Codes: `[\d]{2,3}(,|’)`
     - In this example it would extract character codes in the format ('30, 40, 50, 60')
-![charcode](screenshots/charcode.png){: .center-image}
+![charcode](screenshots/charcode.png)
 
 
 ## Lookaheads & Lookbehinds
@@ -39,7 +39,7 @@ Mastering regular expressions are key to making the most of data manipulation in
     - Extract everything before 'bar' without including 'bar'
 - Lookahead/behind Combo: `(?<=')(.*?)(?=')`
     - Extract everything between ' and '
-![combo](screenshots/combo.png){: .center-image}
+![combo](screenshots/combo.png)
 
 
 ## Working with APIs and CyberChef
@@ -137,6 +137,8 @@ Some example CyberChef recipes:
 [Recipe 43: Magento skimmer deobfuscation](#recipe-43---magento-skimmer-deobfuscation)
 
 [Recipe 44: Decrypting JobCrypter Ransomware](#recipe-44---decrypting-jobcrypter-ransomware)
+
+[Recipe 45: Sqiud Proxy Log Timestamp Conversion](#recipe-45---sqiud-proxy-log-timestamp-conversion)
 
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
@@ -739,6 +741,18 @@ Source: https://twitter.com/malwarelab_eu/status/1383732397510828033
 
 ![Recipe 44b](screenshots/recipe_44b.png)  
 
+## Recipe 45 - Sqiud Proxy Log Timestamp Conversion  
+
+The brother of Recipe 29, and cousin of Recipe 10, here we convert squid Unix millisecond timestamp format to ISO 8601 (or whatever our choosing). A fork and subsection to isolate the timestamp and translate date and time format for the conversion. Adding `.SSS` keeps the fractional millisecond precision. Don't forget to 'merge' it all back if you want to continue cooking up a storm later in this recipe.  
+
+Source: https://twitter.com/mattnotmax/status/1389547145183830016  
+Sample Data: https://www.linuxquestions.org/questions/linux-server-73/sample-squid-proxy-log-files-837345/  
+
+### Recipe Details  
+
+`[{"op":"Fork","args":["\\n","\\n",false]},{"op":"Subsection","args":["^(.*?)(?=\\s)",true,true,false]},{"op":"Translate DateTime Format","args":["UNIX timestamp (seconds)","X.SSS","UTC","YYYY-MM-DDTHH:mm:ss.SSS","UTC"]}]`  
+
+![Recipe 45](screenshots/recipe_45.png)  
 
 # Training
 
