@@ -140,6 +140,8 @@ Some example CyberChef recipes:
 
 [Recipe 45: Sqiud Proxy Log Timestamp Conversion](#recipe-45---sqiud-proxy-log-timestamp-conversion)
 
+[Recipe 46: Tailoring your regex for the situation](#recipe-46---tailoring-your-regex-for-the-situation)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -753,6 +755,24 @@ Sample Data: https://www.linuxquestions.org/questions/linux-server-73/sample-squ
 `[{"op":"Fork","args":["\\n","\\n",false]},{"op":"Subsection","args":["^(.*?)(?=\\s)",true,true,false]},{"op":"Translate DateTime Format","args":["UNIX timestamp (seconds)","X.SSS","UTC","YYYY-MM-DDTHH:mm:ss.SSS","UTC"]}]`  
 
 ![Recipe 45](screenshots/recipe_45.png)  
+
+## Recipe 46 - Tailoring your regex for the situation  
+
+Here's a pretty standard script deobfuscation. You'll get some VBS script with comma separated URLs that are cycled through to download a second stage. If you want to extract the URLs, normally you'd use the 'Extract URLs' operation which give us 99% of what we want. Except the operation also picks up the trailing `'.Split('');$name` which looks ugly and not as easily cut and pasted or defanged. 
+
+Now the 'Extract URLs' function simply works via a regular expression, which takes into accout all the legitimate reserved characters of a URL as per the RFC. The trailing `'` (where we want it to end) is included, so we get more than we wanted. But using the built in regular expression for URLs (screenshot two) and adding the `'` into the negation in the syntax we can tailor the regex to our needs and get the perfect outcome!  
+
+Source: https://app.any.run/tasks/b6d9a548-722c-4066-9448-11a966be2a73/  
+
+### Recipe Details  
+
+`[{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Decode text","args":["UTF-16LE (1200)"]},{"op":"Regular expression","args":["User defined","\\d{2,3}",true,true,false,false,false,false,"List matches"]},{"op":"From Charcode","args":["Line feed",10]},{"op":"Extract URLs","args":[false],"disabled":true},{"op":"Regular expression","args":["URL","([A-Za-z]+://)([-\\w]+(?:\\.\\w[-\\w]*)+)(:\\d+)?(/[^.!,?\"<>\\[\\]{}\\s\\x7F-\\xFF]*(?:[.!,?]+[^.!,?'\"<>\\[\\]{}\\s\\x7F-\\xFF]+)*)?",true,true,false,false,false,false,"List matches"]},{"op":"Split","args":[",","\\n"]}]`  
+
+![Recipe 46a](screenshots/recipe_46a.png)  
+
+![Recipe 46b](screenshots/recipe_46b.png)  
+
+
 
 # Training
 
