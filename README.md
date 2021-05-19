@@ -142,6 +142,8 @@ Some example CyberChef recipes:
 
 [Recipe 46: Tailoring your regex for the situation](#recipe-46---tailoring-your-regex-for-the-situation)
 
+[Recipe 47: Trickbot Visual Basic script](#recipe-47---trickbot-visual-basic-script)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -772,7 +774,17 @@ Source: https://app.any.run/tasks/b6d9a548-722c-4066-9448-11a966be2a73/
 
 ![Recipe 46b](screenshots/recipe_46b.png)  
 
+## Recipe 47 - Trickbot Visual Basic script
 
+The malware author here has attempted to fool automated analysis by slicing the recognisable Base64 encoded PE header into character codes. Using a filter to remove junk, subsection and standard regular expressions we can extract the base64 and the DLL the script is hiding.  
+ 
+Source: https://twitter.com/mattnotmax/status/1394986367604695042  
+
+### Recipe Details  
+
+`[{"op":"Filter","args":["Line feed","^'",true]},{"op":"Subsection","args":["(?<=\\()(\\d{2,3})(?=\\))",true,true,false]},{"op":"From Charcode","args":["Space",10]},{"op":"Merge","args":[]},{"op":"Regular expression","args":["User defined","(?<=\\()([a-zA-Z0-9+/=]{1}?)(?=\\))|[a-zA-Z0-9+/=]{20,}",true,true,false,false,false,false,"List matches"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\n"},"",true,false,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"SHA2","args":["256",64,160]}]`  
+
+![Recipe 47](screenshots/recipe_47.png)  
 
 # Training
 
