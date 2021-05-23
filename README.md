@@ -144,6 +144,8 @@ Some example CyberChef recipes:
 
 [Recipe 47: Trickbot Visual Basic script](#recipe-47---trickbot-visual-basic-script)
 
+[Recipe 48: vjw0rm Emoji Madness](#recipe-48---vjw0rm-emoji-madness)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -785,6 +787,18 @@ Source: https://twitter.com/mattnotmax/status/1394986367604695042
 `[{"op":"Filter","args":["Line feed","^'",true]},{"op":"Subsection","args":["(?<=\\()(\\d{2,3})(?=\\))",true,true,false]},{"op":"From Charcode","args":["Space",10]},{"op":"Merge","args":[]},{"op":"Regular expression","args":["User defined","(?<=\\()([a-zA-Z0-9+/=]{1}?)(?=\\))|[a-zA-Z0-9+/=]{20,}",true,true,false,false,false,false,"List matches"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\n"},"",true,false,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"SHA2","args":["256",64,160]}]`  
 
 ![Recipe 47](screenshots/recipe_47.png)  
+
+## Recipe 48 - vjw0rm Emoji Madness  
+
+"Emojis, so hot right now", says the meme (see recipe 38 for proof) but this interesting sample found by [TomU](https://twitter.com/c_APT_ure) through his ongoing research into `DESKTOP-group` has a few tricks up its sleeve. Apart from emoji obfuscation, it downloads a snippet of code from `pastee.ee` which has the final key to its de-obfuscation. But it's no match for his CyberChef recipe. I've slighted edited to use a subsection and done a find/replace directly with the emoji values as these can be pasted easily into CyberChef. For those playing at home, the extra snippet of code that helps with the deobfuscation is also available in the sample zip.  
+
+Source: https://twitter.com/c_APT_ure/status/1362146658117701632  
+
+`[{"op":"Subsection","args":["\\\\x[a-fA-F0-9]{2}",true,true,false]},{"op":"From Hex","args":["Auto"]},{"op":"Merge","args":[]},{"op":"Find / Replace","args":[{"option":"Regex","string":"☽☂|☚☎"},"",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"'"},"\"",true,false,true,false]}]`  
+
+![Recipe 48](screenshots/recipe_48.png)  
+
+
 
 # Training
 
