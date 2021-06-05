@@ -146,6 +146,8 @@ Some example CyberChef recipes:
 
 [Recipe 48: vjw0rm Emoji Madness](#recipe-48---vjw0rm-emoji-madness)
 
+[Recipe 49: Disassemble an EICAR test file](#recipe-49---disassemble-an-eicar-test-file)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -798,7 +800,15 @@ Source: https://twitter.com/c_APT_ure/status/1362146658117701632
 
 ![Recipe 48](screenshots/recipe_48.png)  
 
+## Recipe 49 - Disassemble an EICAR test file  
 
+The EICAR test file has a standard known structure of a 16 bit DOS program. Using CyberChef we can take any valid EICAR test file and break it down to its assembly. Here we use subsections (are we getting the idea that subsections are awesome yet?) and use it to capture and manipulate sections that we require. CyberChef can produce disassembly in 16, 32 or 64 bit and voilà! We've got the correct output. With thanks to Nintechnet blog for breaking down the EICAR file and helping me to understand the structure.  
+
+Source: https://blog.nintechnet.com/anatomy-of-the-eicar-antivirus-test-file/  
+
+`[{"op":"Subsection","args":["(.*)(\\$.*\\$)(.*)",true,false,false]},{"op":"To Hex","args":["None",0]},{"op":"Disassemble x86","args":["16","Full x86 architecture",16,0,true,false]},{"op":"Merge","args":[]},{"op":"Subsection","args":[".*(\\$.*\\$)",true,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^"},"db\\t\\t\\t\\t",true,false,true,false]},{"op":"Merge","args":[]},{"op":"Subsection","args":[".*\\$(.*)",true,true,false]},{"op":"To Hex","args":["None",0]},{"op":"Disassemble x86","args":["16","Full x86 architecture",16,0,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^"},"\\n",true,false,false,false]}]`  
+
+![Recipe 49](screenshots/recipe_49.png)  
 
 # Training
 
