@@ -814,7 +814,7 @@ Source: https://blog.nintechnet.com/anatomy-of-the-eicar-antivirus-test-file/
 
 ## Recipe 50 - Parse Security Descriptor Definition Language output    
 
-If there is one thing that is definately 'All Greek to me' is Security Descriptor Definition Language (SDDL). Thankfully, [@cnotin](https://twitter.com/cnotin) has created a fantastic recipe to parse SDDL output to make it much easier to understand, read, and interpret. I also like the extensive use of Comments (something that I'm always advocating, but often not implementing!) Kudos!  
+If there is one thing that is definately 'All Greek to me' it's Security Descriptor Definition Language (SDDL). Thankfully, [@cnotin](https://twitter.com/cnotin) has created a fantastic recipe to parse SDDL output to make it much easier to understand, read, and interpret. I also like the extensive use of Comments (something that I'm always advocating, but often not implementing!) Kudos!  
 
 Source: https://twitter.com/cnotin/status/1387002797175021569  
 
