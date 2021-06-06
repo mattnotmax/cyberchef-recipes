@@ -148,6 +148,8 @@ Some example CyberChef recipes:
 
 [Recipe 49: Disassemble an EICAR test file](#recipe-49---disassemble-an-eicar-test-file)
 
+[Recipe 50: Parse Security Descriptor Definition Language output](#recipe-50---parse-security-descriptor-definition-language-output)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -809,6 +811,16 @@ Source: https://blog.nintechnet.com/anatomy-of-the-eicar-antivirus-test-file/
 `[{"op":"Subsection","args":["(.*)(\\$.*\\$)(.*)",true,false,false]},{"op":"To Hex","args":["None",0]},{"op":"Disassemble x86","args":["16","Full x86 architecture",16,0,true,false]},{"op":"Merge","args":[]},{"op":"Subsection","args":[".*(\\$.*\\$)",true,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^"},"db\\t\\t\\t\\t",true,false,true,false]},{"op":"Merge","args":[]},{"op":"Subsection","args":[".*\\$(.*)",true,true,false]},{"op":"To Hex","args":["None",0]},{"op":"Disassemble x86","args":["16","Full x86 architecture",16,0,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^"},"\\n",true,false,false,false]}]`  
 
 ![Recipe 49](screenshots/recipe_49.png)  
+
+## Recipe 50 - Parse Security Descriptor Definition Language output    
+
+If there is one thing that is definately 'All Greek to me' is Security Descriptor Definition Language (SDDL). Thankfully, [@cnotin](https://twitter.com/cnotin) has created a fantastic recipe to parse SDDL output to make it much easier to understand, read, and interpret. I also like the extensive use of Comments (something that I'm always advocating, but often not implementing!) Kudos!  
+
+Source: https://twitter.com/cnotin/status/1387002797175021569  
+
+`[{"op":"Comment","args":["subsection for the content before the ACE strings"]},{"op":"Subsection","args":["(.*?)\\(.*",false,true,false]},{"op":"Comment","args":["Each \"G:\" and \"D:\" on its own line"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"([GD]):"},"\\n$1:",true,false,true,false]},{"op":"Comment","args":["add separator"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"$"},"\\n######\\n",true,false,false,false]},{"op":"Merge","args":[]},{"op":"Comment","args":["subsection for the ACE strings"]},{"op":"Subsection","args":["######\\n(.*)",false,true,false]},{"op":"Find / Replace","args":[{"option":"Simple string","string":")("},"\\n",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\)$"},"",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^\\("},"",true,false,true,false]},{"op":"Comment","args":["Add space between each permission or flag bigram"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"([A-Z]{2})"},"$1 ",true,false,true,false]},{"op":"Comment","args":["Insert table header"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^"},"Type;Flags;Permissions;ObjectType;Inherited ObjectType;Trustee\\n",false,false,true,false]},{"op":"To Table","args":[";","\\n",true,"ASCII"]},{"op":"Merge","args":[]}]`  
+
+![Recipe 50](screenshots/recipe_50.png)  
 
 # Training
 
