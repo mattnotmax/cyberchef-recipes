@@ -150,6 +150,8 @@ Some example CyberChef recipes:
 
 [Recipe 50: Parse Security Descriptor Definition Language output](#recipe-50---parse-security-descriptor-definition-language-output)
 
+[Recipe 51: BASE-45 decoder](#recipe-51---base-45-decoder)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -822,6 +824,18 @@ Source: https://twitter.com/cnotin/status/1387002797175021569
 
 ![Recipe 50](screenshots/recipe_50.png)  
 
+    
+## Recipe 51 - BASE-45 decoder
+
+A bit long due to two different decoding flows, but seems to work correctly
+
+Source: https://gist.github.com/tomekziel/eaaabd55f2d244adf5fcf7db4db0387f
+    
+Live link availabe in GIST comment above
+
+![Recipe 51](screenshots/recipe_51.png)  
+    
+    
 # Training
 
 I've developed a course 'CyberChef for Security Analysts' which contains 10 hours of instuctional videos plus labs through Applied Network Defense. To find out more visit [learncyberchef.com](http://learncyberchef.com)
