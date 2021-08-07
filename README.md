@@ -154,6 +154,8 @@ Some example CyberChef recipes:
 
 [Recipe 52: Randomise list of items](#recipe-52---randomise-list-of-items)
 
+[Recipe 53: Olevba output to Powershell](#recipe-53---olevba-output-to-powershell)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -850,7 +852,7 @@ Here we can use the operation Pseudo-Random Number Generator to create a random 
 ![Recipe 52](screenshots/recipe_52.png)   
 
 
-## Recipe 52 - Olevba output to Powershell  
+## Recipe 53 - Olevba output to Powershell
 
 With thanks to [@James_inthe_box](https://twitter.com/James_inthe_box/status/1422968634817716225) for this maldoc and recipe. Taking the output from Olevba we can regex, convert, loop and decode until we reach out PowerShell with its IOC goodies.   
 
