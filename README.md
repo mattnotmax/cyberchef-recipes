@@ -849,6 +849,19 @@ Here we can use the operation Pseudo-Random Number Generator to create a random 
 
 ![Recipe 52](screenshots/recipe_52.png)   
 
+
+## Recipe 52 - Olevba output to Powershell  
+
+With thanks to [@James_inthe_box](https://twitter.com/James_inthe_box/status/1422968634817716225) for this maldoc and recipe. Taking the output from Olevba we can regex, convert, loop and decode until we reach out PowerShell with its IOC goodies.   
+
+Credit: https://twitter.com/James_inthe_box
+
+### Recipe Details
+
+`[{"op":"Regular expression","args":["User defined","\\d\\d+\\)(,|\\n)",true,true,false,false,false,false,"List matches"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\)|,"},"",true,false,true,false]},{"op":"From Charcode","args":["Line feed",10]},{"op":"Label","args":["base64loop"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Decode text","args":["UTF-16LE (1200)"]},{"op":"Jump","args":["base64loop",1]}]`  
+
+![Recipe 53](screenshots/recipe_53.png)   
+
     
 # Training
 
