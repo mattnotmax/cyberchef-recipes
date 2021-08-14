@@ -156,7 +156,9 @@ Some example CyberChef recipes:
 
 [Recipe 53: Olevba output to Powershell](#recipe-53---olevba-output-to-powershell)
 
-[Recipe 54: Windows Event ID 1029 Hashes](#recipe-54---windows-event-id-1029-hashes)
+[Recipe 54: Windows Event ID 1029 Hashes](#recipe-54---windows-event-id-1029-hashes)  
+
+[Recipe 55: Debofuscating BazarLoader aka TA551 maldoc](#recipe-55---debofuscating-bazarloader-aka-ta551-maldoc)
 
 
 ## Recipe 1 - Extract base64, raw inflate and code beautify
@@ -879,6 +881,19 @@ Credit: https://nullsec.us/windows-event-id-1029-hashes/
 `[{"op":"Decode text","args":["UTF-8 (65001)"]},{"op":"Encode text","args":["UTF-16LE (1200)"]},{"op":"SHA2","args":["256",64,160]},{"op":"From Hex","args":["Space"]},{"op":"To Base64","args":["A-Za-z0-9+/="]}]`
 
 ![Recipe 54](screenshots/recipe_54.png)   
+
+## Recipe 55 - Debofuscating BazarLoader aka TA551 maldoc
+
+A recipe worthy of two screenshots! Here the maldoc uses a simple find/replace to further obfuscate base64 encoded & reversed data. Here within lies the URI for the next stage of malware goodness (or badness, depending on your profession, and point of view). Once you've identified the 'out of place data' (screenshot one), you can then modify your recipe to suit your needs.  
+
+Credit: [Kostas](https://twitter.com/Kostastsale/status/1426264806093254656)
+
+### Recipe Details 
+
+`[{"op":"Find / Replace","args":[{"option":"Simple string","string":"za67t"},"",true,false,true,false]},{"op":"Generic Code Beautify","args":[]},{"op":"Subsection","args":["[A-Za-z0-9+/=]{450,}",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Merge","args":[]},{"op":"Subsection","args":["(?<=\\)e\\()(.*?)(?=\\n)",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"Merge","args":[]},{"op":"Extract URLs","args":[false]},{"op":"Defang URL","args":[true,true,true,"Valid domains and full URLs"]}]`
+
+![Recipe 55a](screenshots/recipe_55a.png)   
+![Recipe 55b](screenshots/recipe_55b.png)   
 
 
 # Training
