@@ -156,6 +156,9 @@ Some example CyberChef recipes:
 
 [Recipe 53: Olevba output to Powershell](#recipe-53---olevba-output-to-powershell)
 
+[Recipe 54: Windows Event ID 1029 Hashes](#recipe-54---windows-event-id-1029-hashes)
+
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -864,7 +867,20 @@ Credit: https://twitter.com/James_inthe_box
 
 ![Recipe 53](screenshots/recipe_53.png)   
 
-    
+
+## Recipe 54 - Windows Event ID 1029 Hashes  
+
+Windows event logs. Love them? Hate them? Do you see event IDs in your dreams? Well rest easier with this smart recipe from Mike Peterson at [nullsec.us](https://nullsec.us/) who researched at Windows Event ID 1029 in the Microsoft-Windows-TerminalServices-RDPClient/Operational.evtx log. Lovingly placed in the log is this curious entry similar to: `Base64(SHA256(UserName)) is = s8v7wS1UMkc0myytGIXeX2MWh9ojpi4aKwRwbOwFS5U=-` which is a hashed & encoded entry of the username used for the RDP connection on computer initiating the connection. Read more at the blog. As it is hashed it's not easily reverseable. But if you have a 'suspect' account(s) then you can use this recipe to test your hypothesis.  
+
+Credit: https://nullsec.us/windows-event-id-1029-hashes/
+
+### Recipe Details   
+
+`[{"op":"Decode text","args":["UTF-8 (65001)"]},{"op":"Encode text","args":["UTF-16LE (1200)"]},{"op":"SHA2","args":["256",64,160]},{"op":"From Hex","args":["Space"]},{"op":"To Base64","args":["A-Za-z0-9+/="]}]`
+
+![Recipe 54](screenshots/recipe_54.png)   
+
+
 # Training
 
 I've developed a course 'CyberChef for Security Analysts' which contains 10 hours of instuctional videos plus labs through Applied Network Defense. To find out more visit [learncyberchef.com](http://learncyberchef.com)
