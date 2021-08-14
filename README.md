@@ -859,7 +859,7 @@ Here we can use the operation Pseudo-Random Number Generator to create a random 
 
 ## Recipe 53 - Olevba output to Powershell
 
-With thanks to [@James_inthe_box](https://twitter.com/James_inthe_box/status/1422968634817716225) for this maldoc and recipe. Taking the output from Olevba we can regex, convert, loop and decode until we reach out PowerShell with its IOC goodies.   
+With thanks to [@James_inthe_box](https://twitter.com/James_inthe_box/status/1422968634817716225) for this RustyBuer maldoc and recipe. Taking the output from Olevba we can regex, convert, loop and decode until we reach out PowerShell with its IOC goodies.   
 
 Credit: https://twitter.com/James_inthe_box
 
