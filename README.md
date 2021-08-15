@@ -158,7 +158,9 @@ Some example CyberChef recipes:
 
 [Recipe 54: Windows Event ID 1029 Hashes](#recipe-54---windows-event-id-1029-hashes)  
 
-[Recipe 55: Debofuscating BazarLoader aka TA551 maldoc](#recipe-55---debofuscating-bazarloader-aka-ta551-maldoc)
+[Recipe 55: Debofuscating BazarLoader aka TA551 maldoc](#recipe-55---debofuscating-bazarloader-aka-ta551-maldoc)  
+
+[Recipe 56: Calculate and lookup JA3 or JA3S hash values from a PCAP](#recipe-56---calculate-and-lookup-ja3-or-ja3s-hash-values-from-a-pcap)
 
 
 ## Recipe 1 - Extract base64, raw inflate and code beautify
@@ -894,6 +896,20 @@ Credit: [Kostas](https://twitter.com/Kostastsale/status/1426264806093254656)
 
 ![Recipe 55a](screenshots/recipe_55a.png)   
 ![Recipe 55b](screenshots/recipe_55b.png)   
+
+## Recipe 56 - Calculate and lookup JA3 or JA3S hash values from a PCAP
+
+Available in v9.30+ a modern update to Recipe 22. Filter a PCAP for the Client/Server Hello and extract the bytes. From here, pass it through the JA3 operation, into a register and then lookup via an API request to [ja3er.com](https://ja3er.com/). Try out some PCAPs from the amazing [www.malware-traffic-analysis.net](https://www.malware-traffic-analysis.net/).  
+
+Source: https://twitter.com/mattnotmax/status/1426763382082850816
+
+### Recipe Details
+
+`[{"op":"Regular expression","args":["User defined","16030[13].+",true,true,false,false,false,false,"List matches"]},{"op":"JA3 Fingerprint","args":["Hex","Hash digest"]},{"op":"Register","args":["(.*)",true,false,false]},{"op":"HTTP request","args":["GET","https://ja3er.com/search/$R0","","Cross-Origin Resource Sharing",false]},{"op":"JSON Beautify","args":["    ",false]}]`
+
+![Recipe 56a](screenshots/recipe_56a.png)   
+![Recipe 56b](screenshots/recipe_56b.png)  
+
 
 
 # Training
