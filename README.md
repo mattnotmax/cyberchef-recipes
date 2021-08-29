@@ -162,6 +162,8 @@ Some example CyberChef recipes:
 
 [Recipe 56: Calculate and lookup JA3 or JA3S hash values from a PCAP](#recipe-56---calculate-and-lookup-ja3-or-ja3s-hash-values-from-a-pcap)
 
+[Recipe 57: Make a meme with CyberChef](#recipe-57---make-a-meme-with-cyberchef)
+
 
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
@@ -910,6 +912,18 @@ Source: https://twitter.com/mattnotmax/status/1426763382082850816
 ![Recipe 56a](screenshots/recipe_56a.png)   
 ![Recipe 56b](screenshots/recipe_56b.png)  
 
+
+# Recipe 57 - Make a meme with CyberChef  
+
+Yes, with `Add Text to Image` this can be done. Yes, with `Add Test to Image` this should be done. Go. Do it now.  
+
+Credit: [Ignis](https://twitter.com/ahakcil/status/1428333622466076679)
+
+### Recipe Details 
+
+`[{"op":"HTTP request","args":["GET","https://static.flag.farm/img/2ju3gf.jpg.b64","","Cross-Origin Resource Sharing",false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Render Image","args":["Raw"]},{"op":"Add Text To Image","args":["Making memes normally","Right","None",0,150,32,"Roboto",0,0,0,255]},{"op":"Add Text To Image","args":["Making Memes with","Right","None",0,450,32,"Roboto",0,0,0,255]},{"op":"Add Text To Image","args":["Cyberchef","None","None",550,490,32,"Roboto",0,0,0,255]}]`
+
+![Recipe 57](screenshots/recipe_57.png)  
 
 
 # Training
