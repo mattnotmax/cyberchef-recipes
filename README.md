@@ -164,6 +164,8 @@ Some example CyberChef recipes:
 
 [Recipe 57: Make a meme with CyberChef](#recipe-57---make-a-meme-with-cyberchef)
 
+[Recipe 58: Extract IcedID second stage URL from a maldoc](#recipe-58---extract-icedid-second-stage-url-from-a-maldoc)
+
 
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
@@ -925,6 +927,17 @@ Credit: [Ignis](https://twitter.com/ahakcil/status/1428333622466076679)
 
 ![Recipe 57](screenshots/recipe_57.png)  
 
+# Recipe 58 - Extract IcedID second stage URL from a maldoc  
+
+IcedID, also known as Bokbot, is a prolific threat, known for sending out waves of malicious documents. Here [@Max_Mal_](https://twitter.com/Max_Mal_) provides a quick way to extract the second stage URL from the maldoc without executing it. By unzipping the .docx and a little regex magic we can extract the URL in plain text.   
+
+Source: [Max_Malyutin](https://twitter.com/Max_Mal_/status/1433456034824302598)  
+
+### Recipe Details
+
+`[{"op":"Unzip","args":["",false]},{"op":"Regular expression","args":["User defined","(?<=Target\\=\\\")(.*)(?=\\\"\\sTargetMode\\=)",true,true,false,false,false,false,"List matches"]}]`  
+
+![Recipe 58](screenshots/recipe_58.png)  
 
 # Training
 
