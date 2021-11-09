@@ -675,7 +675,17 @@ Source: https://twitter.com/JCyberSec_/status/1368963598475739137
 
 `[{"op":"Fork","args":["\\n","\\n",false]},{"op":"Subsection","args":["\\\\x[a-fA-F0-9]{2}",true,true,false]},{"op":"From Hex","args":["\\x"]},{"op":"Merge","args":[]},{"op":"Subsection","args":["\\\\\\d{3}",true,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\\\"},"",true,false,true,false]},{"op":"From Octal","args":["Space"]}]`  
 
-![Recipe 41](screenshots/recipe_41.png)  
+![Recipe 41](screenshots/recipe_41.png)
+    
+## Recipe 42 - Decode URLs protected by Microsoft Safelinks
+
+Safe Links is a feature in Defender for Office 365 that provides URL scanning and rewriting of inbound email messages in mail flow, and time-of-click verification of URLs and links in email messages, Teams and Office 365 apps.
+
+Source: https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/safe-links?view=o365-worldwide
+
+`[{"op":"Split","args":["?","\\n"]},{"op":"Split","args":["&","\\n"]},{"op":"Split","args":["=","\\n"]},{"op":"Regular expression","args":["User defined","url\\s([^\\s]+)",true,true,false,false,false,false,"List capture groups"]},{"op":"URL Decode","args":[]}]`  
+
+![Recipe 42](screenshots/recipe_42.png)
 
 # Training
 
