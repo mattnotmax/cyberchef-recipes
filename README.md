@@ -132,6 +132,9 @@ Some example CyberChef recipes:
 
 [Recipe 41: PHP mixed hexadecimal and octal encoding](#recipe-41---php-mixed-hexadecimal-and-octal-encoding)
 
+[Recipe 42: Decode URLs protected by Microsoft Safelinks](#recipe-42---decode-urls-protected-by-microsoft-safelinks)
+
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -681,6 +684,7 @@ Source: https://twitter.com/JCyberSec_/status/1368963598475739137
 
 Safe Links is a feature in Defender for Office 365 that provides URL scanning and rewriting of inbound email messages in mail flow, and time-of-click verification of URLs and links in email messages, Teams and Office 365 apps.
 
+Source: @Wikijm - https://twitter.com/wikijm
 Source: https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/safe-links?view=o365-worldwide
 
 `[{"op":"Split","args":["?","\\n"]},{"op":"Split","args":["&","\\n"]},{"op":"Split","args":["=","\\n"]},{"op":"Regular expression","args":["User defined","url\\s([^\\s]+)",true,true,false,false,false,false,"List capture groups"]},{"op":"URL Decode","args":[]}]`  
