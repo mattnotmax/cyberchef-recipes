@@ -918,7 +918,7 @@ Source: https://twitter.com/mattnotmax/status/1426763382082850816
 ![Recipe 56b](screenshots/recipe_56b.png)  
 
 
-# Recipe 57 - Make a meme with CyberChef  
+## Recipe 57 - Make a meme with CyberChef  
 
 Yes, with `Add Text to Image` this can be done. Yes, with `Add Test to Image` this should be done. Go. Do it now.  
 
@@ -930,7 +930,7 @@ Credit: [Ignis](https://twitter.com/ahakcil/status/1428333622466076679)
 
 ![Recipe 57](screenshots/recipe_57.png)  
 
-# Recipe 58 - Extract IcedID second stage URL from a maldoc  
+## Recipe 58 - Extract IcedID second stage URL from a maldoc  
 
 IcedID, also known as Bokbot, is a prolific threat, known for sending out waves of malicious documents. Here [@Max_Mal_](https://twitter.com/Max_Mal_) provides a quick way to extract the second stage URL from the maldoc without executing it. By unzipping the .docx and a little regex magic we can extract the URL in plain text.   
 
@@ -942,7 +942,7 @@ Source: [Max_Malyutin](https://twitter.com/Max_Mal_/status/1433456034824302598)
 
 ![Recipe 58](screenshots/recipe_58.png)  
 
-# Recipe 59 - Parse Cobalt Strike beacon configuration
+## Recipe 59 - Parse Cobalt Strike beacon configuration
 
 In the category of 'Things you probably shouldn't do in CyberChef but should try anyway' is parsing a Cobalt Strike beacon configuration file. [@notwhickey](https://twitter.com/notwhickey) has done a mammoth task of parsing the structure in CyberChef, and his blog goes into excellent detail into how this can be achieved. Definately take the time to have a read as you can learn some cool tips and tricks that could apply to other problems. You may need to adjust various XOR parameters to account for different formats as in my sample. Amazing stuff!  
 
@@ -954,7 +954,7 @@ Source: [Cobalt Strike beacon configuration parsing with CyberChef](https://medi
 
 ![Recipe 59](screenshots/recipe_59.png)  
  
- ## Recipe 60 - Decode URLs protected by Microsoft Safelinks
+## Recipe 60 - Decode URLs protected by Microsoft Safelinks
 
 Safe Links is a feature in Defender for Office 365 that provides URL scanning and rewriting of inbound email messages in mail flow, and time-of-click verification of URLs and links in email messages, Teams and Office 365 apps.
 
