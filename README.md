@@ -174,6 +174,8 @@ Some example CyberChef recipes:
 
 [Recipe 62: Emotet Maldoc to PowerShell](#recipe-62---emotet-maldoc-to-powershell)
 
+[Recipe 63: Extract URLs from Dridex obfuscated VBS](#recipe-63---extract-urls-from-dridex-obfuscated-vbs)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -976,6 +978,8 @@ Qbot? Qakbot? Who cares? With this short and sweet recipe we can extract the mal
 Credit: [@cluster25_io](https://twitter.com/cluster25_io)  
 Source: https://twitter.com/cluster25_io/status/1468248610814971916  
 
+### Recipe Details  
+
 `[{"op":"Unzip","args":["",false]},{"op":"Strings","args":["16-bit littleendian",10,"All printable chars (U)",false]},{"op":"Filter","args":["Line feed","^\\\"",false]},{"op":"Find / Replace","args":[{"option":"Extended (\\n, \\t, \\x...)","string":"\\x00"},"",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"[\"& ,]"},"",true,false,true,false]}]`  
 
 ![Recipe 61](screenshots/recipe_61.png)  
@@ -987,7 +991,24 @@ Emotet is back! Gianni Amato has whipped up a great recipe using unzip, filter, 
 Credit: [@guelfoweb](https://twitter.com/guelfoweb)  
 Source: https://twitter.com/guelfoweb/status/1468959342514749451  
 
+### Recipe Details  
+
+`[{"op":"Unzip","args":["",false]},{"op":"XML Beautify","args":["\\t"]},{"op":"Filter","args":["Line feed","<w:t>.*?<\\/w:t>",false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"3-"},"",true,false,true,false]},{"op":"From HTML Entity","args":[]},{"op":"Regular expression","args":["User defined","(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}==)",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Reverse","args":["Character"]}]`
+
 ![Recipe 62](screenshots/recipe_62.png)  
+
+## Recipe 63 - Extract URLs from Dridex obfuscated VBS  
+
+Let's switch to Dridex, and smash their VBS obfuscation with this excellent submission from [@Kostastsale](https://twitter.com/Kostastsale). Using subsection the full recipe is kept for any further analysis, but a simple 'Extract URLs' lets us see the (unsurprising) Discord destination.  
+
+Credit: [@Kostastsale](https://twitter.com/Kostastsale)  
+Source: https://twitter.com/Kostastsale/status/1475375446430609411
+
+### Recipe Details  
+
+`[{"op":"Find / Replace","args":[{"option":"Simple string","string":"+1-1"},"",true,false,true,false]},{"op":"Subsection","args":["chr\\((\\d+)\\)",false,true,false]},{"op":"Fork","args":["\\n","\\n",false]},{"op":"From Charcode","args":["Space",10]},{"op":"Merge","args":[]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"chr("},"",true,true,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"(\\)\\s&\\s|\\\"\\s&\\s\\\"|\\\"\\s&\\s|\\\")"},"",true,false,true,false]},{"op":"Extract URLs","args":[false]},{"op":"Defang URL","args":[true,true,true,"Valid domains and full URLs"]}]`  
+
+![Recipe 63](screenshots/recipe_63.png)  
 
 # Training
 
