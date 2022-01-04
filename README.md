@@ -170,6 +170,8 @@ Some example CyberChef recipes:
 
 [Recipe 60: Decode URLs protected by Microsoft Safelinks](#recipe-60---decode-urls-protected-by-microsoft-safelinks)
 
+[Recipe 61: Extract second stage URLs from Qakbot Excel maldocs](#recipe-61---extract-second-stage-urls-from-qakbot-excel-maldocs)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -958,12 +960,23 @@ Source: [Cobalt Strike beacon configuration parsing with CyberChef](https://medi
 
 Safe Links is a feature in Defender for Office 365 that provides URL scanning and rewriting of inbound email messages in mail flow, and time-of-click verification of URLs and links in email messages, Teams and Office 365 apps.
 
-Source 1: @WikiJM - https://twitter.com/wikijm  
+Source 1: [@WikiJM](https://twitter.com/wikijm)  
 Source 2: https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/safe-links?view=o365-worldwide
 
 `[{"op":"Split","args":["?","\\n"]},{"op":"Split","args":["&","\\n"]},{"op":"Split","args":["=","\\n"]},{"op":"Regular expression","args":["User defined","url\\s([^\\s]+)",true,true,false,false,false,false,"List capture groups"]},{"op":"URL Decode","args":[]}]`  
 
 ![Recipe 60](screenshots/recipe_60.png)
+
+## Recipe 61 - Extract second stage URLs from Qakbot Excel maldocs   
+
+Qbot? Qakbot? Who cares? With this short and sweet recipe we can extract the malicious URLs from Qakbot Excel maldocs. Pivot from here to other log sources like proxy logs, sysmon, EDR, DNS...you've got all those right?  
+
+Credit: [@cluster25_io](https://twitter.com/cluster25_io)  
+Source: https://twitter.com/cluster25_io/status/1468248610814971916  
+
+`[{"op":"Unzip","args":["",false]},{"op":"Strings","args":["16-bit littleendian",10,"All printable chars (U)",false]},{"op":"Filter","args":["Line feed","^\\\"",false]},{"op":"Find / Replace","args":[{"option":"Extended (\\n, \\t, \\x...)","string":"\\x00"},"",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"[\"& ,]"},"",true,false,true,false]}]`  
+
+![Recipe 61](screenshots/recipe_61.png)  
 
 # Training
 
