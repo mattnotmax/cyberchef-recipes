@@ -172,6 +172,8 @@ Some example CyberChef recipes:
 
 [Recipe 61: Extract second stage URLs from Qakbot Excel maldocs](#recipe-61---extract-second-stage-urls-from-qakbot-excel-maldocs)
 
+[Recipe 62: Emotet Maldoc to PowerShell](#recipe-62---emotet-maldoc-to-powershell)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -977,6 +979,15 @@ Source: https://twitter.com/cluster25_io/status/1468248610814971916
 `[{"op":"Unzip","args":["",false]},{"op":"Strings","args":["16-bit littleendian",10,"All printable chars (U)",false]},{"op":"Filter","args":["Line feed","^\\\"",false]},{"op":"Find / Replace","args":[{"option":"Extended (\\n, \\t, \\x...)","string":"\\x00"},"",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"[\"& ,]"},"",true,false,true,false]}]`  
 
 ![Recipe 61](screenshots/recipe_61.png)  
+
+## Recipe 62 - Emotet Maldoc to PowerShell   
+
+Emotet is back! Gianni Amato has whipped up a great recipe using unzip, filter, regex and some other tricks to extract and deobfuscate the embedded PowerShell. A fantastic learning recipe. Great work.  
+
+Credit: [@guelfoweb](https://twitter.com/guelfoweb)  
+Source: https://twitter.com/guelfoweb/status/1468959342514749451  
+
+![Recipe 62](screenshots/recipe_62.png)  
 
 # Training
 
