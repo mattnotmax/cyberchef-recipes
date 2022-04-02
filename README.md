@@ -7,7 +7,6 @@ Full credit to @GCHQ for producing the tool. See: https://gchq.github.io/CyberCh
 # General Tips
 
 - Download CyberChef and run it entirely client-side. It doesn't need an internet connection except for certain operations. That way all your data is safe.
-- Use Chrome. Although that might be painful for some. Chrome allows you to use positive lookbehinds which are [not supported](https://bugzilla.mozilla.org/show_bug.cgi?id=1225665) in Firefox
 - Don't try and shoe-horn CyberChef into something that it can't do. It can do a lot but it's not a fully fledged programming language!
 
 # Useful Regular Expressions
