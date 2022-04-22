@@ -176,6 +176,8 @@ Some example CyberChef recipes:
 
 [Recipe 63: Extract URLs from Dridex obfuscated VBS](#recipe-63---extract-urls-from-dridex-obfuscated-vbs)
 
+[Recipe 64: Convert Strings to VirusTotal Grep queries](#recipe-64---convert-strings-to-virustotal-grep-queries)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -364,7 +366,7 @@ Source: https://twitter.com/QW5kcmV3/status/949437437473968128
 
 ## Recipe 13 - Parsing DNS PTR records with Registers
 
-IP addresses in DNS PTR records are stored as least significant octet first. For example: 167.139.44.10.in-addr.arpa would relate to IP address of 10.44.139.167. Using CyberChef's registers we can allocate each octet to a memory register (or variable if it's easier to think of it that way). These can then be reversed to re-order the IP address. A find/replace tidies up the rest of the record. This could be reversed it you wanted to translate 'regular' IP addresses to search in DNS PTR records. 
+IP addresses in DNS PTR records are stored as least significant octet first. For example: 167.139.44.10.in-addr.arpa would relate to IP address of 10.44.139.167. Using CyberChef's registers we can allocate each octet to a memory register (or variable if it's easier to think of it that way). These can then be reversed to re-order the IP address. A find/replace tidies up the rest of the record. This could be reversed it you wanted to translate 'regular' IP addresses to search in DNS PTR records.
 
 ![Recipe_13](screenshots/recipe_13.png)
 
@@ -374,7 +376,7 @@ IP addresses in DNS PTR records are stored as least significant octet first. For
 
 ## Recipe 14 - Decoding POSHC2 executables
 
-PoshC2 is a proxy aware C2 framework that utilises Powershell to aid penetration testers with red teaming, post-exploitation and lateral movement. The dropper is based on PowerShell and consists of a PowerShell script which is double Base64 encoded and compressed. Extracting the strings can be done with CyberChef as detailed below. Depending on the settings and customisation of the executable you may need to adjust your recipe. 
+PoshC2 is a proxy aware C2 framework that utilises Powershell to aid penetration testers with red teaming, post-exploitation and lateral movement. The dropper is based on PowerShell and consists of a PowerShell script which is double Base64 encoded and compressed. Extracting the strings can be done with CyberChef as detailed below. Depending on the settings and customisation of the executable you may need to adjust your recipe.
 
 Credit: @a_tweeter_user
 
@@ -507,7 +509,7 @@ Credit: Adapted from Hack eXPlorer's video [Hiding Malicious code using windows 
 
 ## Recipe 24 - Picking a random letter from a six-byte string
 
-A [request](https://twitter.com/mattnotmax/status/1244586103006347268) for assistance led to this recipe which uses Registers, HTTP request and some Regex to select a random character from a six-byte string. 
+A [request](https://twitter.com/mattnotmax/status/1244586103006347268) for assistance led to this recipe which uses Registers, HTTP request and some Regex to select a random character from a six-byte string.
 
 Credit: Adapted from [Steve Thompson](https://twitter.com/poohstix16/status/1244505538307776513)
 
@@ -582,7 +584,7 @@ Credit: [@gazambelli](https://twitter.com/gazambelli/status/1312767188365905920)
 
 ## Recipe 30 - CharCode obfuscated PowerShell loader for a Cobalt Strike beacon
 
-A variant on the standard PowerShell loader for Cobalt Strike. Here the first layer of obfuscation is a GZipped blob split into two CharCode arrays. The end result is up to you: disassembly, strings, extract IP, or parse UserAgent. Choose your own adventure. 
+A variant on the standard PowerShell loader for Cobalt Strike. Here the first layer of obfuscation is a GZipped blob split into two CharCode arrays. The end result is up to you: disassembly, strings, extract IP, or parse UserAgent. Choose your own adventure.
 
 Source: [@scumbots](https://twitter.com/ScumBots/status/1314562082491322369) & https://pastebin.com/raw/mUFM4fcQ
 
@@ -608,7 +610,7 @@ Source: https://twitter.com/cybercdh/status/1338885244246765569 & https://twitte
 
 ## Recipe 32 - Extract malicious Gootkit DLL from obfuscated registry data
 
-Gootkit stores a DLL inside the registry as encoded PowerShell. CyberChef makes mince meat of this so-called 'fileless' malware. A handy recipe provided by @StefanKelm puts the 'file' back in 'fileless' (yes, I thought of that one myself, we are up to recipe 32 my friends...). 
+Gootkit stores a DLL inside the registry as encoded PowerShell. CyberChef makes mince meat of this so-called 'fileless' malware. A handy recipe provided by @StefanKelm puts the 'file' back in 'fileless' (yes, I thought of that one myself, we are up to recipe 32 my friends...).
 
 Source: https://github.com/StefanKelm/cyberchef-recipes
 
@@ -623,7 +625,7 @@ Source: https://github.com/StefanKelm/cyberchef-recipes
 Using the powerful operation of Registers, a handy recipe from @Cryptolaemus1 extracts obfuscated URLs from the PowerShell from an Emotet malicious document. Here capture groups are used to grab the find/replace string which de-obfuscates the URLs. Awesome stuff.
 
 Credit: [@Cryptolaemus](https://twitter.com/Cryptolaemus1) and [@NtRaiseException()](https://twitter.com/NtSetDefault)  
-Source: https://twitter.com/Cryptolaemus1/status/1319357369902649344 
+Source: https://twitter.com/Cryptolaemus1/status/1319357369902649344
 
 ### Recipe Details
 
@@ -700,11 +702,11 @@ Credit: https://twitter.com/neonprimetime/status/1365351048525791232
 GoldMax aka Sunshuttle drops an encrypted configuration file when it executes. In the RE analysis by Microsoft and Fireeye the algorithm and keys were identified and published, making it a breeze to decrypt with CyberChef.   
 
 Source 1: https://www.microsoft.com/security/blog/2021/03/04/goldmax-goldfinder-sibot-analyzing-nobelium-malware/  
-Source 2: https://www.fireeye.com/blog/threat-research/2021/03/sunshuttle-second-stage-backdoor-targeting-us-based-entity.html 
+Source 2: https://www.fireeye.com/blog/threat-research/2021/03/sunshuttle-second-stage-backdoor-targeting-us-based-entity.html
 
 ### Recipe Details  
 
-`[{"op":"From Base64","args":["A-Za-z0-9-_",true]},{"op":"AES Decrypt","args":[{"option":"UTF8","string":"hz8l2fnpvp71ujfy8rht6b0smouvp9k8"},{"option":"Hex","string":"00000000000000000000000000000000"},"CFB","Raw","Raw",{"option":"Hex","string":""}]},{"op":"Subsection","args":["[a-zA-Z0-9+/=]{50,}",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Merge","args":[]},{"op":"Drop bytes","args":[0,16,false]},{"op":"Take bytes","args":[0,120,false]},{"op":"Register","args":["(^.*?)\\|(.*?)\\|(.*?)\\|(.*)\\|(.*)",true,false,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":".*"},"MD5 of Execution Time:\\t\\t\\t$R0\\nLower/Upper Limit for Sleep Time:\\t$R1\\nUtilize “blend-in” traffic requests:\\t$R2\\nEnd execution timestamp:\\t\\t$R2\\nUser-agent for HTTPS requests:\\t\\t$R4",false,false,false,false]}]` 
+`[{"op":"From Base64","args":["A-Za-z0-9-_",true]},{"op":"AES Decrypt","args":[{"option":"UTF8","string":"hz8l2fnpvp71ujfy8rht6b0smouvp9k8"},{"option":"Hex","string":"00000000000000000000000000000000"},"CFB","Raw","Raw",{"option":"Hex","string":""}]},{"op":"Subsection","args":["[a-zA-Z0-9+/=]{50,}",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Merge","args":[]},{"op":"Drop bytes","args":[0,16,false]},{"op":"Take bytes","args":[0,120,false]},{"op":"Register","args":["(^.*?)\\|(.*?)\\|(.*?)\\|(.*)\\|(.*)",true,false,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":".*"},"MD5 of Execution Time:\\t\\t\\t$R0\\nLower/Upper Limit for Sleep Time:\\t$R1\\nUtilize “blend-in” traffic requests:\\t$R2\\nEnd execution timestamp:\\t\\t$R2\\nUser-agent for HTTPS requests:\\t\\t$R4",false,false,false,false]}]`
 
 ![Recipe 39](screenshots/recipe_39.png)  
 
@@ -792,7 +794,7 @@ Sample Data: https://www.linuxquestions.org/questions/linux-server-73/sample-squ
 
 ## Recipe 46 - Tailoring your regex for the situation  
 
-Here's a pretty standard script deobfuscation. You'll get some VBS script with comma separated URLs that are cycled through to download a second stage. If you want to extract the URLs, normally you'd use the 'Extract URLs' operation which give us 99% of what we want. Except the operation also picks up the trailing `'.Split('');$name` which looks ugly and not as easily cut and pasted or defanged. 
+Here's a pretty standard script deobfuscation. You'll get some VBS script with comma separated URLs that are cycled through to download a second stage. If you want to extract the URLs, normally you'd use the 'Extract URLs' operation which give us 99% of what we want. Except the operation also picks up the trailing `'.Split('');$name` which looks ugly and not as easily cut and pasted or defanged.
 
 Now the 'Extract URLs' function simply works via a regular expression, which takes into accout all the legitimate reserved characters of a URL as per the RFC. The trailing `'` (where we want it to end) is included, so we get more than we wanted. But using the built in regular expression for URLs (screenshot two) and adding the `'` into the negation in the syntax we can tailor the regex to our needs and get the perfect outcome!  
 
@@ -809,7 +811,7 @@ Source: https://app.any.run/tasks/b6d9a548-722c-4066-9448-11a966be2a73/
 ## Recipe 47 - Trickbot Visual Basic script
 
 The malware author here has attempted to fool automated analysis by slicing the recognisable Base64 encoded PE header into character codes. Using a filter to remove junk, subsection and standard regular expressions we can extract the base64 and the DLL the script is hiding.  
- 
+
 Source: https://twitter.com/mattnotmax/status/1394986367604695042  
 
 ### Recipe Details  
@@ -847,22 +849,22 @@ Source: https://twitter.com/cnotin/status/1387002797175021569
 `[{"op":"Comment","args":["subsection for the content before the ACE strings"]},{"op":"Subsection","args":["(.*?)\\(.*",false,true,false]},{"op":"Comment","args":["Each \"G:\" and \"D:\" on its own line"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"([GD]):"},"\\n$1:",true,false,true,false]},{"op":"Comment","args":["add separator"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"$"},"\\n######\\n",true,false,false,false]},{"op":"Merge","args":[]},{"op":"Comment","args":["subsection for the ACE strings"]},{"op":"Subsection","args":["######\\n(.*)",false,true,false]},{"op":"Find / Replace","args":[{"option":"Simple string","string":")("},"\\n",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\)$"},"",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^\\("},"",true,false,true,false]},{"op":"Comment","args":["Add space between each permission or flag bigram"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"([A-Z]{2})"},"$1 ",true,false,true,false]},{"op":"Comment","args":["Insert table header"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^"},"Type;Flags;Permissions;ObjectType;Inherited ObjectType;Trustee\\n",false,false,true,false]},{"op":"To Table","args":[";","\\n",true,"ASCII"]},{"op":"Merge","args":[]}]`  
 
 ![Recipe 50](screenshots/recipe_50.png)  
-    
+
 ## Recipe 51 - Base-45 decoder
 
 [Base 45](https://datatracker.ietf.org/doc/draft-faltstrom-base45/) is another type of encoding related to Base64 et al. Here Tomasz Zieliński has done amazing work in writing a CyberChef recipe for this encoding. Plus the recipe is heavily commented so you can see what is happening where! Awesome.  
 
 Credit: https://gist.github.com/tomekziel  
 Source: https://gist.github.com/tomekziel/eaaabd55f2d244adf5fcf7db4db0387f  
-    
+
 ### Recipe Details  
-    
+
 `[{"op":"Comment","args":["CYBERCHEF BASE-45 DECODER\n\nTomasz Zielinski (tomasz.zielinski@gmail.com)\npublic domain\n"]},{"op":"Conditional Jump","args":["^(...)+$",false,"multiply3",10]},{"op":"Comment","args":["Flow for case with number of input characters that not divide by 3"]},{"op":"Comment","args":["\nSTEP 1\nReplace BASE-45 alphabet with numeric values\nhttps://datatracker.ietf.org/doc/html/draft-faltstrom-base45-04"]},{"op":"Substitute","args":["0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+\\-./:","\\x00\\x01\\x02\\x03\\x04\\x05\\x06\\x07\\x08\\x09\\x0a\\x0b\\x0c\\x0d\\x0e\\x0f\\x10\\x11\\x12\\x13\\x14\\x15\\x16\\x17\\x18\\x19\\x1a\\x1b\\x1c\\x1d\\x1e\\x1f\\x20\\x21\\x22\\x23\\x24\\x25\\x26\\x27\\x28\\x29\\x2a\\x2b\\x2c"]},{"op":"Comment","args":["STEP 2\nIf the length of vector is not divisible by 3, add 0 as last value"]},{"op":"To Decimal","args":["Space",false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"((\\d+ \\d+ \\d+[ ]*)+)(\\d+ \\d+[ ]*)*"},"$1/$3_",false,false,false,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"((\\d)+[ ]*)_$"},"$1 0",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"[ _]*$|/"},"",true,false,true,false]},{"op":"Comment","args":["Take three-number sequences and prepare multiplication by 1, 45, and 2025"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"(\\d+) (\\d+) (\\d+){0,1}"},"$1\\n$2 45\\n$3 2025\\n",true,false,true,false]},{"op":"Fork","args":["\\n","\\n",false]},{"op":"Multiply","args":["Space"]},{"op":"Merge","args":[]},{"op":"Find / Replace","args":[{"option":"Regex","string":"NaN"},"",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\n"}," ",true,false,true,false]},{"op":"Comment","args":["Sum sequences of three numbers"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"(\\d+) (\\d+) (\\d+)"},"$1 $2 $3\\n",true,false,true,false]},{"op":"Fork","args":["\\n","\\n",false]},{"op":"Sum","args":["Space"]},{"op":"Merge","args":[]},{"op":"Find / Replace","args":[{"option":"Regex","string":"NaN"},"",true,false,true,false]},{"op":"Fork","args":["\\n","\\n",false]},{"op":"To Base","args":[16]},{"op":"Find / Replace","args":[{"option":"Regex","string":"NaN"},"",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^(\\w\\w\\w)$"},"0$1",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^(\\w\\w)$"},"00$1",true,false,false,false]},{"op":"Comment","args":["Split a number to two bytes (effectively DIV256 and MOD256)"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"(\\w\\w)(\\w\\w)"},"$1\\n$2",true,false,true,false]},{"op":"Merge","args":[]},{"op":"Comment","args":["Change hex to chars"]},{"op":"Fork","args":["\\n","",false]},{"op":"Merge","args":[]},{"op":"Comment","args":["Special case, last byte is malformed as two bytes, remove unnecessary 0"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"00(\\w\\w)$"},"$1",true,false,true,false]},{"op":"From Hex","args":["Line feed"]},{"op":"Jump","args":["end",10]},{"op":"Label","args":["multiply3"]},{"op":"Comment","args":["Flow for case with number of input characters that divide by 3"]},{"op":"Substitute","args":["0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+\\-./:","\\x00\\x01\\x02\\x03\\x04\\x05\\x06\\x07\\x08\\x09\\x0a\\x0b\\x0c\\x0d\\x0e\\x0f\\x10\\x11\\x12\\x13\\x14\\x15\\x16\\x17\\x18\\x19\\x1a\\x1b\\x1c\\x1d\\x1e\\x1f\\x20\\x21\\x22\\x23\\x24\\x25\\x26\\x27\\x28\\x29\\x2a\\x2b\\x2c"]},{"op":"To Decimal","args":["Space",false]},{"op":"Comment","args":["Take three-number sequences and prepare multiplication by 1, 45, and 2025"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"(\\d+) (\\d+) (\\d+){0,1}"},"$1\\n$2 45\\n$3 2025\\n",true,false,true,false]},{"op":"Fork","args":["\\n","\\n",false]},{"op":"Multiply","args":["Space"]},{"op":"Merge","args":[]},{"op":"Find / Replace","args":[{"option":"Regex","string":"NaN"},"",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\n"}," ",true,false,true,false]},{"op":"Comment","args":["Sum sequences of three numbers"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"(\\d+) (\\d+) (\\d+)"},"$1 $2 $3\\n",true,false,true,false]},{"op":"Fork","args":["\\n","\\n",false]},{"op":"Sum","args":["Space"]},{"op":"Merge","args":[]},{"op":"Find / Replace","args":[{"option":"Regex","string":"NaN"},"",true,false,true,false]},{"op":"Fork","args":["\\n","\\n",false]},{"op":"To Base","args":[16]},{"op":"Find / Replace","args":[{"option":"Regex","string":"NaN"},"",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^(\\w\\w\\w)$"},"0$1",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^(\\w\\w)$"},"00$1",true,false,false,false]},{"op":"Comment","args":["Split a number to two bytes (effectively DIV256 and MOD256)"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"(\\w\\w)(\\w\\w)"},"$1\\n$2",true,false,true,false]},{"op":"Comment","args":["Change hex to chars"]},{"op":"From Hex","args":["Line feed"]},{"op":"Merge","args":[]},{"op":"Fork","args":["\\n","",false]},{"op":"Merge","args":[]},{"op":"Label","args":["end"]}]`
 
 ![Recipe 51](screenshots/recipe_51.png)  
 
-## Recipe 52 - Randomise list of items 
- 
+## Recipe 52 - Randomise list of items
+
 Here we can use the operation Pseudo-Random Number Generator to create a random hexadecimal value. Prior to that we save are items in registers. Then we can join them together and sort by the randomised hex values. Sure, it's probably not cryptographically perfect and make NSA eggheads eyes bleed but ¯\_(ツ)_/¯.  
 
 ### Recipe Details    
@@ -903,7 +905,7 @@ A recipe worthy of two screenshots! Here the maldoc uses a simple find/replace t
 
 Credit: [Kostas](https://twitter.com/Kostastsale/status/1426264806093254656)
 
-### Recipe Details 
+### Recipe Details
 
 `[{"op":"Find / Replace","args":[{"option":"Simple string","string":"za67t"},"",true,false,true,false]},{"op":"Generic Code Beautify","args":[]},{"op":"Subsection","args":["[A-Za-z0-9+/=]{450,}",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Merge","args":[]},{"op":"Subsection","args":["(?<=\\)e\\()(.*?)(?=\\n)",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"Merge","args":[]},{"op":"Extract URLs","args":[false]},{"op":"Defang URL","args":[true,true,true,"Valid domains and full URLs"]}]`
 
@@ -930,7 +932,7 @@ Yes, with `Add Text to Image` this can be done. Yes, with `Add Test to Image` th
 
 Credit: [Ignis](https://twitter.com/ahakcil/status/1428333622466076679)
 
-### Recipe Details 
+### Recipe Details
 
 `[{"op":"HTTP request","args":["GET","https://static.flag.farm/img/2ju3gf.jpg.b64","","Cross-Origin Resource Sharing",false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Render Image","args":["Raw"]},{"op":"Add Text To Image","args":["Making memes normally","Right","None",0,150,32,"Roboto",0,0,0,255]},{"op":"Add Text To Image","args":["Making Memes with","Right","None",0,450,32,"Roboto",0,0,0,255]},{"op":"Add Text To Image","args":["Cyberchef","None","None",550,490,32,"Roboto",0,0,0,255]}]`
 
@@ -954,12 +956,12 @@ In the category of 'Things you probably shouldn't do in CyberChef but should try
 
 Source: [Cobalt Strike beacon configuration parsing with CyberChef](https://medium.com/@whickey000/cobaltstrike-beacon-config-parsing-with-cyberchef-malware-mondays-2-86d759b9a031)  
 
-### Recipe Details 
+### Recipe Details
 
 `[{"op":"To Hex","args":["None",0]},{"op":"Register","args":["([\\s\\S]*)",true,false,false]},{"op":"Regular expression","args":["User defined","(^(?:.*?)ffffff)",true,true,false,false,false,false,"List matches"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"(..)"},"$1\\n",true,false,true,false]},{"op":"Add line numbers","args":[]},{"op":"Tail","args":["Line feed",1]},{"op":"Find / Replace","args":[{"option":"Regex","string":"(\\d+)"},"$1 4",true,false,true,false]},{"op":"Divide","args":["Space"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"([0–9\\.]+)"},"$1 2",true,false,true,false]},{"op":"Sum","args":["Space"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\..*"},"",true,false,true,false]},{"op":"Register","args":["(\\d+)",true,false,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":".*"},"CLEAR",true,false,true,true]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"CLEARCLEAR"},"$R0",true,false,true,false]},{"op":"Register","args":["(?:[0–9a-f][0–9a-f]){$R1}(.*)",true,false,true]},{"op":"Find / Replace","args":[{"option":"Regex","string":".*"},"CLEAR",true,false,true,true]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"CLEARCLEAR"},"$R2",true,false,true,false]},{"op":"From Hex","args":["Auto"]},{"op":"Drop bytes","args":[0,4,false]},{"op":"XOR","args":[{"option":"Hex","string":"$R2"},"Standard",false],"disabled":true},{"op":"XOR","args":[{"option":"Hex","string":"2e"},"Standard",false]},{"op":"To Hex","args":["Space",0]},{"op":"Find / Replace","args":[{"option":"Regex","string":"(.*)"},"$1 00 08 00 03 01 00 ZZ ZZ ZZ ZZ 00 09 00 03 00 80 ZZ ZZ ZZ ZZ 00 0a 00 03 00 40 ZZ ZZ ZZ ZZ 00 0c 00 03 01 00 ZZ ZZ ZZ ZZ 00 0d 00 03 01 00 ZZ ZZ ZZ ZZ 00 0e 00 03 00 40 ZZ ZZ ZZ ZZ 00 0f 00 03 00 80 ZZ ZZ ZZ ZZ 00 1a 00 03 00 10 ZZ ZZ ZZ ZZ 00 1b 00 03 00 10 ZZ ZZ ZZ ZZ 00 1d 00 03 00 40 ZZ ZZ ZZ ZZ 00 1e 00 03 00 40 ZZ ZZ ZZ ZZ 00 20 00 03 00 80 ZZ ZZ ZZ ZZ 00 21 00 03 00 40 ZZ ZZ ZZ ZZ 00 22 00 03 00 40 ZZ ZZ ZZ ZZ 00 23 00 01 00 02 ZZ ZZ ZZ ZZ 00 24 00 01 00 02 ZZ ZZ ZZ ZZ 00 02 00 01 00 02 ZZ ZZ ZZ ZZ 00 05 00 01 00 02 ZZ ZZ ZZ ZZ 00 06 00 01 00 02 ZZ ZZ ZZ ZZ 00 10 00 01 00 02 ZZ ZZ ZZ ZZ 00 11 00 01 00 02 ZZ ZZ ZZ ZZ 00 12 00 01 00 02 ZZ ZZ ZZ ZZ 00 14 00 02 00 04 ZZ ZZ ZZ ZZ 00 03 00 02 00 04 ZZ ZZ ZZ ZZ 00 13 00 02 00 04 ZZ ZZ ZZ ZZ",true,false,true,false]},{"op":"Register","args":["(?:00 08 00 03 01 00)((?:.*?)(?=00)|(?: ZZ ZZ ZZ ZZ))",true,false,true]},{"op":"Register","args":["(?:00 09 00 03 00 80)((?:.*?)(?=00)|(?: ZZ ZZ ZZ ZZ))",true,false,true]},{"op":"Register","args":["(?:00 0a 00 03 00 40)((?:.*?)(?=00)|(?: ZZ ZZ ZZ ZZ))",true,false,true]},{"op":"Register","args":["(?:00 0c 00 03 01 00)((?:.*?)(?=00)|(?: ZZ ZZ ZZ ZZ))",true,false,true]},{"op":"Register","args":["(?:00 0d 00 03 01 00)((?:.*?)(?=00)|(?: ZZ ZZ ZZ ZZ))",true,false,true]},{"op":"Register","args":["(?:00 0e 00 03 00 40)((?:.*?)(?=00)|(?: ZZ ZZ ZZ ZZ))",true,false,true]},{"op":"Register","args":["(?:00 0f 00 03 00 80)((?:.*?)(?=00)|(?: ZZ ZZ ZZ ZZ))",true,false,true]},{"op":"Register","args":["(?:00 1a 00 03 00 10)((?:.*?)(?=00)|(?: ZZ ZZ ZZ ZZ))",true,false,true]},{"op":"Register","args":["(?:00 1b 00 03 00 10)((?:.*?)(?=00)|(?: ZZ ZZ ZZ ZZ))",true,false,true]},{"op":"Register","args":["(?:00 1d 00 03 00 40)((?:.*?)(?=00)|(?: ZZ ZZ ZZ ZZ))",true,false,true]},{"op":"Register","args":["(?:00 1e 00 03 00 40)((?:.*?)(?=00)|(?: ZZ ZZ ZZ ZZ))",true,false,true]},{"op":"Register","args":["(?:00 20 00 03 00 80)((?:.*?)(?=00)|(?: ZZ ZZ ZZ ZZ))",true,false,true]},{"op":"Register","args":["(?:00 21 00 03 00 40)((?:.*?)(?=00)|(?: ZZ ZZ ZZ ZZ))",true,false,true]},{"op":"Register","args":["(?:00 22 00 03 00 40)((?:.*?)(?=00)|(?: ZZ ZZ ZZ ZZ))",true,false,true]},{"op":"Register","args":["(?:00 23 00 01 00 02)((?:.*?)(?=00)|(?: ZZ ZZ ZZ ZZ))",true,false,true]},{"op":"Register","args":["(?:00 24 00 01 00 02)((?:.*?)(?=00)|(?: ZZ ZZ ZZ ZZ))",true,false,true]},{"op":"Register","args":["(?:00 02 00 01 00 02 )((?:[0–9A-F]{2}\\s){2}|(?:ZZ ZZ ZZ ZZ))",true,false,false]},{"op":"Register","args":["(?:00 05 00 01 00 02 )((?:[0–9A-F]{2}\\s){2}|(?:ZZ ZZ ZZ ZZ))",true,false,false]},{"op":"Register","args":["(?:00 06 00 01 00 02 )((?:[0–9A-F]{2}\\s){2}|(?:ZZ ZZ ZZ ZZ))",true,false,false]},{"op":"Register","args":["(?:00 10 00 01 00 02 )((?:[0–9A-F]{2}\\s){2}|(?:ZZ ZZ ZZ ZZ))",true,false,false]},{"op":"Register","args":["(?:00 11 00 01 00 02 )((?:[0–9A-F]{2}\\s){2}|(?:ZZ ZZ ZZ ZZ))",true,false,false]},{"op":"Register","args":["(?:00 12 00 01 00 02 )((?:[0–9A-F]{2}\\s){2}|(?:ZZ ZZ ZZ ZZ))",true,false,false]},{"op":"Register","args":["(?:00 14 00 02 00 04 )((?:[0–9A-F]{2}\\s){2}|(?:ZZ ZZ ZZ ZZ))",true,false,false]},{"op":"Register","args":["(?:00 03 00 02 00 04 )((?:[0–9A-F]{2}\\s){2}|(?:ZZ ZZ ZZ ZZ))",true,false,false]},{"op":"Register","args":["(?:00 13 00 02 00 04 )((?:[0–9A-F]{2}\\s){4}|(?:ZZ ZZ ZZ ZZ))",true,false,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":".*"},"CLEAR",true,false,true,true]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"CLEARCLEAR"},"7b 0a 22 43 32 20 53 65 72 76 65 72 22 3a $R3 2c 0a 22 55 73 65 72 20 41 67 65 6e 74 22 3a $R4 2c 0a 22 48 54 54 50 20 4d 65 74 68 6f 64 20 50 61 74 68 20 32 22 3a $R5 2c 0a 22 48 65 61 64 65 72 20 31 22 3a $R6 2c 0a 22 48 65 61 64 65 72 20 32 22 3a $R7 2c 0a 22 49 6e 6a 65 63 74 69 6f 6e 20 50 72 6f 63 65 73 73 22 3a $R8 2c 0a 22 50 69 70 65 20 4e 61 6d 65 22 3a $R9 2c 0a 22 4d 65 74 68 6f 64 20 31 22 3a $R10 2c 0a 22 4d 65 74 68 6f 64 20 32 22 3a $R11 2c 0a 22 53 70 61 77 6e 20 54 6f 20 78 38 36 22 3a $R12 2c 0a 22 53 70 61 77 6e 20 54 6f 20 78 36 34 22 3a $R13 2c 0a 22 50 72 6f 78 79 20 48 6f 73 74 6e 61 6d 65 22 3a $R14 2c 0a 22 50 72 6f 78 79 20 55 73 65 72 6e 61 6d 65 22 3a $R15 2c 0a 22 50 72 6f 78 79 20 50 61 73 73 77 6f 72 64 22 3a $R16 2c 0a 22 50 72 6f 78 79 20 41 63 63 65 73 73 20 54 79 70 65 22 3a $R17 2c 0a 22 43 72 65 61 74 65 52 65 6d 6f 74 65 54 68 72 65 61 64 22 3a $R18 2c 0a 22 50 6f 72 74 22 3a $R19 2c 0a 22 4a 69 74 74 65 72 22 3a $R20 2c 0a 22 4d 61 78 20 44 4e 53 22 3a $R21 2c 0a 22 59 65 61 72 22 3a $R22 2c 0a 7d",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"ZZ ZZ ZZ ZZ"},"4e 55 4c 4c",true,false,true,false]},{"op":"From Hex","args":["Auto"]}]`  
 
 ![Recipe 59](screenshots/recipe_59.png)  
- 
+
 ## Recipe 60 - Decode URLs protected by Microsoft Safelinks
 
 Safe Links is a feature in Defender for Office 365 that provides URL scanning and rewriting of inbound email messages in mail flow, and time-of-click verification of URLs and links in email messages, Teams and Office 365 apps.
@@ -1010,6 +1012,19 @@ Source: https://twitter.com/Kostastsale/status/1475375446430609411
 
 ![Recipe 63](screenshots/recipe_63.png)  
 
+## Recipe 64 - Convert Strings to VirusTotal Grep queries
+
+Straight forward recipe for converting Strings to the syntax used for VT Grep queries. [VirusTotal Syntax Reference](https://support.virustotal.com/hc/en-us/articles/360001386897-Content-search-VTGrep-)
+
+Credit: [@th3_protoCOL](https://twitter.com/th3_protoCOL)  
+Source: https://twitter.com/th3_protoCOL/status/1505288686560186369
+
+### Recipe Details  
+`[{"op":"To Hex","args":["Space",0]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^"},"content:{",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"$"},"}",true,false,true,false]}]`
+
+![Recipe 64](screenshots/recipe_64.png)  
+
+
 # Training
 
 I've developed a course 'CyberChef for Security Analysts' which contains 10 hours of instuctional videos plus labs through Applied Network Defense. To find out more visit [learncyberchef.com](http://learncyberchef.com)
@@ -1055,5 +1070,3 @@ I haven't tested these, so caveat emptor.
 Happy to add (and learn) more. Pull request or tweet to @mattnotmax!  
 
 Please include original source of text and recipe developer (if not yourself). For consistency in pasting into CyberChef I have found the best results are to export the function as compact JSON.
-
-
