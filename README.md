@@ -177,6 +177,8 @@ Some example CyberChef recipes:
 
 [Recipe 64: Convert Strings to VirusTotal Grep queries](#recipe-64---convert-strings-to-virustotal-grep-queries)
 
+[Recipe 65: Deobfuscate MSF Venom PowerShell reverse shell payload](#recipe-65---deobfuscate-msf-venom-powershell-reverse-shell-payload)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -1019,9 +1021,22 @@ Credit: [@th3_protoCOL](https://twitter.com/th3_protoCOL)
 Source: https://twitter.com/th3_protoCOL/status/1505288686560186369
 
 ### Recipe Details  
+
 `[{"op":"To Hex","args":["Space",0]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^"},"content:{",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"$"},"}",true,false,true,false]}]`
 
 ![Recipe 64](screenshots/recipe_64.png)  
+
+## Recipe 65 - Deobfuscate MSF Venom PowerShell reverse shell payload  
+
+Regular contributor @thebluetoob cooks a storm here with all the hallmarks of a seasoned CyberChef veteran: Registers, eye-bleeding regex, and a solid understanding of 'getting it done' in CyberChef. Kudos!   
+
+Credit: [@thebluetoob](https://twitter.com/thebluetoob)  
+
+### Recipe Details  
+
+`[{"op":"Regular expression","args":["User defined","[a-zA-Z0-9=/+]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Decode text","args":["UTF-16LE (1200)"]},{"op":"Register","args":["\\'\\'\\)\\-f\\'\\'([a-zA-Z0-9+=\\/])\\'\\'[\\,\\'\\)]{3}([a-zA-Z0-9+=\\/])?[\\'\\)\\,]{1,5}([a-zA-Z0-9+=\\/])?.*?\\[",true,false,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\{[\\'\\+0]*?}"},"$R0",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\{[\\'\\+1]*?}"},"$R1",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\{[\\'\\+2]*?}"},"$R2",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"''+''"},"",true,false,true,false]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9=/+]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Gunzip","args":[]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9=/+]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"To Hex","args":["None",0]}]`
+
+![Recipe 65](screenshots/recipe_65.png)  
 
 
 # Training
