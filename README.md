@@ -179,6 +179,8 @@ Some example CyberChef recipes:
 
 [Recipe 65: Deobfuscate MSF Venom PowerShell reverse shell payload](#recipe-65---deobfuscate-msf-venom-powershell-reverse-shell-payload)
 
+[Recipe 66: Nested subsection example](#recipe-66---nested-subsection-example)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -1037,6 +1039,23 @@ Credit: [@thebluetoob](https://twitter.com/thebluetoob)
 `[{"op":"Regular expression","args":["User defined","[a-zA-Z0-9=/+]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Decode text","args":["UTF-16LE (1200)"]},{"op":"Register","args":["\\'\\'\\)\\-f\\'\\'([a-zA-Z0-9+=\\/])\\'\\'[\\,\\'\\)]{3}([a-zA-Z0-9+=\\/])?[\\'\\)\\,]{1,5}([a-zA-Z0-9+=\\/])?.*?\\[",true,false,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\{[\\'\\+0]*?}"},"$R0",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\{[\\'\\+1]*?}"},"$R1",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\{[\\'\\+2]*?}"},"$R2",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Simple string","string":"''+''"},"",true,false,true,false]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9=/+]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"Gunzip","args":[]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9=/+]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true]},{"op":"To Hex","args":["None",0]}]`
 
 ![Recipe 65](screenshots/recipe_65.png)  
+
+
+## Recipe 66 - Nested subsection example
+
+Nested subsections is a feature available in versions >= 9.46.0. If you have a layered obfuscation and use two subsections you can merge the second layer only without losing your first subsection later. The below recipe is a contrived example and is explained [in this Twitter thread](https://twitter.com/mattnotmax/status/1545990049094778880).  
+
+Source: https://twitter.com/mattnotmax/status/1545990049094778880
+
+### Recipe Details with nested subsection
+
+`[{"op":"Subsection","args":["[a-zA-Z0-9+/=]{100,}",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true,false]},{"op":"Subsection","args":["\\\".*\\\"",true,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\\""},"",true,false,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true,false]},{"op":"Merge","args":[false]},{"op":"From Hex","args":["Auto"]}]`
+
+### Recipe details on older versions
+
+`[{"op":"Subsection","args":["[a-zA-Z0-9+/=]{100,}",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true,false]},{"op":"Subsection","args":["\\\".*\\\"",true,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\\""},"",true,false,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true,false]},{"op":"Merge","args":[]},{"op":"Subsection","args":["[a-fA-F0-9]{100,}",true,true,false]},{"op":"From Hex","args":["Auto"]}]`
+
+![Recipe 65](screenshots/recipe_66.png)  
 
 
 # Training
