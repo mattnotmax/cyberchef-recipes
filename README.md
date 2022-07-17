@@ -181,6 +181,8 @@ Some example CyberChef recipes:
 
 [Recipe 66: Nested subsection example](#recipe-66---nested-subsection-example)
 
+[Recipe 67: Converting a MSI ProductCode to Registry Installer ProductID](#recipe-67---converting-a-msi-productcode-to-registry-installer-productid)
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -1055,8 +1057,20 @@ Source: https://twitter.com/mattnotmax/status/1545990049094778880
 
 `[{"op":"Subsection","args":["[a-zA-Z0-9+/=]{100,}",true,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true,false]},{"op":"Subsection","args":["\\\".*\\\"",true,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"\\\""},"",true,false,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true,false]},{"op":"Merge","args":[]},{"op":"Subsection","args":["[a-fA-F0-9]{100,}",true,true,false]},{"op":"From Hex","args":["Auto"]}]`
 
-![Recipe 65](screenshots/recipe_66.png)  
+![Recipe 66](screenshots/recipe_66.png)  
 
+
+## Recipe 67 - Converting a MSI ProductCode to Registry Installer ProductID  
+
+MSI files have a master ProductCode GUID for each installer file. This will be referenced in the registry at HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Installer\Products\ with a ProductID. That original ProductCode GUID undergoes a simple transformation that we can do in CyberChef. If you have a malicious .msi file you could look up the corresponding ProductCode, calculate the ProductID and hunt in the registry for artifacts. Good luck!  
+
+Source: https://www.advancedinstaller.com/msi-registration-productid.html
+
+### Recipe Details  
+
+[{"op":"Find / Replace","args":[{"option":"Regex","string":"\\}|\\{|-"},"",true,false,true,false]},{"op":"Subsection","args":["^(\\w{8})",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"Merge","args":[]},{"op":"Subsection","args":["^\\w{8}(\\w{4})",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"Merge","args":[]},{"op":"Subsection","args":["^\\w{8}\\w{4}(\\w{4})",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"Merge","args":[]},{"op":"Subsection","args":["(\\w{16})$",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"Merge","args":[]},{"op":"Swap endianness","args":["Hex",8,false]},{"op":"Remove whitespace","args":[true,true,true,true,true,false]},{"op":"To Upper case","args":["All"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^"},"HKEY_LOCAL_MACHINE\\SOFTWARE\\Classes\\Installer\\Products\\",true,false,true,false]}]
+
+![Recipe 67](screenshots/recipe_67.png)  
 
 # Training
 
