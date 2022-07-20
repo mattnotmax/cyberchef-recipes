@@ -1062,13 +1062,13 @@ Source: https://twitter.com/mattnotmax/status/1545990049094778880
 
 ## Recipe 67 - Converting a MSI ProductCode to Registry Installer ProductID  
 
-MSI files have a master ProductCode GUID for each installer file. This will be referenced in the registry at HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Installer\Products\ with a ProductID. That original ProductCode GUID undergoes a simple transformation that we can do in CyberChef. If you have a malicious .msi file you could look up the corresponding ProductCode, calculate the ProductID and hunt in the registry for artifacts. Good luck!  
+MSI files have a master ProductCode GUID for each installer file. This will be referenced in the registry at HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Installer\Products\ with a ProductID. That original ProductCode GUID undergoes a simple transformation that we can do in CyberChef. If you have a malicious .msi file you could look up the corresponding ProductCode, calculate the ProductID and hunt in the registry for artifacts. Try it with the string: `{6732E1E0-6629-4B92-A25F-40377D162D15}`. Good luck!  
 
 Source: https://www.advancedinstaller.com/msi-registration-productid.html
 
 ### Recipe Details  
 
-[{"op":"Find / Replace","args":[{"option":"Regex","string":"\\}|\\{|-"},"",true,false,true,false]},{"op":"Subsection","args":["^(\\w{8})",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"Merge","args":[]},{"op":"Subsection","args":["^\\w{8}(\\w{4})",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"Merge","args":[]},{"op":"Subsection","args":["^\\w{8}\\w{4}(\\w{4})",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"Merge","args":[]},{"op":"Subsection","args":["(\\w{16})$",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"Merge","args":[]},{"op":"Swap endianness","args":["Hex",8,false]},{"op":"Remove whitespace","args":[true,true,true,true,true,false]},{"op":"To Upper case","args":["All"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^"},"HKEY_LOCAL_MACHINE\\SOFTWARE\\Classes\\Installer\\Products\\",true,false,true,false]}]
+`[{"op":"Find / Replace","args":[{"option":"Regex","string":"\\}|\\{|-"},"",true,false,true,false]},{"op":"Subsection","args":["^(\\w{8})",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"Merge","args":[true]},{"op":"Subsection","args":["^\\w{8}(\\w{4})",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"Merge","args":[true]},{"op":"Subsection","args":["^\\w{8}\\w{4}(\\w{4})",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"Merge","args":[true]},{"op":"Subsection","args":["(\\w{16})$",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"Swap endianness","args":["Hex",8,false]},{"op":"Merge","args":[true]},{"op":"Remove whitespace","args":[true,true,true,true,true,false]},{"op":"To Upper case","args":["All"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^"},"HKEY_LOCAL_MACHINE\\SOFTWARE\\Classes\\Installer\\Products\\",true,false,true,false]}]`
 
 ![Recipe 67](screenshots/recipe_67.png)  
 
