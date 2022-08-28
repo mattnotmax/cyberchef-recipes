@@ -183,6 +183,10 @@ Some example CyberChef recipes:
 
 [Recipe 67: Converting a MSI ProductCode to Registry Installer ProductID](#recipe-67---converting-a-msi-productcode-to-registry-installer-productid)
 
+[Recipe 68: Converting Java signed byte arrays](#recipe-68---converting-java-signed-byte-arrays)  
+
+
+
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
 A very common scenario: extract Base64, inflate, beautify the code. You may need to then do further processing or dynamic analysis depending on the next stage.
@@ -1071,6 +1075,19 @@ Source: https://www.advancedinstaller.com/msi-registration-productid.html
 `[{"op":"Find / Replace","args":[{"option":"Regex","string":"\\}|\\{|-"},"",true,false,true,false]},{"op":"Subsection","args":["^(\\w{8})",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"Merge","args":[true]},{"op":"Subsection","args":["^\\w{8}(\\w{4})",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"Merge","args":[true]},{"op":"Subsection","args":["^\\w{8}\\w{4}(\\w{4})",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"Merge","args":[true]},{"op":"Subsection","args":["(\\w{16})$",true,true,false]},{"op":"Reverse","args":["Character"]},{"op":"Swap endianness","args":["Hex",8,false]},{"op":"Merge","args":[true]},{"op":"Remove whitespace","args":[true,true,true,true,true,false]},{"op":"To Upper case","args":["All"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^"},"HKEY_LOCAL_MACHINE\\SOFTWARE\\Classes\\Installer\\Products\\",true,false,true,false]}]`
 
 ![Recipe 67](screenshots/recipe_67.png)  
+
+## Recipe 68 - Converting Java signed byte arrays
+
+Java uses signed integers so character codes need to be converted to unsigned values before we can use the 'From Character Code' operation. Here we extract the byte array from a Java Neo-ReGeorg webshell and conver the data to its class file. From there we can save off the class file and decompile for further analysis.  
+
+Source: https://twitter.com/mattnotmax/status/1563106640819150848  
+Source: https://github.com/L-codes/Neo-reGeorg
+
+### Recipe Details  
+
+`[{"op":"Regular expression","args":["User defined","(?<=\\{)([\\-\\d,]+)(?=\\})",true,true,false,false,false,false,"List matches"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"(-\\d+)"},"$1 256",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":","},"\\n",true,false,true,false]},{"op":"Fork","args":["\\n","\\n",false]},{"op":"Sum","args":["Space"]},{"op":"Merge","args":[true]},{"op":"From Charcode","args":["Line feed",10]}]`
+
+![Recipe 68](screenshots/recipe_68.png)  
 
 # Training
 
