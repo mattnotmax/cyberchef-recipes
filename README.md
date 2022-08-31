@@ -1096,6 +1096,7 @@ Source: https://github.com/L-codes/Neo-reGeorg
 
 Bumblebee, the apparent successor to Bazarloader, comes in swinging with a large PowerShell payload containing 113 Base64 blobs. Convert, decompress, substitute, regex-fu, substitute. All in a days work to extra the DLL payload with CyberChef.  
 
+Source: https://twitter.com/mattnotmax/status/1564915219507253248  
 Credit: https://twitter.com/_shtove and https://twitter.com/mattnotmax  
 
 `[{"op":"Decode text","args":["UTF-16LE (1200)"]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"Fork","args":["\\n","\\n",false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^."},"H",true,false,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true,false]},{"op":"Gunzip","args":[]},{"op":"Merge","args":[true]},{"op":"Regular expression","args":["User defined","(?<=0\\n*x)([a-f0-9]{2})(?=,|\\))",true,true,false,false,false,false,"List matches"]},{"op":"From Hex","args":["Auto"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^."},"M",true,false,false,false]}]`  
