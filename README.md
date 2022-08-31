@@ -185,6 +185,8 @@ Some example CyberChef recipes:
 
 [Recipe 68: Converting Java signed byte arrays](#recipe-68---converting-java-signed-byte-arrays)  
 
+[Recipe 69: Extracting DLL payload from a Bumblebee Powershell script](#recipe-69---extracting-dll-payload-from-a-bumblebee-powershell-script)
+
 
 
 ## Recipe 1 - Extract base64, raw inflate and code beautify
@@ -1088,6 +1090,17 @@ Source: https://github.com/L-codes/Neo-reGeorg
 `[{"op":"Regular expression","args":["User defined","(?<=\\{)([\\-\\d,]+)(?=\\})",true,true,false,false,false,false,"List matches"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"(-\\d+)"},"$1 256",true,false,true,false]},{"op":"Find / Replace","args":[{"option":"Regex","string":","},"\\n",true,false,true,false]},{"op":"Fork","args":["\\n","\\n",false]},{"op":"Sum","args":["Space"]},{"op":"Merge","args":[true]},{"op":"From Charcode","args":["Line feed",10]}]`
 
 ![Recipe 68](screenshots/recipe_68.png)  
+
+
+## Recipe 69 - Extracting DLL payload from a Bumblebee Powershell script  
+
+Bumblebee, the apparent successor to Bazarloader, comes in swinging with a large PowerShell payload containing 113 Base64 blobs. Convert, decompress, substitute, regex-fu, substitute. All in a days work to extra the DLL payload with CyberChef.  
+
+Credit: https://twitter.com/_shtove and https://twitter.com/mattnotmax  
+
+`[{"op":"Decode text","args":["UTF-16LE (1200)"]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"Fork","args":["\\n","\\n",false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^."},"H",true,false,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true,false]},{"op":"Gunzip","args":[]},{"op":"Merge","args":[true]},{"op":"Regular expression","args":["User defined","(?<=0\\n*x)([a-f0-9]{2})(?=,|\\))",true,true,false,false,false,false,"List matches"]},{"op":"From Hex","args":["Auto"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^."},"M",true,false,false,false]}]`  
+
+![Recipe 69](screenshots/recipe_69.png)  
 
 # Training
 
