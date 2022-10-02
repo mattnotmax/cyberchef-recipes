@@ -1,0 +1,59 @@
+<% unless @chef_requires.empty? -%>
+<%= @chef_requires.inspect %>.each do |lib|
+  begin
+    require lib
+  rescue LoadError
+    Chef::Log.warn "Failed to load #{lib}. This should be resolved after a chef run."
+  end
+end
+
+<% end -%>
+<% @chef_config.each_key do |option| -%>
+  <% next if %w{ node_name exception_handlers report_handlers start_handlers }.include?(option) -%>
+  <% case option -%>
+  <% when 'log_level', 'ssl_verify_mode' -%>
+<%= option %> <%= @chef_config[option].gsub(/^:/, '').to_sym.inspect %>
+  <% when 'log_location' -%>
+<%= option %> <%= @chef_config[option] %>
+  <% else -%>
+<%= option %> <%= @chef_config[option].inspect %>
+  <% end -%>
+<% end -%>
+<% if @chef_config['node_name'] -%>
+node_name <%= @chef_config['node_name'].inspect %>
+<% else -%>
+# Using default node name (fqdn)
+<% end -%>
+<% unless node["chef_client"]["config"]["http_proxy"].nil? -%>
+
+# set the proxy env variable so rubygems works correctly
+ENV['http_proxy'] = "<%= node["chef_client"]["config"]["http_proxy"] %>"
+ENV['HTTP_PROXY'] = "<%= node["chef_client"]["config"]["http_proxy"] %>"
+<% end -%>
+<% if node.attribute?("ohai") && node["ohai"].attribute?("plugin_path") -%>
+
+Ohai::Config[:plugin_path] << "<%= node["ohai"]["plugin_path"] %>"
+<% end -%>
+<% unless @ohai_disabled_plugins.empty? %>
+Ohai::Config[:disabled_plugins] = <%= @ohai_disabled_plugins.inspect %>
+
+<% end -%>
+<% unless @start_handlers.nil? || @start_handlers.empty?-%>
+  <% @start_handlers.each do |handler| -%>
+start_handlers << <%= handler["class"] %>.new(<%= handler["arguments"].join(',') %>)
+  <% end -%>
+<% end -%>
+<% unless @report_handlers.nil? || @report_handlers.empty? -%>
+  <% @report_handlers.each do |handler| -%>
+report_handlers << <%= handler["class"] %>.new(<%= handler["arguments"].join(',') %>)
+  <% end -%>
+<% end -%>
+<% unless @exception_handlers.nil? || @exception_handlers.empty? -%>
+  <% @exception_handlers.each do |handler| -%>
+exception_handlers << <%= handler["class"] %>.new(<%= handler["arguments"].join(',') %>)
+  <% end -%>
+<% end -%>
+
+Dir.glob(File.join(<%= node['chef_client']['conf_dir'].inspect %>, "client.d", "*.rb")).each do |conf|
+  Chef::Config.from_file(conf)
+end

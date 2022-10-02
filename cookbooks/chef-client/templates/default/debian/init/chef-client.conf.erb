@@ -1,0 +1,17 @@
+# chef-client - Chef Configuration Management Client
+#
+# Chef Client provides the Chef configuration management daemon
+
+description "Chef Client"
+
+start on net-device-up
+stop on runlevel [!2345]
+
+respawn
+respawn limit 5 30
+
+pre-start script
+    test -x <%= @client_bin %> || { stop; exit 0; }
+end script
+
+exec <%= @client_bin %> -i <%= node["chef_client"]["interval"] %> -L <%= node["chef_client"]["log_dir"] %>/client.log <%= node["chef_client"]["daemon_options"].join(' ') %>

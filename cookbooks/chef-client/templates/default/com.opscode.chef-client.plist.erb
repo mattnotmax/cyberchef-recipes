@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+
+<dict>
+  <key>Label</key>
+  <string>com.opscode.chef-client</string>
+<%- if @launchd_mode == "interval" %>
+  <key>Program</key>
+  <string><%= @client_bin %></string>
+  <key>StartInterval</key>
+  <integer><%= node["chef_client"]["interval"] %></integer>
+  <key>RunAtLoad</key>
+  <true/>
+<%- else %>
+  <key>ProgramArguments</key>
+  <array>
+    <string><%= @client_bin %></string>
+    <string>-i <%= node["chef_client"]["interval"] %></string>
+    <string>-s <%= node["chef_client"]["splay"] %></string>
+    <% node["chef_client"]["daemon_options"].each do |option| -%>
+    <string><%= option %></string>
+    <% end -%>
+  </array>
+<%- end %>
+  <key>UserName</key>
+  <string>root</string>
+  <key>StandardOutPath</key>
+  <string><%= node["chef_client"]["log_dir"] %>/client.log</string>
+</dict>
+
+</plist>

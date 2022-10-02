@@ -1,0 +1,14 @@
+Bluepill.application("chef-client") do |app|
+
+  app.process("chef-client") do |process|
+    process.pid_file = "<%= node["chef_client"]["run_path"] %>/chef-client.pid"
+    process.working_dir = "/"
+    process.start_command = "env PATH=/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin<% if node["languages"]["ruby"]["gems_dir"] %>:<%= node["languages"]["ruby"]["gems_dir"] %>/bin<% end -%> chef-client -i <%= node["chef_client"]["interval"] %> -s <%= node["chef_client"]["splay"] %> -P <%= node["chef_client"]["run_path"] %>/chef-client.pid <%= node["chef_client"]["daemon_options"].join(' ') %>"
+    process.stdout = process.stderr = "<%= node["chef_client"]["log_dir"] %>/client.log"
+    process.start_grace_time = 5.seconds
+    process.stop_grace_time = 5.seconds
+    process.restart_grace_time = 30.seconds
+    process.daemonize = true
+  end
+
+end

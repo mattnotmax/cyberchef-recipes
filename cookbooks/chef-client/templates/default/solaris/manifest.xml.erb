@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!DOCTYPE service_bundle SYSTEM "/usr/share/lib/xml/dtd/service_bundle.dtd.1">
+
+<service_bundle type='manifest' name='chef-client'>
+
+<service
+        name='application/management/chef-client'
+        type='service'
+        version='1'>
+
+        <create_default_instance enabled='false' />
+
+        <single_instance />
+
+        <dependency
+                name='milestone'
+                grouping='require_all'
+                restart_on='none'
+                type='service'>
+                <service_fmri value='svc:/milestone/sysconfig' />
+        </dependency>
+
+        <!-- Need / & /usr filesystems mounted, /var mounted read/write -->
+        <dependency
+                name='fs-local'
+                type='service'
+                grouping='require_all'
+                restart_on='none'>
+                        <service_fmri value='svc:/system/filesystem/local' />
+        </dependency>
+
+        <dependency
+                name='name-services'
+                grouping='optional_all'
+                restart_on='none'
+                type='service'>
+                <service_fmri value='svc:/milestone/name-services' />
+        </dependency>
+
+        <dependency
+                name='network'
+                grouping='require_all'
+                restart_on='restart'
+                type='service'>
+                        <service_fmri value='svc:/milestone/network' />
+        </dependency>
+
+        <dependency
+                name='config-file'
+                grouping='require_all'
+                restart_on='refresh'
+                type='path'>
+                        <service_fmri
+                           value='file://localhost/etc/chef/client.rb' />
+        </dependency>
+
+        <exec_method
+                type='method'
+                name='start'
+                exec='<%= node['chef_client']['method_dir'] %>/chef-client %m'
+                timeout_seconds='60'>
+                <method_context>
+                        <method_environment>
+                                <envvar name="LANG" value="en_US.UTF-8"/>
+                                <envvar name="LC_ALL" value="en_US.UTF-8"/>
+                        </method_environment>
+                </method_context>
+        </exec_method>
+
+        <exec_method
+                type='method'
+                name='stop'
+                exec=':kill'
+                timeout_seconds='60'>
+        </exec_method>
+
+        <exec_method
+                type='method'
+                name='refresh'
+                exec=':kill -1'
+                timeout_seconds='60'>
+        </exec_method>
+
+        <property_group name='general' type='framework'>
+                <!-- to start/stop chef-client -->
+                <propval name='action_authorization' type='astring'
+                        value='solaris.smf.manage.chef-client' />
+
+        </property_group>
+
+        <template>
+                <common_name>
+                        <loctext xml:lang='C'>
+                        chef-client Chef Client
+                        </loctext>
+                </common_name>
+
+        </template>
+
+</service>
+
+</service_bundle>

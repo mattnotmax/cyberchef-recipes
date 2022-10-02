@@ -1,0 +1,5 @@
+LOGFILE=<%= node["chef_client"]["log_dir"] %>/client.log
+CONFIG=<%= node["chef_client"]["conf_dir"] %>/client.rb
+INTERVAL=<%= node["chef_client"]["interval"] %>
+SPLAY=<%= node["chef_client"]["splay"] %>
+CHEF_CLIENT_ARGS="-L $LOGFILE -d -c $CONFIG -i $INTERVAL -s $SPLAY <%= node["chef_client"]["daemon_options"].join(' ') %>"

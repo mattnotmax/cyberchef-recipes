@@ -1,0 +1,4 @@
+#!/bin/sh
+PATH=/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin<% if node["languages"]["ruby"]["gems_dir"] %>:<%= node["languages"]["ruby"]["gems_dir"] %>/bin<% end -%>
+exec 2>&1
+exec /usr/bin/env chef-client -i <%= node["chef_client"]["interval"] %> -s <%= node["chef_client"]["splay"] %> <%= node["chef_client"]["daemon_options"].join(' ') %>
