@@ -187,6 +187,7 @@ Some example CyberChef recipes:
 
 [Recipe 69: Extracting DLL payload from a Bumblebee Powershell script](#recipe-69---extracting-dll-payload-from-a-bumblebee-powershell-script)
 
+[Recipe 70: Extracting endpoints from Android network security config](#recipe-70---extracting-endpoints-from-android-network-security-config)
 
 
 ## Recipe 1 - Extract base64, raw inflate and code beautify
@@ -1102,6 +1103,17 @@ Credit: https://twitter.com/_shtove and https://twitter.com/mattnotmax
 `[{"op":"Decode text","args":["UTF-16LE (1200)"]},{"op":"Regular expression","args":["User defined","[a-zA-Z0-9+/=]{30,}",true,true,false,false,false,false,"List matches"]},{"op":"Fork","args":["\\n","\\n",false]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^."},"H",true,false,true,false]},{"op":"From Base64","args":["A-Za-z0-9+/=",true,false]},{"op":"Gunzip","args":[]},{"op":"Merge","args":[true]},{"op":"Regular expression","args":["User defined","(?<=0\\n*x)([a-f0-9]{2})(?=,|\\))",true,true,false,false,false,false,"List matches"]},{"op":"From Hex","args":["Auto"]},{"op":"Find / Replace","args":[{"option":"Regex","string":"^."},"M",true,false,false,false]}]`  
 
 ![Recipe 69](screenshots/recipe_69.png)  
+
+
+## Recipe 70 - Extracting endpoints from Android network security config
+
+The Network Security Configuration feature lets you customize your app's network security settings in a safe, declarative configuration file without modifying app code. These settings can be configured for specific domains and for a specific app. This recipe can be used to extract some endpoints that can help in your recon:
+
+Credit: [https://www.linkedin.com/in/isdebuggerpresent](https://www.linkedin.com/in/isdebuggerpresent)
+
+`[{"op":"Regular expression","args":["User defined","includeSubdomains\\=\\\"\\w+\\\"\\>(?<lista>.*)\\<",true,true,false,false,false,false,"List capture groups"]},{"op":"Unique","args":["Line feed",false]}]`  
+
+![Recipe 70](screenshots/recipe_70.png)  
 
 # Training
 
